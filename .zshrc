@@ -115,8 +115,10 @@ pr() {
 	gh pr create -w
 }
 
+# Aliases
 alias nr='npm run'
 alias vim=nvim
+alias config='/usr/bin/git --git-dir=/Users/xiaomin/.cfg/ --work-tree=/Users/xiaomin'
 
 export LESS=-FRX
 
@@ -141,4 +143,3 @@ source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
-alias config='/usr/bin/git --git-dir=/Users/xiaomin/.cfg/ --work-tree=/Users/xiaomin'

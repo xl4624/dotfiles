@@ -1,0 +1,14 @@
+.DS_Store
+.idea/
+yarn.lock
+.vscode/
+node_modules/
+*.log
+*.sql
+*.sqlite
+*.o
+*.class
+*.pyc
+*.tmp
+*.bak
+*.swp

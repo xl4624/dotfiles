@@ -26,6 +26,9 @@ vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = "90"
 
+vim.g.netrw_banner = 0
+vim.g.netrw_liststyle = 4
+vim.g.netrw_list_hide = '^\\./$,^\\../$'
 vim.g.python3_host_prog = "/Users/xiaomin/.pyenv/versions/neovim/bin/python3"
 vim.g.mapleader = ' '
 
