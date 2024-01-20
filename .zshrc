@@ -81,6 +81,7 @@ plugins=(
 	git
 	npm
 	zsh-autosuggestions
+    colorize
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -111,25 +112,23 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-pr() {
-	gh pr create -w
-}
-
-# Aliases
 alias nr='npm run'
 alias vim=nvim
 alias config='/usr/bin/git --git-dir=/Users/xiaomin/.cfg/ --work-tree=/Users/xiaomin'
 
+pr() {
+	gh pr create -w
+}
+
 export LESS=-FRX
 
-# use TAB to accept autosuggestions and Shift-TAB to see full list of suggestions
+# Use TAB to accept autosuggestions and Shift-TAB to see the full list of suggestions
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 bindkey "^I" autosuggest-accept
 bindkey "^[[Z" expand-or-complete
 
 export PATH="/usr/local/bin:$PATH"
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
-
 export GPG_TTY=$(tty)
 
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
