@@ -29,6 +29,11 @@ return {
                         height = 0.80,
                         preview_cutoff = 75,
                     },
+                    file_ignore_patterns = { 
+                        ".git",
+                        "node_modules",
+                        "pyrightconfig.json",
+                    },
                 },
             })
             local builtin = require("telescope.builtin")
