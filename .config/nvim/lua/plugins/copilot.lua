@@ -15,7 +15,6 @@ return {
             end
         end
 
-        -- Set <leader>cp to toggle Copilot
-        vim.keymap.set({'n', 'v'}, '<leader>cp', toggleCopilot, { noremap = true, silent = true})
-    end
+        vim.keymap.set({'n', 'v'}, '<leader>cp', toggleCopilot, { noremap = true, silent = true, desc = "Toggle Copilot" })
+    end,
 }
