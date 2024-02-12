@@ -28,6 +28,8 @@ return {
         })
     end,
     keys = {
-        vim.keymap.set("n", "<leader>nd", "<cmd>Noice dismiss<CR>", { noremap = true, silent = true, desc = "Dismiss noice" })
+        vim.keymap.set("n", "<leader>nd", "<cmd>Noice dismiss<CR>", { noremap = true, silent = true, desc = "Dismiss noice" }),
+        vim.keymap.set("n", "<leader>nn", "<cmd>Noice enable<CR>", { noremap = true, silent = true, desc = "Enable noice" }),
+        vim.keymap.set("n", "<leader>nx", "<cmd>Noice disable<CR>", { noremap = true, silent = true, desc = "Disable noice" }),
     }
 }

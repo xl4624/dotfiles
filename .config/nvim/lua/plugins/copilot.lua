@@ -18,3 +18,4 @@ return {
         vim.keymap.set({'n', 'v'}, '<leader>cp', toggleCopilot, { noremap = true, silent = true, desc = "Toggle Copilot" })
     end,
 }
+
