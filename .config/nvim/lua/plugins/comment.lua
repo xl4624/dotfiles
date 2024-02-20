@@ -17,9 +17,9 @@ return {
         -- LHS of operator-pending mappings in NORMAL and VISUAL mode
         opleader = {
             -- Line-comment keymap
-            line = 'cc',
+            line = 'gc',
             -- Block-comment keymap
-            block = 'cb',
+            block = 'gb',
         },
         -- Enable keybindings
         -- NOTE: If given `false` then the plugin won't create any mappings
