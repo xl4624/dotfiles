@@ -80,8 +80,6 @@ zstyle ':omz:update' mode auto      # update automatically without asking
 plugins=(
 	git
 	npm
-	zsh-autosuggestions
-    colorize
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -132,7 +130,7 @@ export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 export GPG_TTY=$(tty)
 
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-. "$HOME/.asdf/asdf.sh"
+source "$HOME/.asdf/asdf.sh"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
