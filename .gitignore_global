@@ -1,7 +1,8 @@
 .DS_Store
 .idea/
-yarn.lock
 .vscode/
+.python-version
+yarn.lock
 node_modules/
 *.log
 *.sql
