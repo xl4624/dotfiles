@@ -57,6 +57,19 @@ return {
                         }
                     })
                 end,
+                clangd = function()
+                    require("lspconfig").clangd.setup({
+                        cmd = {
+                            "clangd",
+                            "--background-index",
+                            "--clang-tidy",
+                            "--completion-style=detailed",
+                            "--header-insertion=iwyu",
+                            "--suggest-missing-includes",
+                            "--offset-encoding=utf-16",
+                        }
+                    })
+                end,
             }
         })
 
