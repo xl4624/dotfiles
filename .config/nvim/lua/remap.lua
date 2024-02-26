@@ -19,3 +19,7 @@ vim.keymap.set("n", "<leader><leader>", vim.cmd.source, { noremap = true, desc =
 vim.keymap.set("n", "<leader>rw", ":%s/<C-r><C-w>/g", { desc = "Replace word under cursor" })
 
 vim.keymap.set("n", "<leader>w", "<C-w>", { silent = true, noremap = true, desc = "Window management" })
+
+vim.keymap.set("n", "<leader>t", ":botright 10split | terminal<CR>", { desc = "Split terminal on bottom" })
+
+vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { noremap = true, desc = "Exit terminal mode" })
