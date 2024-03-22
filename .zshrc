@@ -110,6 +110,8 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+alias gcc='gcc-13'
+alias g++='g++-13'
 alias nr='npm run'
 alias vim=nvim
 alias config='/usr/bin/git --git-dir=/Users/xiaomin/.cfg/ --work-tree=/Users/xiaomin'

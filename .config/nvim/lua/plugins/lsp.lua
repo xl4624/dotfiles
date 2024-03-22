@@ -22,16 +22,20 @@ return {
 
         lsp_zero.on_attach(function(client, bufnr)
             lsp_zero.buffer_autoformat()
-            local opts = {buffer = bufnr, remap = false}
+            local opts = { buffer = bufnr, remap = false }
 
             vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts, { desc = "Go to definition" })
-            vim.keymap.set("n", "gi", function() vim.lsp.buf.implementation() end, opts, { desc = "Go to implementation" })
+            vim.keymap.set("n", "gi", function() vim.lsp.buf.implementation() end, opts,
+                { desc = "Go to implementation" })
             vim.keymap.set("n", "gD", function() vim.lsp.buf.declaration() end, opts, { desc = "Go to declaration" })
             vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts, { desc = "Show hover" })
-            vim.keymap.set("n", "<leader>sw", function() vim.lsp.buf.workspace_symbol() end, opts, { desc = "Search workspace symbols" })
-            vim.keymap.set("n", "<leader>d", function() vim.diagnostic.open_float() end, opts, { desc = "Open diagnostics" })
+            vim.keymap.set("n", "<leader>sw", function() vim.lsp.buf.workspace_symbol() end, opts,
+                { desc = "Search workspace symbols" })
+            vim.keymap.set("n", "<leader>d", function() vim.diagnostic.open_float() end, opts,
+                { desc = "Open diagnostics" })
             vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts, { desc = "Go to next diagnostic" })
-            vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts, { desc = "Go to previous diagnostic" })
+            vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts,
+                { desc = "Go to previous diagnostic" })
             vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end, opts, { desc = "Code action" })
             vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts, { desc = "Signature help" })
             vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts, { desc = "Rename" })
@@ -39,7 +43,7 @@ return {
 
         require("mason").setup({})
         require("mason-lspconfig").setup({
-            ensure_installed = {"tsserver", "pyright"},
+            ensure_installed = { "tsserver", "pyright" },
             handlers = {
                 lsp_zero.default_setup,
                 lua_ls = function()
@@ -74,15 +78,15 @@ return {
         })
 
         local cmp = require("cmp")
-        local cmp_select = {behavior = cmp.SelectBehavior.Select}
+        local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
         cmp.setup({
             sources = {
-                {name = "path"},
-                {name = "nvim_lsp"},
-                {name = "nvim_lua"},
-                {name = "luasnip", keyword_length = 2},
-                {name = "buffer", keyword_length = 3},
+                { name = "path" },
+                { name = "nvim_lsp" },
+                { name = "nvim_lua" },
+                { name = "luasnip", keyword_length = 2 },
+                { name = "buffer",  keyword_length = 3 },
             },
             formatting = lsp_zero.cmp_format(),
             mapping = cmp.mapping.preset.insert({

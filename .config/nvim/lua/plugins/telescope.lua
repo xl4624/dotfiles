@@ -8,7 +8,8 @@ return {
             "nvim-tree/nvim-web-devicons",
             {
                 'nvim-telescope/telescope-fzf-native.nvim',
-                build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
+                build =
+                'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
             },
         },
         config = function()
@@ -28,7 +29,7 @@ return {
                         height = 0.80,
                         preview_cutoff = 75,
                     },
-                    file_ignore_patterns = { 
+                    file_ignore_patterns = {
                         ".git",
                         "node_modules",
                         "pyrightconfig.json",
