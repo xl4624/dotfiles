@@ -109,12 +109,14 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
 alias gcc='gcc-13'
 alias g++='g++-13'
 alias nr='npm run'
 alias vim=nvim
-alias config='/usr/bin/git --git-dir=/Users/xiaomin/.cfg/ --work-tree=/Users/xiaomin'
+alias config='git --git-dir=/Users/xiaomin/.cfg/ --work-tree=/Users/xiaomin'
+
+# replace ls with exa
+alias ls='exa'
 
 pr() {
 	gh pr create -w
@@ -129,7 +131,9 @@ bindkey "^[[Z" expand-or-complete
 
 export PATH="/usr/local/bin:$PATH"
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
-export GPG_TTY=$(tty)
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+
+export GPG_TTY=$(tty) 
 
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source "$HOME/.asdf/asdf.sh"
