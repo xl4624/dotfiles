@@ -1,0 +1,18 @@
+[user]
+	name = Xiaomin Liu
+	email = xl4624@nyu.edu
+[core]
+	editor = nvim
+	autocrlf = input
+	excludesfile = /Users/xiaomin/.gitignore_global
+[color]
+	ui = auto
+[init]
+	defaultBranch = main
+[pull]
+	rebase = true
+[push]
+	autoSetupRemote = true
+	default = current
+[commit]
+	template = /Users/xiaomin/.gitmessage
