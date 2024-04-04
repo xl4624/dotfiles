@@ -45,7 +45,7 @@ zstyle ':omz:update' mode auto      # update automatically without asking
 # DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+DISABLE_AUTO_TITLE="true"  # uncommented to fix commands being repeated in the terminal
 
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
@@ -86,7 +86,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-# export MANPATH="/usr/local/man:$MANPATH"
+# export MANPATH="/usr/lal/man:$MANPATH"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -116,7 +116,7 @@ alias vim=nvim
 alias config='git --git-dir=/Users/xiaomin/.cfg/ --work-tree=/Users/xiaomin'
 
 # replace ls with exa
-alias ls='exa'
+# alias ls='exa'
 
 pr() {
 	gh pr create -w
