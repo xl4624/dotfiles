@@ -129,6 +129,10 @@ ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 bindkey "^I" autosuggest-accept
 bindkey "^[[Z" expand-or-complete
 
+bindkey "^[[1;9D" beginning-of-line
+bindkey "^[[1;9C" end-of-line
+bindkey "^[3[;5~" kill-whole-line
+
 export PATH="/usr/local/bin:$PATH"
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
