@@ -10,6 +10,10 @@ vim.keymap.del("n", "<C-Right>")
 vim.keymap.del("n", "<leader>`")
 vim.keymap.del({ "i", "x", "n", "s" }, "<C-s>")
 
+-- Remove some default keybinds
+vim.keymap.set("n", "<C-q>", "<Nop>")
+vim.keymap.set("n", "<A-Right>", "<Nop>")
+
 -- Replace Explore with Oil
 vim.keymap.set("n", "<leader>e", function()
   vim.cmd("Oil " .. vim.fn.expand("%:p:h"))
