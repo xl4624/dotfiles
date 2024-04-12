@@ -69,7 +69,6 @@ keybinds clear-defaults=true {
     }
     session {
         bind "Ctrl s" { SwitchToMode "Normal"; }
-        bind "Ctrl s" { SwitchToMode "Scroll"; }
         bind "d" { Detach; }
         bind "w" {
             LaunchOrFocusPlugin "zellij:session-manager" {

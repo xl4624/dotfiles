@@ -114,9 +114,8 @@ alias g++='g++-13'
 alias nr='npm run'
 alias vim=nvim
 alias config='git --git-dir=/Users/xiaomin/.cfg/ --work-tree=/Users/xiaomin'
-
-# replace ls with exa
-# alias ls='exa'
+alias ls='exa'
+alias zj='zellij'
 
 pr() {
 	gh pr create -w
