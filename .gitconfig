@@ -16,3 +16,5 @@
 	default = current
 [commit]
 	template = /Users/xiaomin/.gitmessage
+[alias]
+	amend = commit --amend

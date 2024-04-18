@@ -121,6 +121,7 @@ pr() {
 	gh pr create -w
 }
 
+# Add some flags to the less pager during git diff
 export LESS=-FRX
 
 # Use TAB to accept autosuggestions and Shift-TAB to see the full list of suggestions
@@ -139,7 +140,7 @@ export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 export GPG_TTY=$(tty) 
 
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source "$HOME/.asdf/asdf.sh"
+# source "$HOME/.asdf/asdf.sh"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

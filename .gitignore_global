@@ -5,8 +5,6 @@
 yarn.lock
 node_modules/
 *.log
-*.sql
-*.sqlite
 *.o
 *.class
 *.pyc
