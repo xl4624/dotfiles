@@ -24,9 +24,6 @@ return {
       end,
       desc = "Find files (hidden)",
     },
-    {
-      "<leader><space>",
-      false,
-    },
+    { "<leader><space>", false },
   },
 }

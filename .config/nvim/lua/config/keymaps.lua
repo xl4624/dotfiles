@@ -7,17 +7,24 @@ vim.keymap.del("n", "<C-Up>")
 vim.keymap.del("n", "<C-Down>")
 vim.keymap.del("n", "<C-Left>")
 vim.keymap.del("n", "<C-Right>")
+vim.keymap.del("n", "<C-h>")
+vim.keymap.del("n", "<C-j>")
+vim.keymap.del("n", "<C-k>")
+vim.keymap.del("n", "<C-l>")
 vim.keymap.del("n", "<leader>`")
 vim.keymap.del({ "i", "x", "n", "s" }, "<C-s>")
+
+-- Windows
+vim.keymap.set("n", "<leader>w-", "<C-w>s", { noremap = true, desc = "Split Window Below"})
+vim.keymap.set("n", "<leader>w|", "<C-w>v", { noremap = true, desc = "Split Window Right"})
+vim.keymap.set("n", "<leader>wh", "<C-w>h", { noremap = true, desc = "Go to Left Window"})
+vim.keymap.set("n", "<leader>wj", "<C-w>j", { noremap = true, desc = "Go to Lower Window"})
+vim.keymap.set("n", "<leader>wk", "<C-w>k", { noremap = true, desc = "Go to Upper Window"})
+vim.keymap.set("n", "<leader>wl", "<C-w>l", { noremap = true, desc = "Go to Right Window"})
 
 -- Remove some default keybinds
 vim.keymap.set("n", "<C-q>", "<Nop>")
 vim.keymap.set("n", "<A-Right>", "<Nop>")
-
--- Replace Explore with Oil
-vim.keymap.set("n", "<leader>e", function()
-  vim.cmd("Oil " .. vim.fn.expand("%:p:h"))
-end, { desc = "Explore" })
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { silent = true, noremap = true, desc = "Move line down" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { silent = true, noremap = true, desc = "Move line up" })
