@@ -1,6 +1,9 @@
 return {
   "echasnovski/mini.files",
   lazy = false, -- otherwise won't open as default_explorer
+  config = function()
+    vim.g.colors_name = "minischeme"
+  end,
   keys = {
     {
       "<leader>e",
