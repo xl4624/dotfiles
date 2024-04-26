@@ -3,8 +3,18 @@
 -- Add any additional options here
 
 vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
+vim.opt.softtabstop = 4
+
+-- Change the default tab width for certain filetypes
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "markdown", "lua" },
+  callback = function()
+    vim.opt_local.tabstop = 2
+    vim.opt_local.shiftwidth = 2
+    vim.opt_local.softtabstop = 2
+  end,
+})
 
 vim.opt.guicursor = ""
 vim.g.autoformat = false -- Disable file autoformatting (use <leader>uf to re-enable and <leader>cf to format the current file)
