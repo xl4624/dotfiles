@@ -12,6 +12,9 @@ vim.keymap.del("n", "<C-j>")
 vim.keymap.del("n", "<C-k>")
 vim.keymap.del("n", "<C-l>")
 vim.keymap.del("n", "<leader>`")
+vim.keymap.del("n", "<leader>-")
+vim.keymap.del("n", "<leader>|")
+
 vim.keymap.del({ "i", "x", "n", "s" }, "<C-s>")
 
 -- Windows

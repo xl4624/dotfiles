@@ -28,5 +28,7 @@ return {
 
     { "<leader>/", false },
     { "<leader>fg", LazyVim.telescope("live_grep"), desc = "Grep (Root Dir)" },
+
+    { "<leader>,", false },
   },
 }
