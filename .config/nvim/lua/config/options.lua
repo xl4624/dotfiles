@@ -22,12 +22,4 @@ vim.opt.foldenable = false
 vim.opt.foldmethod = "manual"
 vim.opt.clipboard = "" -- Separate clipboard between vim and system
 
-vim.opt.colorcolumn = "80" -- Highlight for long lines
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "rust",
-  callback = function()
-    vim.opt.colorcolumn = "100"
-  end,
-})
-
 vim.g.python3_host_prog = "/Users/xiaomin/.pyenv/versions/3.11.5/envs/neovim/bin/python"

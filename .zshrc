@@ -113,7 +113,7 @@ alias gcc='gcc-13'
 alias g++='g++-13'
 alias nr='npm run'
 alias vim=nvim
-alias config='git --git-dir=/Users/xiaomin/.cfg/ --work-tree=/Users/xiaomin'
+alias cfg='git --git-dir=/Users/xiaomin/.cfg/ --work-tree=/Users/xiaomin'
 alias ls='exa'
 alias zj='zellij'
 
