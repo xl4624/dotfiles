@@ -139,10 +139,12 @@ export PATH="/usr/local/bin:$PATH"
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 
-export GPG_TTY=$(tty) 
+export GPG_TTY=$(tty)
 
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # source "$HOME/.asdf/asdf.sh"
+
+set -o ignoreeof  # ignore ctrl-d
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

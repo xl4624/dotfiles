@@ -50,7 +50,7 @@ vim.keymap.set("n", "<leader>cp", function()
     vim.notify("Copilot disabled")
     vim.g.copilot_enabled = 0
   end
-end, { desc = "Toggle Copilot" })
+end, { noremap = true, desc = "Toggle Copilot" })
 
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { noremap = true, desc = "Exit terminal mode" })
 vim.keymap.set("t", "<S-Space>", "<Space>")
