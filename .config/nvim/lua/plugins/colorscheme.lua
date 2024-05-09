@@ -15,9 +15,13 @@ return {
     end,
   },
   {
+    "rose-pine/neovim",
+    name = "rose-pine",
+  },
+  {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "gruvbox",
+      colorscheme = "rose-pine",
     },
   },
 }

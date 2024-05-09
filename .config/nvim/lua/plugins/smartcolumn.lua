@@ -17,6 +17,7 @@ return {
     scope = "window",
     custom_colorcolumn = {
       rust = "100",
+      python = "100",
     },
   },
 }
