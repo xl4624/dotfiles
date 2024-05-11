@@ -109,8 +109,8 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias gcc='gcc-13'
-alias g++='g++-13'
+alias gcc='gcc-14'
+alias g++='g++-14'
 alias nr='npm run'
 alias vim=nvim
 alias cfg='git --git-dir=/Users/xiaomin/.cfg/ --work-tree=/Users/xiaomin'
