@@ -1,16 +1,6 @@
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
-vim.keymap.del({ "n", "v" }, "<A-j>")
-vim.keymap.del({ "n", "v" }, "<A-k>")
-vim.keymap.del("n", "<C-Up>")
-vim.keymap.del("n", "<C-Down>")
-vim.keymap.del("n", "<C-Left>")
-vim.keymap.del("n", "<C-Right>")
-vim.keymap.del("n", "<C-h>")
-vim.keymap.del("n", "<C-j>")
-vim.keymap.del("n", "<C-k>")
-vim.keymap.del("n", "<C-l>")
 vim.keymap.del("n", "<leader>`")
 vim.keymap.del("n", "<leader>-")
 vim.keymap.del("n", "<leader>|")
@@ -25,7 +15,7 @@ vim.keymap.set("n", "<leader>wj", "<C-w>j", { noremap = true, desc = "Go to Lowe
 vim.keymap.set("n", "<leader>wk", "<C-w>k", { noremap = true, desc = "Go to Upper Window"})
 vim.keymap.set("n", "<leader>wl", "<C-w>l", { noremap = true, desc = "Go to Right Window"})
 
--- Remove some default keybinds
+-- Remove some nvim-default keybinds
 vim.keymap.set("n", "<C-q>", "<Nop>")
 vim.keymap.set("n", "<A-Right>", "<Nop>")
 

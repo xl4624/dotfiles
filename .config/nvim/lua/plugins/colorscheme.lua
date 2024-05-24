@@ -19,6 +19,9 @@ return {
     name = "rose-pine",
   },
   {
+    "ayu-theme/ayu-vim",
+  },
+  {
     "LazyVim/LazyVim",
     opts = {
       colorscheme = "rose-pine",
