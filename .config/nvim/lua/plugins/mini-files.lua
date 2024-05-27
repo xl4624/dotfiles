@@ -1,7 +1,13 @@
 return {
   "echasnovski/mini.files",
   lazy = false, -- otherwise won't open as default_explorer
-  config = function()
+  opts = {
+    options = {
+      use_as_default_explorer = true,
+    },
+  },
+  config = function(_, opts)
+    require("mini.files").setup(opts)
     vim.g.colors_name = "minischeme"
   end,
   keys = {
@@ -19,7 +25,7 @@ return {
       end,
       desc = "Open mini.files (cwd)",
     },
-    { "<leader>fe", false },
-    { "<leader>fE", false },
+    { "<leader>fm", false },
+    { "<leader>fM", false },
   },
 }
