@@ -14,7 +14,6 @@ vim.api.nvim_create_autocmd("FileType", { -- Change the default tab width for ce
   end,
 })
 
-vim.opt.guicursor = ""
 vim.g.autoformat = false -- Disable file autoformatting (use <leader>uf to re-enable and <leader>cf to format the current file)
 vim.g.copilot_enabled = 0 -- Disable Copilot at startup (enable using <leader>cp)
 

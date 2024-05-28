@@ -114,7 +114,7 @@ alias g++='g++-14'
 alias nr='npm run'
 alias vim=nvim
 alias cfg='git --git-dir=/Users/xiaomin/.cfg/ --work-tree=/Users/xiaomin'
-alias ls='exa'
+alias ls='eza'
 alias zj='zellij'
 
 pr() {
