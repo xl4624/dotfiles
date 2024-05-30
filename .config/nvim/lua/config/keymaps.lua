@@ -4,16 +4,19 @@
 vim.keymap.del("n", "<leader>`")
 vim.keymap.del("n", "<leader>-")
 vim.keymap.del("n", "<leader>|")
-
+vim.keymap.del("n", "<C-Up>")
+vim.keymap.del("n", "<C-Left>")
+vim.keymap.del("n", "<C-Right>")
+vim.keymap.del("n", "<C-Down>")
 vim.keymap.del({ "i", "x", "n", "s" }, "<C-s>")
 
 -- Windows
-vim.keymap.set("n", "<leader>w-", "<C-w>s", { noremap = true, desc = "Split Window Below"})
-vim.keymap.set("n", "<leader>w|", "<C-w>v", { noremap = true, desc = "Split Window Right"})
-vim.keymap.set("n", "<leader>wh", "<C-w>h", { noremap = true, desc = "Go to Left Window"})
-vim.keymap.set("n", "<leader>wj", "<C-w>j", { noremap = true, desc = "Go to Lower Window"})
-vim.keymap.set("n", "<leader>wk", "<C-w>k", { noremap = true, desc = "Go to Upper Window"})
-vim.keymap.set("n", "<leader>wl", "<C-w>l", { noremap = true, desc = "Go to Right Window"})
+vim.keymap.set("n", "<leader>w-", "<C-w>s", { noremap = true, desc = "Split Window Below" })
+vim.keymap.set("n", "<leader>w|", "<C-w>v", { noremap = true, desc = "Split Window Right" })
+vim.keymap.set("n", "<leader>wh", "<C-w>h", { noremap = true, desc = "Go to Left Window" })
+vim.keymap.set("n", "<leader>wj", "<C-w>j", { noremap = true, desc = "Go to Lower Window" })
+vim.keymap.set("n", "<leader>wk", "<C-w>k", { noremap = true, desc = "Go to Upper Window" })
+vim.keymap.set("n", "<leader>wl", "<C-w>l", { noremap = true, desc = "Go to Right Window" })
 
 -- Remove some nvim-default keybinds
 vim.keymap.set("n", "<C-q>", "<Nop>")
