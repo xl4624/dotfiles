@@ -1,5 +1,11 @@
 // If you'd like to override the default keybindings completely, be sure to change "keybinds" to "keybinds clear-defaults=true"
 keybinds clear-defaults=true {
+    normal {
+        bind "Ctrl h" { MovePane "Left"; }
+        bind "Ctrl j" { MovePane "Down"; }
+        bind "Ctrl k" { MovePane "Up"; }
+        bind "Ctrl l" { MovePane "Right"; }
+    }
     tmux {
         bind "[" { SwitchToMode "Scroll"; }
         bind "Ctrl b" { Write 2; SwitchToMode "Normal"; }
