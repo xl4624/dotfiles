@@ -148,6 +148,9 @@ vim.opt.scrolloff = 10
 
 vim.g.python3_host_prog = '/Users/xiaomin/.pyenv/versions/3.11.5/envs/neovim/bin/python'
 
+-- Manually turn on copilot
+vim.g.copilot_enabled = 0
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
@@ -269,7 +272,6 @@ require('lazy').setup({
         ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
         ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
         ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
-        ['<leader>p'] = { name = '[P]lantUML', _ = 'which_key_ignore' },
       }
     end,
   },
