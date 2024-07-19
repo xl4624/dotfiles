@@ -124,8 +124,9 @@ pr() {
 # Add some flags to the less pager during git diff
 export LESS=-FRX
 
-# Use TAB to accept autosuggestions and Shift-TAB to see the full list of suggestions
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+ZSH_AUTOSUGGEST_IGNORE="?(#c50,)" # don't suggest commands with longer than 50 chars
+# Use TAB to accept autosuggestions and Shift-TAB to see the full list of suggestions
 bindkey "^I" autosuggest-accept
 bindkey "^[[Z" expand-or-complete
 
@@ -143,8 +144,7 @@ export GPG_TTY=$(tty)
 
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-# ignore ctrl-d
-set -o ignoreeof
+set -o ignoreeof # ignore ctrl-d
 
 HISTSIZE=10000
 HISTFILE=~/.zsh_history
@@ -158,12 +158,23 @@ setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
 
-# pyenv setup
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/opt/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
