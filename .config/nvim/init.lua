@@ -159,13 +159,25 @@ vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Window control keymaps
-vim.keymap.set('n', '<leader>w', '<C-w>')
+vim.keymap.set('n', '<leader>w', '<C-w>', { desc = 'Windows' })
+
+-- Buffer keymaps
+vim.keymap.set('n', '<S-h>', vim.cmd.bprevious, { desc = 'Move to previous buffer' })
+vim.keymap.set('n', '<S-l>', vim.cmd.bnext, { desc = 'Move to next buffer' })
+vim.keymap.set('n', '<leader>bd', vim.cmd.bdelete, { desc = 'Delete a buffer' })
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_next, { desc = 'Go to previous [D]iagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_prev, { desc = 'Go to next [D]iagnostic message' })
 vim.keymap.set('n', '<leader>cd', vim.diagnostic.open_float, { desc = '[C]ode Line [D]iagnostics' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+
+-- Yank to system clipboard
+vim.keymap.set('n', '<C-c>', function()
+  vim.cmd '%y+'
+end, { desc = 'Copy file to clipboard' })
+vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]], { desc = '[Y]ank' })
+vim.keymap.set('n', '<leader>Y', [["+Y]], { desc = '[Y]ank line' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -174,12 +186,6 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
-
-vim.keymap.set('n', '<C-c>', function()
-  vim.cmd '%y+'
-end, { desc = 'Copy file to clipboard' })
-vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]], { desc = '[y]ank to system clipboard' })
-vim.keymap.set('n', '<leader>Y', [["+Y]], { desc = '[Y]ank line to system clipboard' })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -275,6 +281,8 @@ require('lazy').setup({
         { '<leader>c_', hidden = true },
         { '<leader>f', group = '[F]ind' },
         { '<leader>f_', hidden = true },
+        { '<leader>b', group = '[B]uffers' },
+        { '<leader>b_', hidden = true },
       }
       wk.setup()
     end,
@@ -746,7 +754,6 @@ require('lazy').setup({
           --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
         },
         sources = {
-          { name = 'copilot' },
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
           { name = 'path' },
