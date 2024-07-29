@@ -7,11 +7,12 @@ keybinds clear-defaults=true {
         bind "Ctrl l" { MoveFocus "Right"; }
     }
     tmux {
-        bind "[" { SwitchToMode "Scroll"; }
         bind "Ctrl b" { Write 2; SwitchToMode "Normal"; }
+        bind "[" { SwitchToMode "Scroll"; }
+        bind "," { SwitchToMode "RenameTab"; }
         bind "|" { NewPane "Right"; SwitchToMode "Normal"; }
         bind "-" { NewPane "Down"; SwitchToMode "Normal"; }
-        bind "," { SwitchToMode "RenameTab"; }
+        bind "/" { ToggleFloatingPanes; SwitchToMode "Normal"; }
         bind "c" { NewTab; SwitchToMode "Normal"; }
         bind "d" { Detach; }
         bind "h" { Resize "Increase Left"; }
