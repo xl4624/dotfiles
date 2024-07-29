@@ -45,12 +45,6 @@ Kickstart Guide:
 
   TODO: The very first thing you should do is to run the command `:Tutor` in Neovim.
 
-    If you don't know what this means, type the following:
-      - <escape key>
-      - :
-      - Tutor
-      - <enter key>
-
     (If you already know the Neovim basics, you can skip this step.)
 
   Once you've completed that, you can continue working through **AND READING** the rest
@@ -159,12 +153,33 @@ vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Window control keymaps
-vim.keymap.set('n', '<leader>w', '<C-w>', { desc = 'Windows' })
+vim.keymap.set('n', '<leader>wd', '<C-w>d', { desc = 'Show diagnostics under the cursor' })
+vim.keymap.set('n', '<leader>wh', '<C-w>h', { desc = 'Go to the left window' })
+vim.keymap.set('n', '<leader>wj', '<C-w>j', { desc = 'Go to the down window' })
+vim.keymap.set('n', '<leader>wk', '<C-w>k', { desc = 'Go to the up window' })
+vim.keymap.set('n', '<leader>wl', '<C-w>l', { desc = 'Go to the right window' })
+vim.keymap.set('n', '<leader>wo', '<C-w>o', { desc = 'Close all other windows' })
+vim.keymap.set('n', '<leader>wq', '<C-w>q', { desc = 'Quit a window' })
+
+vim.keymap.set('n', '<leader>ws', '<C-w>s', { desc = 'Split window' })
+vim.keymap.set('n', '<leader>wT', '<C-w>T', { desc = 'Break out into a new tab' })
+vim.keymap.set('n', '<leader>wv', '<C-w>v', { desc = 'Split window vertically' })
+vim.keymap.set('n', '<leader>ww', '<C-w>w', { desc = 'Switch windows' })
+vim.keymap.set('n', '<leader>wx', '<C-w>x', { desc = 'Swap current with next' })
+vim.keymap.set('n', '<leader>w+', '<C-w>+', { desc = 'Increase height' })
+vim.keymap.set('n', '<leader>w-', '<C-w>-', { desc = 'Decrease height' })
+
+vim.keymap.set('n', '<leader>w<', '<C-w><', { desc = 'Decrease width' })
+vim.keymap.set('n', '<leader>w=', '<C-w>=', { desc = 'Equally high and wide' })
+vim.keymap.set('n', '<leader>w>', '<C-w>>', { desc = 'Increase width' })
+vim.keymap.set('n', '<leader>w_', '<C-w>_', { desc = 'Max out the height' })
+vim.keymap.set('n', '<leader>w|', '<C-w>|', { desc = 'Max out the width' })
+vim.keymap.set('n', '<leader>w^D', '<C-w>d', { desc = 'Show diagnostics under the cursor' })
 
 -- Buffer keymaps
 vim.keymap.set('n', '<S-h>', vim.cmd.bprevious, { desc = 'Move to previous buffer' })
 vim.keymap.set('n', '<S-l>', vim.cmd.bnext, { desc = 'Move to next buffer' })
-vim.keymap.set('n', '<leader>bd', vim.cmd.bdelete, { desc = 'Delete a buffer' })
+vim.keymap.set('n', '<leader>bd', '<CMD>bd<CR>', { desc = 'Delete a buffer' })
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_next, { desc = 'Go to previous [D]iagnostic message' })
@@ -283,6 +298,8 @@ require('lazy').setup({
         { '<leader>f_', hidden = true },
         { '<leader>b', group = '[B]uffers' },
         { '<leader>b_', hidden = true },
+        { '<leader>w', group = '[W]indow' },
+        { '<leader>w_', hidden = true },
       }
       wk.setup()
     end,
@@ -760,6 +777,13 @@ require('lazy').setup({
         },
       }
     end,
+  },
+
+  {
+    'ellisonleao/gruvbox.nvim',
+    opts = {
+      contrast = 'hard',
+    },
   },
 
   { -- You can easily change to a different colorscheme.
