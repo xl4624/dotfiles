@@ -1,11 +1,5 @@
 // If you'd like to override the default keybindings completely, be sure to change "keybinds" to "keybinds clear-defaults=true"
 keybinds clear-defaults=true {
-    normal {
-        bind "Ctrl h" { MoveFocus "Left"; }
-        bind "Ctrl j" { MoveFocus "Down"; }
-        bind "Ctrl k" { MoveFocus "Up"; }
-        bind "Ctrl l" { MoveFocus "Right"; }
-    }
     tmux {
         bind "Ctrl b" { Write 2; SwitchToMode "Normal"; }
         bind "[" { SwitchToMode "Scroll"; }
@@ -15,10 +9,14 @@ keybinds clear-defaults=true {
         bind "/" { ToggleFloatingPanes; SwitchToMode "Normal"; }
         bind "c" { NewTab; SwitchToMode "Normal"; }
         bind "d" { Detach; }
-        bind "h" { Resize "Increase Left"; }
-        bind "j" { Resize "Increase Down"; }
-        bind "k" { Resize "Increase Up"; }
-        bind "l" { Resize "Increase Right"; }
+        bind "h" { MoveFocus "Left"; }
+        bind "H" { Resize "Increase Left"; }
+        bind "j" { MoveFocus "Down"; }
+        bind "J" { Resize "Increase Down"; }
+        bind "k" { MoveFocus "Up"; }
+        bind "K" { Resize "Increase Up"; }
+        bind "l" { MoveFocus "Right"; }
+        bind "L" { Resize "Increase Right"; }
         bind "n" { GoToNextTab; SwitchToMode "Normal"; }
         bind "o" { FocusNextPane; }
         bind "p" { GoToPreviousTab; SwitchToMode "Normal"; }
