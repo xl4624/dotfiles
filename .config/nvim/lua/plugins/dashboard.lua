@@ -35,6 +35,7 @@ return {
         { action = "Telescope oldfiles",                                       desc = " Recent Files",    icon = " ", key = "r" },
         { action = "Telescope live_grep",                                      desc = " Find Text",       icon = " ", key = "g" },
         { action = "Lazy",                                                     desc = " Profile",         icon = "󰒲 ", key = "p" },
+        { action = "Leet",                                                     desc = " LeetCode",        icon = " ", key = "l" },
         { action = "qa",                                                       desc = " Quit",            icon = " ", key = "q" },
       },
         footer = function()
