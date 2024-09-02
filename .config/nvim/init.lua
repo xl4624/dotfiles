@@ -177,8 +177,6 @@ vim.keymap.set('n', '<leader>w|', '<C-w>|', { desc = 'Max out the width' })
 vim.keymap.set('n', '<leader>w^D', '<C-w>d', { desc = 'Show diagnostics under the cursor' })
 
 -- Buffer keymaps
-vim.keymap.set('n', '<S-h>', vim.cmd.bprevious, { desc = 'Move to previous buffer' })
-vim.keymap.set('n', '<S-l>', vim.cmd.bnext, { desc = 'Move to next buffer' })
 vim.keymap.set('n', '<leader>bd', '<CMD>bd<CR>', { desc = 'Delete a buffer' })
 
 -- Diagnostic keymaps
@@ -300,6 +298,8 @@ require('lazy').setup({
         { '<leader>b_', hidden = true },
         { '<leader>w', group = '[W]indow' },
         { '<leader>w_', hidden = true },
+        { '<leader>l', group = '[L]eetcode' },
+        { '<leader>l_', hidden = true },
       }
       wk.setup()
     end,
@@ -362,11 +362,13 @@ require('lazy').setup({
         -- You can put your default mappings / updates / etc. in here
         --  All the info you're looking for is in `:help telescope.setup()`
         --
-        -- defaults = {
-        --   mappings = {
-        --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-        --   },
-        -- },
+        defaults = {
+          mappings = {
+            n = { ['<c-s>'] = 'select_horizontal', ['<c-x>'] = 'delete_buffer' },
+            i = { ['<c-s>'] = 'select_horizontal', ['<c-x>'] = 'delete_buffer' },
+            -- i = { ['<c-enter>'] = 'to_fuzzy_refine' },
+          },
+        },
         -- pickers = {}
         extensions = {
           ['ui-select'] = {
@@ -591,7 +593,15 @@ require('lazy').setup({
         },
         -- gopls = {},
         -- pyright = {},
-        -- rust_analyzer = {},
+        rust_analyzer = {
+          settings = {
+            ['rust-analyzer'] = {
+              rustfmt = {
+                extraArgs = { '+nightly' },
+              },
+            },
+          },
+        },
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:
