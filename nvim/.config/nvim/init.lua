@@ -160,21 +160,19 @@ vim.keymap.set('n', '<leader>wk', '<C-w>k', { desc = 'Go to the up window' })
 vim.keymap.set('n', '<leader>wl', '<C-w>l', { desc = 'Go to the right window' })
 vim.keymap.set('n', '<leader>wo', '<C-w>o', { desc = 'Close all other windows' })
 vim.keymap.set('n', '<leader>wq', '<C-w>q', { desc = 'Quit a window' })
-
-vim.keymap.set('n', '<leader>ws', '<C-w>s', { desc = 'Split window' })
+vim.keymap.set('n', '<leader>w-', '<C-w>s', { desc = 'Split window' })
 vim.keymap.set('n', '<leader>wT', '<C-w>T', { desc = 'Break out into a new tab' })
-vim.keymap.set('n', '<leader>wv', '<C-w>v', { desc = 'Split window vertically' })
+vim.keymap.set('n', '<leader>w|', '<C-w>v', { desc = 'Split window vertically' })
 vim.keymap.set('n', '<leader>ww', '<C-w>w', { desc = 'Switch windows' })
 vim.keymap.set('n', '<leader>wx', '<C-w>x', { desc = 'Swap current with next' })
-vim.keymap.set('n', '<leader>w+', '<C-w>+', { desc = 'Increase height' })
-vim.keymap.set('n', '<leader>w-', '<C-w>-', { desc = 'Decrease height' })
-
+vim.keymap.set('n', '<leader>wK', '<C-w>+', { desc = 'Increase height' })
+vim.keymap.set('n', '<leader>wJ', '<C-w>-', { desc = 'Decrease height' })
 vim.keymap.set('n', '<leader>w<', '<C-w><', { desc = 'Decrease width' })
 vim.keymap.set('n', '<leader>w=', '<C-w>=', { desc = 'Equally high and wide' })
-vim.keymap.set('n', '<leader>w>', '<C-w>>', { desc = 'Increase width' })
+vim.keymap.set('n', '<leader>wL', '<C-w>>', { desc = 'Increase width' })
 vim.keymap.set('n', '<leader>w_', '<C-w>_', { desc = 'Max out the height' })
-vim.keymap.set('n', '<leader>w|', '<C-w>|', { desc = 'Max out the width' })
-vim.keymap.set('n', '<leader>w^D', '<C-w>d', { desc = 'Show diagnostics under the cursor' })
+vim.keymap.set('n', '<leader>w\\', '<C-w>|', { desc = 'Max out the width' })
+vim.keymap.set('n', '<leader>wd', '<C-w>d', { desc = 'Show diagnostics under the cursor' })
 
 -- Buffer keymaps
 vim.keymap.set('n', '<leader>bd', '<CMD>bd<CR>', { desc = 'Delete a buffer' })
@@ -248,7 +246,7 @@ require('lazy').setup({
   --    require('Comment').setup({})
 
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim',    opts = {} },
+  { 'numToStr/Comment.nvim', opts = {} },
 
   -- Here is a more advanced example where we pass configuration
   -- options to `gitsigns.nvim`. This is equivalent to the following Lua:
@@ -283,22 +281,22 @@ require('lazy').setup({
   -- after the plugin has been loaded:
   --  config = function() ... end
 
-  {                     -- Useful plugin to show you pending keybinds.
+  { -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
     event = 'VeryLazy', -- Sets the loading event to 'VeryLazy'
     config = function() -- This is the function that runs, AFTER loading
       local wk = require 'which-key'
       wk.add {
         -- Document existing key chains
-        { '<leader>c',  group = '[C]ode' },
+        { '<leader>c', group = '[C]ode' },
         { '<leader>c_', hidden = true },
-        { '<leader>f',  group = '[F]ind' },
+        { '<leader>f', group = '[F]ind' },
         { '<leader>f_', hidden = true },
-        { '<leader>b',  group = '[B]uffers' },
+        { '<leader>b', group = '[B]uffers' },
         { '<leader>b_', hidden = true },
-        { '<leader>w',  group = '[W]indow' },
+        { '<leader>w', group = '[W]indow' },
         { '<leader>w_', hidden = true },
-        { '<leader>l',  group = '[L]eetcode' },
+        { '<leader>l', group = '[L]eetcode' },
         { '<leader>l_', hidden = true },
       }
       wk.setup()
@@ -334,7 +332,7 @@ require('lazy').setup({
       { 'nvim-telescope/telescope-ui-select.nvim' },
 
       -- Useful for getting pretty icons, but requires a Nerd Font.
-      { 'nvim-tree/nvim-web-devicons',            enabled = vim.g.have_nerd_font },
+      { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -369,7 +367,19 @@ require('lazy').setup({
             -- i = { ['<c-enter>'] = 'to_fuzzy_refine' },
           },
         },
-        -- pickers = {}
+        pickers = {
+          live_grep = {
+            file_ignore_patterns = { 'node_modules', '.git', '.venv' },
+            additional_args = function(_)
+              return { '--hidden', '--no-ignore' }
+            end,
+          },
+          find_files = {
+            file_ignore_patterns = { 'node_modules', '.git', '.venv' },
+            hidden = true,
+            no_ignore = true,
+          },
+        },
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
@@ -429,11 +439,11 @@ require('lazy').setup({
 
       -- Useful status updates for LSP.
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim',       opts = {} },
+      { 'j-hui/fidget.nvim', opts = {} },
 
       -- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
       -- used for completion, annotations and signatures of Neovim apis
-      { 'folke/neodev.nvim',       opts = {} },
+      { 'folke/neodev.nvim', opts = {} },
     },
     config = function()
       -- Brief aside: **What is LSP?**
@@ -700,6 +710,34 @@ require('lazy').setup({
             end,
           },
         },
+        config = function()
+          local luasnip = require 'luasnip'
+          local cmp = require 'cmp'
+
+          cmp.setup {
+            mapping = {
+              ['<Tab>'] = cmp.mapping(function(fallback)
+                if cmp.visible() then
+                  cmp.select_next_item()
+                elseif luasnip.locally_jumpable(1) then
+                  luasnip.jump(1)
+                else
+                  fallback()
+                end
+              end, { 'i', 's' }),
+
+              ['<S-Tab>'] = cmp.mapping(function(fallback)
+                if cmp.visible() then
+                  cmp.select_prev_item()
+                elseif luasnip.locally_jumpable(-1) then
+                  luasnip.jump(-1)
+                else
+                  fallback()
+                end
+              end, { 'i', 's' }),
+            },
+          }
+        end,
       },
       'saadparwaiz1/cmp_luasnip',
 

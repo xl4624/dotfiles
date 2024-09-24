@@ -1,29 +1,27 @@
-[user]
-	name = Xiaomin Liu
-	email = xl4624@nyu.edu
-[core]
-	editor = nvim
-	autocrlf = input
-	excludesfile = /Users/xiaomin/.gitignore_global
-[color]
-	ui = auto
-[init]
-	defaultBranch = main
-[pull]
-	rebase = true
-[push]
-	autoSetupRemote = true
-	default = current
-[commit]
-	template = /Users/xiaomin/.gitmessage
 [alias]
 	amend = commit --amend
+	df = diff
+	dt = difftool
 	lg = log -p
 	lol = log --graph --decorate --pretty=oneline --abbrev-commit
 	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
-	df = diff
-	dt = difftool
+[color]
+	ui = auto
+[commit]
+	template = /home/xiaomin/.gitmessage
+[core]
+	editor = nvim
+	excludesfile = /home/xiaomin/.gitignore_global
 [diff]
 	tool = vimdiff
 [difftool]
 	prompt = false
+[user]
+	name = Xiaomin Liu
+	email = xl4624@nyu.edu
+[init]
+	defaultBranch = main
+[push]
+	autoSetupRemote = true
+[pull]
+	rebase = true

@@ -6,13 +6,13 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
-# Path to your oh-my-zsh installation.
+# Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
+# load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 # ZSH_THEME="powerlevel10k"
@@ -32,7 +32,7 @@ export ZSH="$HOME/.oh-my-zsh"
 
 # Uncomment one of the following lines to change the auto-update behavior
 # zstyle ':omz:update' mode disabled  # disable automatic updates
-zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode auto      # update automatically without asking
 # zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 # Uncomment the following line to change how often to auto-update (in days).
@@ -45,7 +45,7 @@ zstyle ':omz:update' mode auto      # update automatically without asking
 # DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
-DISABLE_AUTO_TITLE="true"  # uncommented to fix commands being repeated in the terminal
+DISABLE_AUTO_TITLE="true" # fix commands being repeated in the output
 
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
@@ -78,15 +78,20 @@ DISABLE_AUTO_TITLE="true"  # uncommented to fix commands being repeated in the t
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+	archlinux
+	fzf
 	git
-    rust
+	pip
+	rust
+	zsh-autosuggestions
+	zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-# export MANPATH="/usr/lal/man:$MANPATH"
+# export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -99,82 +104,51 @@ else
 fi
 
 # Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+# export ARCHFLAGS="-arch $(uname -m)"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# Set personal aliases, overriding those provided by Oh My Zsh libs,
+# plugins, and themes. Aliases can be placed here, though Oh My Zsh
+# users are encouraged to define aliases within a top-level file in
+# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
+# - $ZSH_CUSTOM/aliases.zsh
+# - $ZSH_CUSTOM/macos.zsh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias gcc='gcc-14'
-alias g++='g++-14'
-alias nr='npm run'
 alias vim=nvim
-alias cfg='git --git-dir=/Users/xiaomin/.cfg/ --work-tree=/Users/xiaomin'
-alias ls='eza'
-alias zj='zellij'
+alias zj=zellij
+# alias ls="eza --icons"
+# alias ll="eza -al --icons"
+# alias lt="eza -a --tree --level=1 --icons"
 
-pr() {
-	gh pr create -w
-}
-
-# Add some flags to the less pager during git diff
-export LESS=-FRX
-
+# Zsh-autosuggestion settings
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_IGNORE="?(#c50,)" # don't suggest commands with longer than 50 chars
-# Use TAB to accept autosuggestions and Shift-TAB to see the full list of suggestions
-bindkey "^I" autosuggest-accept
-bindkey "^[[Z" expand-or-complete
+bindkey "^I" autosuggest-accept # tab to accept autosuggestions 
+bindkey "^[[Z" expand-or-complete # shift-tab to see the full list of suggestions
 
-bindkey "^[[1;9D" beginning-of-line
-bindkey "^[[1;9C" end-of-line
-bindkey "^[3[;5~" kill-whole-line
-bindkey "^[[1;3C" forward-word
-bindkey "^[[1;3D" backward-word
+# Custom variables
+export AIRPODS="08:25:73:53:D8:97"
+export LESS=-FRX # add flags to the less pager during git diff
+export PATH=/usr/local/texlive/2024/bin/x86_64-linux:$PATH
+export MANROFFOPT="-c"
+export MANPAGER="sh -c 'col -bx | bat -plman'" man sprintf
 
-export PATH="/usr/local/bin:$PATH"
-export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
-export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
-
-export GPG_TTY=$(tty)
-
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-set -o ignoreeof # ignore ctrl-d
-
-HISTSIZE=10000
+# History configuration
 HISTFILE=~/.zsh_history
+HISTSIZE=10000
 SAVEHIST=$HISTSIZE
-HISTDUP=erase
 setopt appendhistory
-setopt sharehistory
-setopt hist_ignore_space
 setopt hist_ignore_all_dups
 setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 
+
+source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
-
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/opt/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/opt/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/opt/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
 

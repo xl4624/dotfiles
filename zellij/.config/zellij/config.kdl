@@ -1,5 +1,11 @@
 // If you'd like to override the default keybindings completely, be sure to change "keybinds" to "keybinds clear-defaults=true"
 keybinds clear-defaults=true {
+    normal {
+        bind "Ctrl h" { MoveFocus "Left"; }
+        bind "Ctrl j" { MoveFocus "Down"; }
+        bind "Ctrl k" { MoveFocus "Up"; }
+        bind "Ctrl l" { MoveFocus "Right"; }
+    }
     tmux {
         bind "Ctrl a" { Write 2; SwitchToMode "Normal"; }
         bind "[" { SwitchToMode "Scroll"; }
@@ -9,14 +15,10 @@ keybinds clear-defaults=true {
         bind "/" { ToggleFloatingPanes; SwitchToMode "Normal"; }
         bind "c" { NewTab; SwitchToMode "Normal"; }
         bind "d" { Detach; }
-        bind "h" { MoveFocus "Left"; SwitchToMode "Normal"; }
-        bind "H" { Resize "Increase Left"; }
-        bind "j" { MoveFocus "Down"; SwitchToMode "Normal"; }
-        bind "J" { Resize "Increase Down"; }
-        bind "k" { MoveFocus "Up"; SwitchToMode "Normal"; }
-        bind "K" { Resize "Increase Up"; }
-        bind "l" { MoveFocus "Right"; SwitchToMode "Normal"; }
-        bind "L" { Resize "Increase Right"; }
+        bind "h" { Resize "Increase Left"; }
+        bind "j" { Resize "Increase Down"; }
+        bind "k" { Resize "Increase Up"; }
+        bind "l" { Resize "Increase Right"; }
         bind "n" { GoToNextTab; SwitchToMode "Normal"; }
         bind "o" { FocusNextPane; }
         bind "p" { GoToPreviousTab; SwitchToMode "Normal"; }
@@ -40,7 +42,7 @@ keybinds clear-defaults=true {
         bind "7" { GoToTab 7; SwitchToMode "Normal"; }
         bind "8" { GoToTab 8; SwitchToMode "Normal"; }
         bind "9" { GoToTab 9; SwitchToMode "Normal"; }
-        bind "Space" { NextSwapLayout; }
+        bind "Space" { NextSwapLayout; SwitchToMode "Normal"; }
     }
     renametab {
         bind "Ctrl c" { SwitchToMode "Normal"; }

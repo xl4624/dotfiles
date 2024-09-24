@@ -91,6 +91,11 @@ tooltip label{
     transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
+#bluetooth {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
 #window {
     border-radius: 10px;
     margin-left: 20px;

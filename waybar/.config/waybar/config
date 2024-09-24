@@ -1,26 +1,27 @@
 {
-    "layer": "bottom",
+    "layer": "overlay",
     "position": "top",
     "mod": "dock",
     "exclusive": true,
     "gtk-layer-shell": true,
     "margin-bottom": -1,
     "passthrough": false,
-    "height": 40,
+    "height": 33,
     "modules-left": [
         "hyprland/workspaces"
     ],
     "modules-center": [
-		"hyprland/window"
+		"backlight",
+		"bluetooth",
+		"pulseaudio",
+		"network"
 	],
     "modules-right": [
-        "cpu",
-        "temperature",
-        "memory",
         "disk",
+        "cpu",
+        "memory",
+        "temperature",
         "tray",
-        "pulseaudio",
-        "network",
         "battery",
         "hyprland/language",
         "clock"
@@ -31,15 +32,23 @@
         "on-scroll-up": "hyprctl dispatch workspace r+1",
         "on-scroll-down": "hyprctl dispatch workspace r-1"
     },
+	"backlight": {
+		"format": "{percent}% {icon} ",
+		"format-icons": [
+			"󰃜",
+			"󰃛",
+			"󰃚"
+		]
+	},
     "battery": {
+		"interval": 60,
         "states": {
-            "good": 95,
+            "good": 80,
             "warning": 30,
             "critical": 20
         },
         "format": "{icon} {capacity}%",
-        "format-charging": " {capacity}%",
-        "format-plugged": " {capacity}%",
+        "format-charging": " {icon} {capacity}%",
         "format-alt": "{time} {icon}",
         "format-icons": [
             "󰂎",
@@ -53,8 +62,14 @@
             "󰂁",
             "󰂂",
             "󰁹"
-        ]
+        ],
+		"tooltip": true,
     },
+	"bluetooth": {
+		"format": "󰂯",
+		"interval": 30,
+		"on-click": "hyprctl dispatch exec '[float; size 50% 80%] blueman-manager'"
+	},
     "clock": {
         "format": "      {:%R\n %d.%m.%Y}",
         "tooltip-format": "<tt><small>{calendar}</small></tt>",
@@ -101,17 +116,27 @@
         "tooltip-format": "RAM - {used:0.1f}GiB used"
     },
     "temperature": {
-        "critical-threshold": 75,
-        "format-critical": "{temperatureC}°C",
-        "format": "{temperatureC}°C"
+        "critical-threshold": 80,
+		"interval": 30,
+        "format-critical": "{icon} {temperatureC}°C",
+        "format": "{icon} {temperatureC}°C",
+		"format-icons": [
+			"", "", "", "", "", "", "", "", "", "", "",
+			"",
+			"",
+			"",
+			""
+		],
+		"tooltip": true,
     },
     "tray": {
         "icon-size": 18,
         "spacing": 3
     },
     "network": {
-        "format-wifi": " {icon} {signalStrength}%",
-        "format-ethernet": "  ",
+		"interval": 30,
+        "format-wifi": " {icon} {essid} ({signalStrength}%)",
+        "format-ethernet": " {ifname}",
         "format-disconnected": "󰌙",
         "format-icons": [
             "󰤯 ",
@@ -119,14 +144,18 @@
             "󰤢 ",
             "󰤢 ",
             "󰤨 "
-        ]
+        ],
+		"tooltip": true,
+		"tooltip-format": "{ifname}: {ipaddr}",
+		"on-click": "hyprctl dispatch exec '[float; size 50% 80%] alacritty -e nmtui'"
     },
     "pulseaudio": {
-        "max-volume": 150,
-        "scroll-step": 10,
-        "format": "{icon}",
-        "tooltip-format": "{volume}%",
-        "format-muted": " ",
+        "max-volume": 100,
+        "scroll-step": 5,
+		"tooltip": true,
+        "tooltip-format": "{volume}% {format_source}",
+        "format": "{icon} {volume}%",
+        "format-muted": " ",
         "format-icons": {
             "default": [
                 " ",
@@ -134,6 +163,6 @@
                 " "
             ]
         },
-        "on-click": "pwvucontrol"
+		"on-click": "pwvucontrol"
     }
 }
