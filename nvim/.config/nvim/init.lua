@@ -595,7 +595,12 @@ require('lazy').setup({
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        clangd = {},
+        clangd = {
+          cmd = {
+            'clangd',
+            '--offset-encoding=utf-16',
+          },
+        },
         -- gopls = {},
         -- pyright = {},
         rust_analyzer = {
@@ -717,9 +722,7 @@ require('lazy').setup({
           cmp.setup {
             mapping = {
               ['<Tab>'] = cmp.mapping(function(fallback)
-                if cmp.visible() then
-                  cmp.select_next_item()
-                elseif luasnip.locally_jumpable(1) then
+                if luasnip.locally_jumpable(1) then
                   luasnip.jump(1)
                 else
                   fallback()
@@ -727,9 +730,7 @@ require('lazy').setup({
               end, { 'i', 's' }),
 
               ['<S-Tab>'] = cmp.mapping(function(fallback)
-                if cmp.visible() then
-                  cmp.select_prev_item()
-                elseif luasnip.locally_jumpable(-1) then
+                if luasnip.locally_jumpable(-1) then
                   luasnip.jump(-1)
                 else
                   fallback()

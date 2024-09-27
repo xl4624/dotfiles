@@ -119,9 +119,9 @@ fi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias vim=nvim
 alias zj=zellij
-# alias ls="eza --icons"
-# alias ll="eza -al --icons"
-# alias lt="eza -a --tree --level=1 --icons"
+alias ls="eza --icons"
+alias ll="eza -al --icons"
+alias lt="eza -a --tree --level=1 --icons"
 
 # Zsh-autosuggestion settings
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
@@ -130,6 +130,7 @@ bindkey "^I" autosuggest-accept # tab to accept autosuggestions
 bindkey "^[[Z" expand-or-complete # shift-tab to see the full list of suggestions
 
 # Custom variables
+export GOPATH=$HOME/.go
 export AIRPODS="08:25:73:53:D8:97"
 export LESS=-FRX # add flags to the less pager during git diff
 export PATH=/usr/local/texlive/2024/bin/x86_64-linux:$PATH
