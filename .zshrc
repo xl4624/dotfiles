@@ -131,9 +131,10 @@ bindkey "^[[Z" expand-or-complete # shift-tab to see the full list of suggestion
 
 # Custom variables
 export GOPATH=$HOME/.go
+export OLLAMA_API_BASE=http://127.0.0.1:11434
+export PATH=/usr/local/texlive/2024/bin/x86_64-linux:$PATH # Tex Live
 export AIRPODS="08:25:73:53:D8:97"
 export LESS=-FRX # add flags to the less pager during git diff
-export PATH=/usr/local/texlive/2024/bin/x86_64-linux:$PATH
 export MANROFFOPT="-c"
 export MANPAGER="sh -c 'col -bx | bat -plman'" man sprintf
 

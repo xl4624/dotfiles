@@ -18,48 +18,50 @@
 @define-color content_inactive rgba(255, 255, 255, 0.25);
 
 * {
-    text-shadow: none; 
-    box-shadow: none;
-    border: none;
-    border-radius: 0;
-    font-family: "Segoe UI", "Ubuntu";
-    font-weight: 600;
-    font-size: 12.7px;
+	font-size: 15px;
+	font-family: monospace;
 }
 
 window#waybar {
-    background:  @bg_main;
-    border-top: 1px solid @border_main;
-    color: @content_main;
+	background: #292b2e;
+	color: #fdf6e3;
 }
 
-tooltip {
-    background: @bg_main_tooltip;
-    border-radius: 5px;
-    border-width: 1px;
-    border-style: solid;
-    border-color: @border_main;
+#custom-right-arrow-dark,
+#custom-left-arrow-dark {
+	color: #1a1a1a;
 }
-tooltip label{
-    color: @content_main;
+#custom-right-arrow-light,
+#custom-left-arrow-light {
+	color: #292b2e;
+	background: #1a1a1a;
 }
 
+#battery,
+#clock.1,
+#clock.2,
+#clock.3,
+#cpu,
+#disk,
+#memory,
+#pulseaudio,
+#temperature,
+#tray,
 #workspaces {
-    color: transparent;
-    margin-right: 1.5px;
-    margin-left: 1.5px;
+	background: #1a1a1a;
 }
+
 #workspaces button {
-    padding: 3px;
-    color: @content_inactive;
+	padding: 0 2px;
+	color: @content_inactive;
     transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 #workspaces button.active {
-    color: @content_main;
+	color: @content_main;
     border-bottom: 3px solid white;
 }
 #workspaces button.focused {
-    color: @bg_active;
+	color: #268bd2;
 }
 #workspaces button.urgent {
     background:  rgba(255, 200, 0, 0.35);
@@ -67,86 +69,41 @@ tooltip label{
     color: @warning_color;
 }
 #workspaces button:hover {
-    background: @bg_hover;
-    color: @content_main;
+	box-shadow: inherit;
+	text-shadow: inherit;
+	background: @bg_hover;
+	border: #1a1a1a;
+	padding: 0 3px;
 }
 
-#cpu, #disk, #memory {
-    padding:3px;
+#battery {
+	color: #859900;
 }
-
+#cpu {
+	color: #6c71c4;
+}
+#disk {
+	color: #b58900;
+}
+#memory {
+	color: #2aa198;
+}
+#pulseaudio {
+	color: #268bd2;
+}
 #temperature {
-    padding-left: 3px;
-    padding-right: 3px;
-    color: @content_main;
-    font-size: 12.7px;
-    transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+	color: #FFD700;
 }
 #temperature.critical {
-    padding-left: 3px;
-    padding-right: 3px;
-    color: @warning_color;
-    font-size: initial;
-    border-bottom: 3px dashed @warning_color;
-    transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+	color: @warning_color;
 }
 
-#bluetooth {
-    margin-left: 5px;
-    margin-right: 5px;
-}
-
-#window {
-    border-radius: 10px;
-    margin-left: 20px;
-    margin-right: 20px;
-}
-
-#tray{
-    margin-left: 5px;
-    margin-right: 5px;
-}
-#tray > .passive {
-    border-bottom: none;
-}
-#tray > .active {
-    border-bottom: 3px solid white;
-}
-#tray > .needs-attention {
-    border-bottom: 3px solid @warning_color;
-}
-#tray > widget {
-    transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-#tray > widget:hover {
-    background: @bg_hover;
-}
-
-#pulseaudio {
-    font-family: "JetBrainsMono Nerd Font";
-    padding-left: 3px;
-    padding-right: 3px;
-    transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-#pulseaudio:hover {
-    background: @bg_hover;
-}
-
-#network {
-    padding-left: 3px;
-    padding-right: 3px;
-}
-
-#language {
-    padding-left: 5px;
-    padding-right: 5px;
-}
-
-#clock {
-    padding-right: 5px;
-    padding-left: 5px;
-    transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-#clock:hover {
-    background: @bg_hover;
+#battery,
+#clock,
+#disk
+#cpu,
+#memory,
+#pulseaudio,
+#temperature {
+	padding: 0 10px;
 }

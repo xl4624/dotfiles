@@ -1,78 +1,72 @@
 {
-    "layer": "overlay",
-    "position": "top",
-    "mod": "dock",
-    "exclusive": true,
+	"layer": "top",
+	"position": "top",
+	"mod": "dock",
+	"exclusive": true,
     "gtk-layer-shell": true,
     "margin-bottom": -1,
     "passthrough": false,
-    "height": 33,
-    "modules-left": [
-        "hyprland/workspaces"
-    ],
-    "modules-center": [
-		"backlight",
-		"bluetooth",
-		"pulseaudio",
-		"network"
+    "height": 30,
+
+	"modules-left": [
+		"hyprland/workspaces",
+		"custom/right-arrow-dark"
 	],
-    "modules-right": [
-        "disk",
-        "cpu",
-        "memory",
+	"modules-center": [
+		"custom/left-arrow-dark",
+		"clock#1",
+		"custom/left-arrow-light",
+		"custom/left-arrow-dark",
+		"clock#2",
+		"custom/right-arrow-dark",
+		"custom/right-arrow-light",
+		"clock#3",
+		"custom/right-arrow-dark"
+	],
+	"modules-right": [
+		"custom/left-arrow-dark",
+		"pulseaudio",
+		"custom/left-arrow-light",
+		"custom/left-arrow-dark",
         "temperature",
-        "tray",
-        "battery",
-        "hyprland/language",
-        "clock"
-    ],
-    "hyprland/workspaces": {
-        "icon-size": 32,
-        "spacing": 16,
-        "on-scroll-up": "hyprctl dispatch workspace r+1",
-        "on-scroll-down": "hyprctl dispatch workspace r-1"
-    },
-	"backlight": {
-		"format": "{percent}% {icon} ",
-		"format-icons": [
-			"󰃜",
-			"󰃛",
-			"󰃚"
-		]
+		"custom/left-arrow-light",
+		"custom/left-arrow-dark",
+		"battery",
+		"custom/left-arrow-light",
+		"custom/left-arrow-dark",
+		"memory",
+		"custom/left-arrow-light",
+		"custom/left-arrow-dark",
+		"cpu",
+		"custom/left-arrow-light",
+		"custom/left-arrow-dark",
+		"disk",
+		"custom/left-arrow-light",
+		"custom/left-arrow-dark",
+		"tray"
+	],
+
+	"custom/left-arrow-dark": {
+		"format": "",
+		"tooltip": false
 	},
-    "battery": {
-		"interval": 60,
-        "states": {
-            "good": 80,
-            "warning": 30,
-            "critical": 20
-        },
-        "format": "{icon} {capacity}%",
-        "format-charging": " {icon} {capacity}%",
-        "format-alt": "{time} {icon}",
-        "format-icons": [
-            "󰂎",
-            "󰁺",
-            "󰁻",
-            "󰁼",
-            "󰁽",
-            "󰁾",
-            "󰁿",
-            "󰂀",
-            "󰂁",
-            "󰂂",
-            "󰁹"
-        ],
+	"custom/left-arrow-light": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/right-arrow-dark": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/right-arrow-light": {
+		"format": "",
+		"tooltip": false
+	},
+
+	"clock#1": {
+		"format": "{:%a}",
 		"tooltip": true,
-    },
-	"bluetooth": {
-		"format": "󰂯",
-		"interval": 30,
-		"on-click": "hyprctl dispatch exec '[float; size 50% 80%] blueman-manager'"
-	},
-    "clock": {
-        "format": "      {:%R\n %d.%m.%Y}",
-        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+		"tooltip-format": "<tt><small>{calendar}</small></tt>",
         "calendar": {
             "mode": "year",
             "mode-mon-col": 3,
@@ -86,35 +80,92 @@
                 "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
                 "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
             }
-        },
-        "actions": {
-            "on-click-right": "mode",
-            "on-click-forward": "tz_up",
-            "on-click-backward": "tz_down",
-            "on-scroll-up": "shift_up",
-            "on-scroll-down": "shift_down"
         }
-    },
-    "cpu": {
-        "interval": 5,
-        "format": "  {usage}%",
-        "max-length": 10
-    },
-    "disk": {
-        "interval": 30,
-        "format": "󰋊 {percentage_used}%",
-        "path": "/",
-        "tooltip": true,
-        "unit": "GB",
-        "tooltip-format":  "Available {free} of {total}"
-    },
-    "memory": {
-        "interval": 10,
-        "format": "  {percentage}%",
-        "max-length": 10,
+	},
+	"clock#2": {
+		"format": "{:%H:%M}",
+		"tooltip": true,
+		"tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+            "mode": "year",
+            "mode-mon-col": 3,
+            "weeks-pos": "right",
+            "on-scroll": 1,
+            "on-click-right": "mode",
+            "format": {
+                "months": "<span color='#ffead3'><b>{}</b></span>",
+                "days": "<span color='#ecc6d9'><b>{}</b></span>",
+                "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+                "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+                "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+            }
+        }
+	},
+	"clock#3": {
+		"format": "{:%b %d}",
+		"tooltip": true,
+		"tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+            "mode": "year",
+            "mode-mon-col": 3,
+            "weeks-pos": "right",
+            "on-scroll": 1,
+            "on-click-right": "mode",
+            "format": {
+                "months": "<span color='#ffead3'><b>{}</b></span>",
+                "days": "<span color='#ecc6d9'><b>{}</b></span>",
+                "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+                "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+                "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+            }
+        }
+	},
+
+	"pulseaudio": {
+		"format": "{icon} {volume:2}%",
+        "format-muted": " ",
+        "format-icons": {
+            "default": [
+                " ",
+                " ",
+                " "
+            ]
+        },
+		"format-bluetooth": "{volume}%",
+		"scroll-step": 5,
+        "max-volume": 100,
+		"on-click": "pwvucontrol",
+	},
+	"memory": {
+		"interval": 5,
+		"format": "Mem {percentage}%",
         "tooltip": true,
         "tooltip-format": "RAM - {used:0.1f}GiB used"
-    },
+	},
+	"cpu": {
+		"interval": 5,
+		"format": "CPU {usage:2}%"
+	},
+	"battery": {
+		"states": {
+			"good": 95,
+			"warning": 30,
+			"critical": 15
+		},
+		"format": "{icon} {capacity}%",
+		"format-icons": [
+			"",
+			"",
+			"",
+			"",
+			""
+		]
+	},
+	"disk": {
+		"interval": 30,
+		"format": "Disk {percentage_used:2}%",
+		"path": "/"
+	},
     "temperature": {
         "critical-threshold": 80,
 		"interval": 30,
@@ -129,40 +180,9 @@
 		],
 		"tooltip": true,
     },
-    "tray": {
-        "icon-size": 18,
-        "spacing": 3
-    },
-    "network": {
-		"interval": 30,
-        "format-wifi": " {icon} {essid} ({signalStrength}%)",
-        "format-ethernet": " {ifname}",
-        "format-disconnected": "󰌙",
-        "format-icons": [
-            "󰤯 ",
-            "󰤟 ",
-            "󰤢 ",
-            "󰤢 ",
-            "󰤨 "
-        ],
-		"tooltip": true,
-		"tooltip-format": "{ifname}: {ipaddr}",
-		"on-click": "hyprctl dispatch exec '[float; size 50% 80%] alacritty -e nmtui'"
-    },
-    "pulseaudio": {
-        "max-volume": 100,
-        "scroll-step": 5,
-		"tooltip": true,
-        "tooltip-format": "{volume}% {format_source}",
-        "format": "{icon} {volume}%",
-        "format-muted": " ",
-        "format-icons": {
-            "default": [
-                " ",
-                " ",
-                " "
-            ]
-        },
-		"on-click": "pwvucontrol"
-    }
+	"tray": {
+		"icon-size": 20
+	}
 }
+
+// vim:ft=jsonc ts=4 sw=4 sts=4 et

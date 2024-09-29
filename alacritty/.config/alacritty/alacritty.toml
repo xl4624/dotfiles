@@ -101,9 +101,7 @@ multiplier = 5 # Default: 3
 [font]
 
 # Normal font style
-# normal = { family = "Fixedsys62 Nerd Font" }
-# normal = { family = "FixedsysExcelsior Nerd Font", style = "Regular" }
-normal = { family = "JetBrainsMonoNL Nerd Font", style = "Regular" }
+normal = { family = "xiaomin", style = "Regular" }
 
 # Bold font style
 bold = { style = "Bold" } # Inherits family from normal, Default style: Bold
@@ -115,7 +113,7 @@ italic = { style = "Italic" } # Inherits family from normal, Default style: Ital
 bold_italic = { style = "Bold Italic" } # Inherits family from normal, Default style: Bold Italic
 
 # Font size in points
-size = 12.5 # Default: 11.25
+size = 13 # Default: 11.25
 
 # Offset is extra space around each character
 offset = { x = 0, y = 0 } # Default: x = 0, y = 0
