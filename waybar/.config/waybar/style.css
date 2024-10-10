@@ -37,12 +37,10 @@ window#waybar {
 	background: #1a1a1a;
 }
 
+#backlight,
 #battery,
-#clock.1,
-#clock.2,
-#clock.3,
+#clock,
 #cpu,
-#disk,
 #memory,
 #pulseaudio,
 #temperature,
@@ -76,14 +74,14 @@ window#waybar {
 	padding: 0 3px;
 }
 
+#backlight {
+	color: #FFD700;
+}
 #battery {
 	color: #859900;
 }
 #cpu {
 	color: #6c71c4;
-}
-#disk {
-	color: #b58900;
 }
 #memory {
 	color: #2aa198;
@@ -92,18 +90,19 @@ window#waybar {
 	color: #268bd2;
 }
 #temperature {
-	color: #FFD700;
+	color: #18c340;
 }
 #temperature.critical {
 	color: @warning_color;
 }
 
+#backlight,
 #battery,
 #clock,
-#disk
 #cpu,
 #memory,
 #pulseaudio,
 #temperature {
 	padding: 0 10px;
 }
+
