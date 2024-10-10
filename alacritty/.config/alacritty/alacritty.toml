@@ -7,7 +7,8 @@
 # Import additional configuration files
 import = [
     # https://github.com/alacritty/alacritty-theme
-    "~/.config/alacritty/catppuccin-macchiato.toml",
+    # "~/.config/alacritty/themes/themes/catppuccin_macchiato.toml",
+    # "~/.config/alacritty/themes/themes/ayu_dark.toml",
 ]
 
 # Shell program and its arguments
@@ -80,7 +81,7 @@ decorations_theme_variant = "None" # Default: "None"
 resize_increments = false # Default: false
 
 # Option as Alt (macOS only)
-option_as_alt = "Both" # Default: "None"
+option_as_alt = "None" # Default: "None"
 
 #############
 # SCROLLING #
