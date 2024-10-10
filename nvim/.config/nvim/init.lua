@@ -369,13 +369,13 @@ require('lazy').setup({
         },
         pickers = {
           live_grep = {
-            file_ignore_patterns = { 'node_modules', '.git', '.venv' },
+            file_ignore_patterns = { 'node_modules', '.git', '.venv', 'target' },
             additional_args = function(_)
               return { '--hidden', '--no-ignore' }
             end,
           },
           find_files = {
-            file_ignore_patterns = { 'node_modules', '.git', '.venv' },
+            file_ignore_patterns = { 'node_modules', '.git', '.venv', 'target' },
             hidden = true,
             no_ignore = true,
           },
