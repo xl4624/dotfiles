@@ -137,17 +137,18 @@ export AIRPODS="08:25:73:53:D8:97"
 export LESS=-FRX # add flags to the less pager during git diff
 export MANROFFOPT="-c"
 export MANPAGER="sh -c 'col -bx | bat -plman'" man sprintf
+export PATH="$PATH:/home/xiaomin/.local/bin" # Created by `pipx`
 
 # History configuration
 HISTFILE=~/.zsh_history
-HISTSIZE=10000
+HISTSIZE=100000
 SAVEHIST=$HISTSIZE
 setopt appendhistory
-setopt hist_ignore_all_dups
-setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 
+autoload -U compinit && compinit
+eval "$(register-python-argcomplete pipx)"
 
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
