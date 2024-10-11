@@ -122,6 +122,7 @@ alias zj=zellij
 alias ls="eza --icons"
 alias ll="eza -al --icons"
 alias lt="eza -a --tree --level=1 --icons"
+alias neofetch=neowofetch
 
 # Zsh-autosuggestion settings
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
@@ -138,6 +139,7 @@ export LESS=-FRX # add flags to the less pager during git diff
 export MANROFFOPT="-c"
 export MANPAGER="sh -c 'col -bx | bat -plman'" man sprintf
 export PATH="$PATH:/home/xiaomin/.local/bin" # Created by `pipx`
+export XCURSOR_PATH=${XCURSOR_PATH}:~/.local/share/icons
 
 # History configuration
 HISTFILE=~/.zsh_history
