@@ -139,11 +139,10 @@ export LESS=-FRX # add flags to the less pager during git diff
 export MANROFFOPT="-c"
 export MANPAGER="sh -c 'col -bx | bat -plman'" man sprintf
 export PATH="$PATH:/home/xiaomin/.local/bin" # Created by `pipx`
-export XCURSOR_PATH=${XCURSOR_PATH}:~/.local/share/icons
 
 # History configuration
 HISTFILE=~/.zsh_history
-HISTSIZE=100000
+HISTSIZE=999999999
 SAVEHIST=$HISTSIZE
 setopt appendhistory
 setopt hist_ignore_dups
