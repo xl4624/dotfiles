@@ -131,14 +131,17 @@ bindkey "^I" autosuggest-accept # tab to accept autosuggestions
 bindkey "^[[Z" expand-or-complete # shift-tab to see the full list of suggestions
 
 # Custom variables
+export AIRPODS="08:25:73:53:D8:97"
 export GOPATH=$HOME/.go
 export OLLAMA_API_BASE=http://127.0.0.1:11434
 export PATH=/usr/local/texlive/2024/bin/x86_64-linux:$PATH # Tex Live
-export AIRPODS="08:25:73:53:D8:97"
-export LESS=-FRX # add flags to the less pager during git diff
+#
+# Add flags to the less pager during git diff
+export LESS=-FRX 
+
+# Use bat as man pager and fix issue with bolding, see: https://github.com/sharkdp/bat/issues/652
 export MANROFFOPT="-c"
 export MANPAGER="sh -c 'col -bx | bat -plman'" man sprintf
-export PATH="$PATH:/home/xiaomin/.local/bin" # Created by `pipx`
 
 # History configuration
 HISTFILE=~/.zsh_history
@@ -148,8 +151,10 @@ setopt appendhistory
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 
+# Created by 'pipx'
 autoload -U compinit && compinit
 eval "$(register-python-argcomplete pipx)"
+export PATH="$PATH:/home/xiaomin/.local/bin"
 
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
