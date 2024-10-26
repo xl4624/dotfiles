@@ -1,31 +1,3 @@
-# https://alacritty.org/config-alacritty.html
-
-###########
-# GENERAL #
-###########
-
-# Import additional configuration files
-import = [
-    # https://github.com/alacritty/alacritty-theme
-    # "~/.config/alacritty/themes/themes/catppuccin_macchiato.toml",
-    # "~/.config/alacritty/themes/themes/ayu_dark.toml",
-]
-
-# Shell program and its arguments
-# Default for Linux/BSD/macOS is $SHELL or user's login shell
-# Default for Windows is "powershell"
-# [shell]
-# program = "/bin/zsh"  # Example for Linux/BSD/macOS
-# args = ["-l"]
-
-# Working directory
-working_directory = "None" # Default: "None"
-
-# Live config reload (changes require restart)
-live_config_reload = true # Default: true
-
-# Offer IPC using alacritty msg (unix only)
-ipc_socket = true # Default: true
 
 #######
 # ENV #
@@ -329,3 +301,33 @@ bindings = [
     # { key = "Key", mods = "Modifiers", chars = "Characters to send" },
     # ...
 ]
+
+[general]
+
+# Live config reload (changes require restart)
+live_config_reload = true # Default: true
+
+# Shell program and its arguments
+# Default for Linux/BSD/macOS is $SHELL or user's login shell
+# Default for Windows is "powershell"
+# [shell]
+# program = "/bin/zsh"  # Example for Linux/BSD/macOS
+# args = ["-l"]
+
+# Working directory
+working_directory = "None" # Default: "None"
+
+# Offer IPC using alacritty msg (unix only)
+ipc_socket = true # Default: true
+# https://alacritty.org/config-alacritty.html
+
+###########
+# GENERAL #
+###########
+
+# Import additional configuration files
+# import = [
+    # https://github.com/alacritty/alacritty-theme
+    # "~/.config/alacritty/themes/themes/catppuccin_macchiato.toml",
+    # "~/.config/alacritty/themes/themes/ayu_dark.toml",
+# ]
