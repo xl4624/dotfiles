@@ -135,7 +135,7 @@ export AIRPODS="08:25:73:53:D8:97"
 export GOPATH=$HOME/.go
 export OLLAMA_API_BASE=http://127.0.0.1:11434
 export PATH=/usr/local/texlive/2024/bin/x86_64-linux:$PATH # Tex Live
-#
+
 # Add flags to the less pager during git diff
 export LESS=-FRX 
 

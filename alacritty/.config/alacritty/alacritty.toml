@@ -62,7 +62,7 @@ option_as_alt = "None" # Default: "None"
 [scrolling]
 
 # Maximum number of lines in the scrollback buffer
-history = 10000 # Default: 10000
+history = 100000 # Default: 10000
 
 # Number of lines scrolled for every input scroll increment
 multiplier = 5 # Default: 3
@@ -297,6 +297,8 @@ alphabet = "jfkdls;ahgurieowpq" # Default: "jfkdls;ahgurieowpq"
 # Example placeholder (actual bindings need to be defined based on user preference)
 bindings = [
     { key = "N", mods = "Command", action = "None" },
+    { key = "PageUp", action = "ScrollToTop" },
+    { key = "PageDown", action = "ScrollToBottom" },
     # { key = "Key", mods = "Modifiers", action = "Action" },
     # { key = "Key", mods = "Modifiers", chars = "Characters to send" },
     # ...
