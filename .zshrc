@@ -151,6 +151,19 @@ setopt appendhistory
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 
+function accept-line-or-background {
+    # If the command ends with !, then replace it with '&>/dev/null & disown'
+    if [[ $BUFFER == *\! ]]; then
+      BUFFER="${BUFFER%\!} &>/dev/null & disown"
+    fi
+    zle accept-line
+}
+
+zle -N accept-line-or-background
+
+bindkey '\r' accept-line-or-background
+bindkey '\n' accept-line-or-background
+
 # Created by 'pipx'
 autoload -U compinit && compinit
 eval "$(register-python-argcomplete pipx)"
