@@ -143,7 +143,7 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
-vim.g.python3_host_prog = '/usr/bin/python'
+vim.g.python3_host_prog = '/usr/bin/python3'
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
