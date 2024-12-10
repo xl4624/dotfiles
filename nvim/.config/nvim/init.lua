@@ -828,7 +828,6 @@ require('lazy').setup({
     config = function()
       -- Better Around/Inside textobjects
       --
-      -- Examples:
       --  - va)  - [V]isually select [A]round [)]paren
       --  - yinq - [Y]ank [I]nside [N]ext [']quote
       --  - ci'  - [C]hange [I]nside [']quote
@@ -840,6 +839,14 @@ require('lazy').setup({
       -- - sd'   - [S]urround [D]elete [']quotes
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require('mini.surround').setup()
+
+      -- Navigate and manipulate file system
+      --
+      -- <leader>e - Open mini.files (current file directory)
+      -- <leader>E - Open mini.files (cwd)
+      require('mini.files').setup {
+        use_as_default_explorer = true,
+      }
 
       -- Simple and easy statusline.
       --  You could remove this setup call if you don't like it,
@@ -859,6 +866,23 @@ require('lazy').setup({
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
     end,
+    keys = {
+      -- Mini.files
+      {
+        '<leader>e',
+        function()
+          require('mini.files').open(vim.api.nvim_buf_get_name(0), true)
+        end,
+        desc = 'Open mini.files (Directory of Current File)',
+      },
+      {
+        '<leader>E',
+        function()
+          require('mini.files').open(vim.uv.cwd(), true)
+        end,
+        desc = 'Open mini.files (cwd)',
+      },
+    },
   },
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
