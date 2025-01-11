@@ -2,9 +2,6 @@
 	amend = commit --amend
 	df = diff
 	dt = difftool
-	lg = log -p
-	lol = log --graph --decorate --pretty=oneline --abbrev-commit
-	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
 [color]
 	ui = auto
 [commit]

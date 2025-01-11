@@ -296,7 +296,6 @@ alphabet = "jfkdls;ahgurieowpq" # Default: "jfkdls;ahgurieowpq"
 # Define keyboard bindings here
 # Example placeholder (actual bindings need to be defined based on user preference)
 bindings = [
-    { key = "N", mods = "Command", action = "None" },
     { key = "PageUp", action = "ScrollToTop" },
     { key = "PageDown", action = "ScrollToBottom" },
     # { key = "Key", mods = "Modifiers", action = "Action" },

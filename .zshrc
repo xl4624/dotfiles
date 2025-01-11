@@ -1,21 +1,18 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+#t Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
-
-# Path to your Oh My Zsh installation.
+# path to Oh My Zsh installation
 export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-# ZSH_THEME="powerlevel10k"
+# ZSH_THEME="spaceship"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -39,16 +36,16 @@ export ZSH="$HOME/.oh-my-zsh"
 # zstyle ':omz:update' frequency 13
 
 # Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
+DISABLE_MAGIC_FUNCTIONS="true"
 
 # Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
+DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
 DISABLE_AUTO_TITLE="true" # fix commands being repeated in the output
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # You can also set it to another string to have that shown instead of the default red dots.
@@ -72,20 +69,27 @@ DISABLE_AUTO_TITLE="true" # fix commands being repeated in the output
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
+# 
+# Plugins
+#
+
 plugins=(
 	archlinux
 	fzf
 	git
+	zoxide
 	pip
 	rust
+	docker
 	zsh-autosuggestions
 	zsh-syntax-highlighting
 )
+
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=59'
+ZSH_AUTOSUGGEST_IGNORE="?(#c50,)" # don't suggest commands with longer than 50 chars
+# for speed: # https://github.com/zsh-users/zsh-autosuggestions#disabling-automatic-widget-re-binding
+ZSH_AUTOSUGGEST_MANUAL_REBIND=1
+ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd completion)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -106,35 +110,23 @@ fi
 # Compilation flags
 # export ARCHFLAGS="-arch $(uname -m)"
 
-# Set personal aliases, overriding those provided by Oh My Zsh libs,
-# plugins, and themes. Aliases can be placed here, though Oh My Zsh
-# users are encouraged to define aliases within a top-level file in
-# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
-# - $ZSH_CUSTOM/aliases.zsh
-# - $ZSH_CUSTOM/macos.zsh
-# For a full list of active aliases, run `alias`.
 #
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+# Aliases
+#
+
 alias vim=nvim
-alias zj=zellij
 alias ls="eza --icons"
 alias ll="eza -al --icons"
 alias lt="eza -a --tree --level=1 --icons"
 alias neofetch=neowofetch
 
-# Zsh-autosuggestion settings
-ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-ZSH_AUTOSUGGEST_IGNORE="?(#c50,)" # don't suggest commands with longer than 50 chars
-bindkey "^I" autosuggest-accept # tab to accept autosuggestions 
-bindkey "^[[Z" expand-or-complete # shift-tab to see the full list of suggestions
-
 # Custom variables
 export AIRPODS="08:25:73:53:D8:97"
 export GOPATH=$HOME/.go
 export OLLAMA_API_BASE=http://127.0.0.1:11434
+
 export PATH=/usr/local/texlive/2024/bin/x86_64-linux:$PATH # Tex Live
+export PATH="$HOME/.local/share/gem/ruby/3.3.0/bin:$PATH"
 
 # Add flags to the less pager during git diff
 export LESS=-FRX 
@@ -143,26 +135,65 @@ export LESS=-FRX
 export MANROFFOPT="-c"
 export MANPAGER="sh -c 'col -bx | bat -plman'" man sprintf
 
-# History configuration
-HISTFILE=~/.zsh_history
-HISTSIZE=999999999
-SAVEHIST=$HISTSIZE
-setopt appendhistory
-setopt hist_ignore_dups
-setopt hist_find_no_dups
+#
+# History
+#
 
-function accept-line-or-background {
-    # If the command ends with !, then replace it with '&>/dev/null & disown'
+HISTSIZE=1000000
+HISTFILE="$HOME/.zsh_history"
+SAVEHIST=$HISTSIZE
+
+#
+# Options
+#
+
+setopt AUTO_CD              # [default] .. is shortcut for cd .. (etc)
+setopt AUTO_PARAM_SLASH     # tab completing directory appends a slash
+setopt AUTO_PUSHD           # [default] cd automatically pushed old dir onto dir stack
+setopt CORRECT		    # [default] command auto-correction
+setopt CORRECT_ALL	    # [default] argument auto-correction
+setopt HIST_FIND_NO_DUPS    # filter contiguous duplicates from history
+setopt HIST_IGNORE_SPACE    # [default] don't record commands starting with a space
+setopt IGNORE_EOF           # [default] prevent C-d from exiting shell
+setopt INTERACTIVE_COMMENTS # [default] allow comments, even in interactive shells
+setopt LIST_PACKED	    # make completions lists more densely packed
+setopt MENU_COMPLETE	    # auto-insert first possible ambiguous completion
+setopt PRINT_EXIT_VALUE     # for non-zero exit status
+setopt PUSHD_IGNORE_DUPS    # don't push multiple copies of same dir onto stack
+setopt PUSHD_SILENT	    # don't print dir stack after pushing/popping
+setopt SHARE_HISTORY	    # share history across shells
+
+#
+# Functions
+#
+
+# if the command ends with !, then replace it with '&>/dev/null & disown'
+function accept-line-background {
     if [[ $BUFFER == *\! ]]; then
       BUFFER="${BUFFER%\!} &>/dev/null & disown"
     fi
     zle accept-line
 }
+zle -N accept-line-background
+bindkey '\r' accept-line-background
+bindkey '\n' accept-line-background
+bindkey '^x^x' accept-line  # in case accept-line-background ever fails
 
-zle -N accept-line-or-background
-
-bindkey '\r' accept-line-or-background
-bindkey '\n' accept-line-or-background
+edit-last-command-output() {
+  if [[ "$TERM" =~ "tmux" ]]; then
+    tmux capture-pane -p -S - -E - -J | tac | awk '
+      found && !/❯/ { print }
+      /❯/ && !found { found=1; next }
+      /❯/ && found {exit}
+    ' | tac | nvim -
+  else
+    echo
+    print -Pn "%F{red}error: can't capture last command output outside of tmux%f"
+    zle accept-line
+  fi
+}
+zle -N edit-last-command-output
+bindkey '^x^o' edit-last-command-output
 
 # Created by 'pipx'
 autoload -U compinit && compinit
@@ -170,6 +201,9 @@ eval "$(register-python-argcomplete pipx)"
 export PATH="$PATH:/home/xiaomin/.local/bin"
 
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+
+# initialize zoxide
+eval "$(zoxide init zsh)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

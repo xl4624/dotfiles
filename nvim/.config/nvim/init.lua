@@ -1,3 +1,6 @@
+-- TODO: Temporary workaround for https://github.com/neovim/neovim/pull/31676
+vim.hl = vim.highlight
+
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
@@ -74,7 +77,34 @@ vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Buffer keymaps
-vim.keymap.set('n', '<leader>bd', '<CMD>bd<CR>', { desc = 'Delete a buffer' })
+vim.keymap.set('n', '<leader>bq', '<CMD>bd<CR>', { desc = 'Delete a buffer' })
+
+-- Quickfix keymaps
+vim.keymap.set('n', ']q', ':cnext<CR>', { desc = 'Next quickfix item' })
+vim.keymap.set('n', '[q', ':cprev<CR>', { desc = 'Previous quickfix item' })
+
+-- Window keymaps
+vim.keymap.set('n', '<C-w>-', '<C-w>s')
+vim.keymap.set('n', '<C-w>|', '<C-w>v')
+vim.keymap.set('n', '<C-w>\\', '<C-w>v')
+-- Resizes
+vim.api.nvim_create_user_command('Vr', function(opts)
+  local usage = 'Usage: [VirticalResize] :Vr {number (%)}'
+  if not opts.args or not string.len(opts.args) == 2 then
+    print(usage)
+    return
+  end
+  vim.cmd(':vertical resize ' .. vim.opt.columns:get() * (opts.args / 100.0))
+end, { nargs = '*' })
+
+vim.api.nvim_create_user_command('Hr', function(opts)
+  local usage = 'Usage: [HorizontalResize] :Hr {number (%)}'
+  if not opts.args or not string.len(opts.args) == 2 then
+    print(usage)
+    return
+  end
+  vim.cmd(':resize ' .. ((vim.opt.lines:get() - vim.opt.cmdheight:get()) * (opts.args / 100.0)))
+end, { nargs = '*' })
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
@@ -279,6 +309,9 @@ require('lazy').setup({
             file_ignore_patterns = ignore_patterns,
             hidden = true,
             no_ignore = false,
+          },
+          colorscheme = {
+            enable_preview = true,
           },
         },
         extensions = {
@@ -616,10 +649,6 @@ require('lazy').setup({
     opts = {
       keymap = { preset = 'default' },
       appearance = {
-        -- Sets the fallback highlight groups to nvim-cmp's highlight groups
-        -- Useful for when your theme doesn't support blink.cmp
-        -- Will be removed in a future release
-        use_nvim_cmp_as_default = true,
         -- Set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
         -- Adjusts spacing to ensure icons are aligned
         nerd_font_variant = 'mono',
@@ -643,15 +672,18 @@ require('lazy').setup({
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
     'wincent/base16-nvim',
     priority = 1000, -- Make sure to load this before all the other start plugins.
+    commit = 'e71ae2694402d5e9227228d66ac273e5a5a2af76',
     init = function()
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'base16-irblack'
-      -- vim.cmd.colorscheme 'base16-gruvbox-dark-hard'
+      -- vim.cmd.colorscheme 'base16-irblack'
+      -- vim.cmd.colorscheme 'base16-gruvbox-dark-pale'
+      vim.cmd.colorscheme 'base16-horizon-dark'
 
       -- You can configure highlights by doing something like:
-      vim.cmd.hi 'Comment gui=none'
+      -- vim.cmd.hi 'Comment gui=none'
+      vim.cmd.hi 'link @type.builtin Special'
     end,
   },
 
@@ -723,7 +755,7 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc' },
+      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc', 'git_rebase', 'gitcommit' },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
