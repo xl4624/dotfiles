@@ -74,7 +74,15 @@ multiplier = 5 # Default: 3
 [font]
 
 # Normal font style
-normal = { family = "xiaomin", style = "Regular" }
+
+# Personal favorites:
+# - Berkeley Mono
+# - Ubuntu Mono Nerd Font
+# - Fixedsys Excelsior
+# - Hack
+# - JetBrainsMonoNL Nerd Font
+# - Comic Mono
+normal = { family = "Comic Mono", style = "Regular" }
 
 # Bold font style
 bold = { style = "Bold" } # Inherits family from normal, Default style: Bold
@@ -86,7 +94,7 @@ italic = { style = "Italic" } # Inherits family from normal, Default style: Ital
 bold_italic = { style = "Bold Italic" } # Inherits family from normal, Default style: Bold Italic
 
 # Font size in points
-size = 11 # Default: 11.25
+size = 12
 
 # Offset is extra space around each character
 offset = { x = 0, y = 0 } # Default: x = 0, y = 0

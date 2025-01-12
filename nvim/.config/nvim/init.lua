@@ -77,7 +77,7 @@ vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Buffer keymaps
-vim.keymap.set('n', '<leader>bq', '<CMD>bd<CR>', { desc = 'Delete a buffer' })
+vim.keymap.set('n', '<leader>bd', '<CMD>bd<CR>', { desc = 'Delete a buffer' })
 
 -- Quickfix keymaps
 vim.keymap.set('n', ']q', ':cnext<CR>', { desc = 'Next quickfix item' })
@@ -177,24 +177,6 @@ require('lazy').setup({
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
 
-  -- Here is a more advanced example where we pass configuration
-  -- options to `gitsigns.nvim`. This is equivalent to the following Lua:
-  --    require('gitsigns').setup({ ... })
-  --
-  -- See `:help gitsigns` to understand what the configuration keys do
-  { -- Adds git related signs to the gutter, as well as utilities for managing changes
-    'lewis6991/gitsigns.nvim',
-    opts = {
-      signs = {
-        add = { text = '+' },
-        change = { text = '~' },
-        delete = { text = '_' },
-        topdelete = { text = '‾' },
-        changedelete = { text = '~' },
-      },
-    },
-  },
-
   -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
   --
   -- This is often very useful to both group configuration, as well as handle
@@ -227,6 +209,8 @@ require('lazy').setup({
         { '<leader>w_', hidden = true },
         { '<leader>l', group = '[L]eetcode' },
         { '<leader>l_', hidden = true },
+        { '<leader>g', group = '[G]it' },
+        { '<leader>g_', hidden = true },
       }
       wk.setup()
     end,
@@ -245,6 +229,7 @@ require('lazy').setup({
     branch = '0.1.x',
     dependencies = {
       'nvim-lua/plenary.nvim',
+
       { -- If encountering errors, see telescope-fzf-native README for installation instructions
         'nvim-telescope/telescope-fzf-native.nvim',
 
@@ -299,16 +284,12 @@ require('lazy').setup({
         pickers = {
           live_grep = {
             file_ignore_patterns = ignore_patterns,
-            hidden = true,
-            no_ignore = false,
             -- additional_args = function(_)
             --   return { '--hidden', '--no-ignore' }
             -- end,
           },
           find_files = {
             file_ignore_patterns = ignore_patterns,
-            hidden = true,
-            no_ignore = false,
           },
           colorscheme = {
             enable_preview = true,
@@ -325,11 +306,33 @@ require('lazy').setup({
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
 
+      _G.custom_find_files = function(opts, no_ignore)
+        opts = opts or {}
+        no_ignore = vim.F.if_nil(no_ignore, false)
+        opts.attach_mappings = function(_, map)
+          map({ 'n', 'i' }, '<C-h>', function(prompt_bufnr)
+            require('telescope.actions').close(prompt_bufnr)
+            no_ignore = not no_ignore
+            custom_find_files({}, no_ignore)
+          end)
+          return true
+        end
+
+        if no_ignore then
+          opts.no_ignore = true
+          opts.hidden = true
+          opts.prompt_title = 'Find Files (ALL)'
+          require('telescope.builtin').find_files(opts)
+        else
+          require('telescope.builtin').find_files(opts)
+        end
+      end
+
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
       vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = '[F]ind [H]elp' })
       vim.keymap.set('n', '<leader>fk', builtin.keymaps, { desc = '[F]ind [K]eymaps' })
-      vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = '[F]ind [F]iles' })
+      vim.keymap.set('n', '<leader>ff', custom_find_files, { desc = '[F]ind [F]iles' })
       vim.keymap.set('n', '<leader>fs', builtin.builtin, { desc = '[F]ind [S]elect Telescope' })
       vim.keymap.set('n', '<leader>fw', builtin.grep_string, { desc = '[F]ind current [W]ord' })
       vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = '[F]ind by [G]rep' })
@@ -363,7 +366,21 @@ require('lazy').setup({
     end,
   },
 
-  { -- LSP Configuration & Plugins
+  -- LSP Configuration & Plugins
+  {
+    -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
+    -- used for completion, annotations and signatures of Neovim apis
+    'folke/lazydev.nvim',
+    ft = 'lua',
+    opts = {
+      library = {
+        -- Load luvit types when the `vim.uv` word is found
+        { path = 'luvit-meta/library', words = { 'vim%.uv' } },
+      },
+    },
+  },
+  { 'Bilal2453/luvit-meta', lazy = true },
+  {
     'neovim/nvim-lspconfig',
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for Neovim
@@ -374,10 +391,6 @@ require('lazy').setup({
       -- Useful status updates for LSP.
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
       { 'j-hui/fidget.nvim', opts = {} },
-
-      -- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
-      -- used for completion, annotations and signatures of Neovim apis
-      { 'folke/neodev.nvim', opts = {} },
 
       -- Completion plugin
       'saghen/blink.cmp',
@@ -420,8 +433,9 @@ require('lazy').setup({
           --
           -- In this case, we create a function that lets us more easily define mappings specific
           -- for LSP related items. It sets the mode, buffer and description for us each time.
-          local map = function(keys, func, desc)
-            vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
+          local map = function(keys, func, desc, mode)
+            mode = mode or 'n'
+            vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
           end
 
           -- Defer to Pyright for hover capabilities.
@@ -470,7 +484,7 @@ require('lazy').setup({
 
           -- Execute a code action, usually your cursor needs to be on top of an error
           -- or a suggestion from your LSP for this to activate.
-          map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+          map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
 
           -- Opens a popup that displays documentation about the word under your cursor
           --  See `:help K` for why this keymap.
@@ -613,7 +627,8 @@ require('lazy').setup({
 
   { -- Autoformat
     'stevearc/conform.nvim',
-    lazy = false,
+    event = { 'BufWritePre' },
+    cmd = { 'ConformInfo' },
     keys = {
       {
         '<leader>cf',
@@ -641,7 +656,21 @@ require('lazy').setup({
 
   { -- Autocompletion
     'saghen/blink.cmp',
-    dependencies = 'rafamadriz/friendly-snippets',
+    dependencies = {
+      'rafamadriz/friendly-snippets',
+      -- { -- TODO: Doesn't seem to work?
+      --   'giuxtaposition/blink-cmp-copilot',
+      --   dependencies = {
+      --     'zbirenbaum/copilot.lua',
+      --     cmd = 'Copilot',
+      --     event = 'InsertEnter',
+      --     opts = {
+      --       suggestion = { enabled = false },
+      --       panel = { enabled = false },
+      --     },
+      --   },
+      -- },
+    },
 
     -- Use a release tag to download pre-built binaries
     version = '*',
@@ -680,6 +709,7 @@ require('lazy').setup({
       -- vim.cmd.colorscheme 'base16-irblack'
       -- vim.cmd.colorscheme 'base16-gruvbox-dark-pale'
       vim.cmd.colorscheme 'base16-horizon-dark'
+      -- vim.cmd.colorscheme 'base16-classic-dark'
 
       -- You can configure highlights by doing something like:
       -- vim.cmd.hi 'Comment gui=none'
@@ -755,7 +785,7 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc', 'git_rebase', 'gitcommit' },
+      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc' },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
@@ -765,7 +795,7 @@ require('lazy').setup({
         --  the list of additional_vim_regex_highlighting and disabled languages for indent.
         additional_vim_regex_highlighting = { 'ruby' },
       },
-      indent = { enable = false },
+      indent = { enable = false, disable = { 'ruby' } },
     },
     config = function(_, opts)
       -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
@@ -782,23 +812,6 @@ require('lazy').setup({
       --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
       --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
     end,
-  },
-
-  -- Disable certain features like LSP and treesitter on big files.
-  {
-    'LunarVim/bigfile.nvim',
-    opts = {
-      -- Features to disable.
-      features = {
-        -- 'indent_blankline',
-        -- 'illuminate',
-        'lsp',
-        'treesitter',
-        'syntax',
-        -- 'vimopts',
-        -- 'filetype',
-      },
-    },
   },
 
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.

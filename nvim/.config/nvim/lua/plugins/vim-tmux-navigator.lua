@@ -9,9 +9,9 @@ return {
     'TmuxNavigatorProcessList',
   },
   keys = {
-    { '<c-h>', '<cmd><C-U>TmuxNavigateLeft<cr>', desc = 'Navigate left' },
-    { '<c-j>', '<cmd><C-U>TmuxNavigateDown<cr>', desc = 'Navigate down' },
-    { '<c-k>', '<cmd><C-U>TmuxNavigateUp<cr>', desc = 'Navigate up' },
-    { '<c-l>', '<cmd><C-U>TmuxNavigateRight<cr>', desc = 'Navigate right' },
+    { '<c-h>', '<cmd><C-U>TmuxNavigateLeft<cr>', desc = 'Move focus to the left window' },
+    { '<c-j>', '<cmd><C-U>TmuxNavigateDown<cr>', desc = 'Move focus to the lower window' },
+    { '<c-k>', '<cmd><C-U>TmuxNavigateUp<cr>', desc = 'Move focus to the upper window' },
+    { '<c-l>', '<cmd><C-U>TmuxNavigateRight<cr>', desc = 'Move focus to the right window' },
   },
 }

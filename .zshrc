@@ -110,15 +110,19 @@ fi
 # Compilation flags
 # export ARCHFLAGS="-arch $(uname -m)"
 
+# Initialize zoxide
+eval "$(zoxide init zsh)"
+
 #
 # Aliases
 #
 
+alias cd=z
 alias vim=nvim
 alias ls="eza --icons"
 alias ll="eza -al --icons"
 alias lt="eza -a --tree --level=1 --icons"
-alias neofetch=neowofetch
+alias neofetch=fastfetch
 
 # Custom variables
 export AIRPODS="08:25:73:53:D8:97"
@@ -167,6 +171,29 @@ setopt SHARE_HISTORY	    # share history across shells
 # Functions
 #
 
+function tmux() {
+  emulate -L zsh
+
+  local ENV_OVERRIDES=()
+
+  # Make sure even pre-existing tmux sessions use the latest SSH_AUTH_SOCK.
+  # Inspired by: https://gist.github.com/lann/6771001
+  if [ -r "$SSH_AUTH_SOCK" -a ! -L "$SSH_AUTH_SOCK" ]; then
+    ln -sf "$SSH_AUTH_SOCK" "$HOME/.ssh/ssh_auth_sock"
+    ENV_OVERRIDES+=(SSH_AUTH_SOCK="$HOME/.ssh/ssh_auth_sock")
+  fi
+
+  # If provided with args, pass them through.
+  if [[ -n "$@" ]]; then
+    env "${ENV_OVERRIDES[@]}" tmux "$@"
+    return
+  fi
+
+  # Attach to existing session, or create one, based on current directory.
+  local SESSION_NAME=$(basename "${$(pwd)//[.:]/_}")
+  env "${ENV_OVERRIDES[@]}" tmux new -A -s "$SESSION_NAME"
+}
+
 # if the command ends with !, then replace it with '&>/dev/null & disown'
 function accept-line-background {
     if [[ $BUFFER == *\! ]]; then
@@ -201,9 +228,6 @@ eval "$(register-python-argcomplete pipx)"
 export PATH="$PATH:/home/xiaomin/.local/bin"
 
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
-
-# initialize zoxide
-eval "$(zoxide init zsh)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
