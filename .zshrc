@@ -74,15 +74,15 @@ ENABLE_CORRECTION="true"
 #
 
 plugins=(
-	archlinux
-	fzf
-	git
-	zoxide
-	pip
-	rust
-	docker
-	zsh-autosuggestions
-	zsh-syntax-highlighting
+  archlinux
+  fzf
+  git
+  zoxide
+  pip
+  rust
+  docker
+  zsh-autosuggestions
+  zsh-syntax-highlighting
 )
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=59'

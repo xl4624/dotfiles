@@ -82,7 +82,7 @@ multiplier = 5 # Default: 3
 # - Hack
 # - JetBrainsMonoNL Nerd Font
 # - Comic Mono
-normal = { family = "Comic Mono", style = "Regular" }
+normal = { family = "JetBrainsMonoNL Nerd Font", style = "Regular" }
 
 # Bold font style
 bold = { style = "Bold" } # Inherits family from normal, Default style: Bold
