@@ -79,10 +79,10 @@ multiplier = 5 # Default: 3
 # - Berkeley Mono
 # - Ubuntu Mono Nerd Font
 # - Fixedsys Excelsior
-# - Hack
-# - JetBrainsMonoNL Nerd Font
+# - Hack Nerd Font Mono
+# - JetBrainsMonoNL Nerd Font Mono
 # - Comic Mono
-normal = { family = "JetBrainsMonoNL Nerd Font", style = "Regular" }
+normal = { family = "JetBrainsMonoNL Nerd Font Mono", style = "Regular" }
 
 # Bold font style
 bold = { style = "Bold" } # Inherits family from normal, Default style: Bold

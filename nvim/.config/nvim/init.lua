@@ -270,7 +270,7 @@ require('lazy').setup({
 
       -- [[ Configure Telescope ]]
       -- See `:help telescope` and `:help telescope.setup()`
-      local ignore_patterns = { 'node_modules', '.git', '.venv', 'target', 'dist' }
+      local ignore_patterns = { 'node_modules', '.git', '.venv', 'target', 'dist', 'build' }
       require('telescope').setup {
         -- You can put your default mappings / updates / etc. in here
         --  All the info you're looking for is in `:help telescope.setup()`
@@ -706,9 +706,9 @@ require('lazy').setup({
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      -- vim.cmd.colorscheme 'base16-irblack'
+      vim.cmd.colorscheme 'base16-irblack'
       -- vim.cmd.colorscheme 'base16-gruvbox-dark-pale'
-      vim.cmd.colorscheme 'base16-horizon-dark'
+      -- vim.cmd.colorscheme 'base16-horizon-dark'
       -- vim.cmd.colorscheme 'base16-classic-dark'
 
       -- You can configure highlights by doing something like:
@@ -720,67 +720,6 @@ require('lazy').setup({
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
-  { -- Collection of various small independent plugins/modules
-    'echasnovski/mini.nvim',
-    config = function()
-      -- Better Around/Inside textobjects
-      --
-      --  - va)  - [V]isually select [A]round [)]paren
-      --  - yinq - [Y]ank [I]nside [N]ext [']quote
-      --  - ci'  - [C]hange [I]nside [']quote
-      require('mini.ai').setup { n_lines = 500 }
-
-      -- Add/delete/replace surroundings (brackets, quotes, etc.)
-      --
-      -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
-      -- - sd'   - [S]urround [D]elete [']quotes
-      -- - sr)'  - [S]urround [R]eplace [)] [']
-      require('mini.surround').setup()
-
-      -- Navigate and manipulate file system
-      --
-      -- <leader>e - Open mini.files (current file directory)
-      -- <leader>E - Open mini.files (cwd)
-      require('mini.files').setup {
-        use_as_default_explorer = true,
-      }
-
-      -- Simple and easy statusline.
-      --  You could remove this setup call if you don't like it,
-      --  and try some other statusline plugin
-      local statusline = require 'mini.statusline'
-      -- set use_icons to true if you have a Nerd Font
-      statusline.setup { use_icons = vim.g.have_nerd_font }
-
-      -- You can configure sections in the statusline by overriding their
-      -- default behavior. For example, here we set the section for
-      -- cursor location to LINE:COLUMN
-      ---@diagnostic disable-next-line: duplicate-set-field
-      statusline.section_location = function()
-        return '%2l:%-2v'
-      end
-
-      -- ... and there is more!
-      --  Check out: https://github.com/echasnovski/mini.nvim
-    end,
-    keys = {
-      -- Mini.files
-      {
-        '<leader>e',
-        function()
-          require('mini.files').open(vim.api.nvim_buf_get_name(0), true)
-        end,
-        desc = 'Open mini.files (Directory of Current File)',
-      },
-      {
-        '<leader>E',
-        function()
-          require('mini.files').open(vim.uv.cwd(), true)
-        end,
-        desc = 'Open mini.files (cwd)',
-      },
-    },
-  },
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
