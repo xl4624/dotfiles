@@ -148,11 +148,11 @@ HISTFILE="$HOME/.zsh_history"
 SAVEHIST=$HISTSIZE
 
 #
-# Options
+# Options (man zshoptions)
 #
 
 setopt AUTO_CD              # [default] .. is shortcut for cd .. (etc)
-setopt AUTO_PARAM_SLASH     # tab completing directory appends a slash
+setopt AUTO_REMOVE_SLASH    # [default] remove slash
 setopt AUTO_PUSHD           # [default] cd automatically pushed old dir onto dir stack
 setopt CORRECT		    # [default] command auto-correction
 setopt CORRECT_ALL	    # [default] argument auto-correction
@@ -228,6 +228,21 @@ eval "$(register-python-argcomplete pipx)"
 export PATH="$PATH:/home/xiaomin/.local/bin"
 
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/usr/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/usr/etc/profile.d/conda.sh" ]; then
+        . "/usr/etc/profile.d/conda.sh"
+    else
+        export PATH="/usr/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
