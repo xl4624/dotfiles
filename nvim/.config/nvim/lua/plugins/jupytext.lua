@@ -1,5 +1,5 @@
 return {
   'GCBallesteros/jupytext.nvim',
-  config = true,
   lazy = false,
+  config = true,
 }

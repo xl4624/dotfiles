@@ -67,7 +67,7 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
-vim.g.python3_host_prog = '/usr/bin/python3'
+vim.g.python3_host_prog = os.getenv 'HOME' .. '/.local/share/virtualenvs/neovim/bin/python3'
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
@@ -87,9 +87,13 @@ vim.keymap.set('n', '[q', ':cprev<CR>', { desc = 'Previous quickfix item' })
 vim.keymap.set('n', '<C-w>-', '<C-w>s')
 vim.keymap.set('n', '<C-w>|', '<C-w>v')
 vim.keymap.set('n', '<C-w>\\', '<C-w>v')
+
+-- Terminal keymaps
+vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')
+
 -- Resizes
 vim.api.nvim_create_user_command('Vr', function(opts)
-  local usage = 'Usage: [VirticalResize] :Vr {number (%)}'
+  local usage = 'Usage: [VerticalResize] :Vr {number (%)}'
   if not opts.args or not string.len(opts.args) == 2 then
     print(usage)
     return
@@ -540,7 +544,7 @@ require('lazy').setup({
       --  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
       --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
       local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = vim.tbl_deep_extend('force', capabilities, require('blink.cmp').get_lsp_capabilities())
+      require('blink.cmp').get_lsp_capabilities(capabilities)
 
       -- Enable the following language servers
       --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
@@ -617,7 +621,7 @@ require('lazy').setup({
             -- This handles overriding only values explicitly passed
             -- by the server configuration above. Useful when disabling
             -- certain features of an LSP (for example, turning off formatting for tsserver)
-            server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+            server.capabilities = require('blink.cmp').get_lsp_capabilities(server.capabilities)
             require('lspconfig')[server_name].setup(server)
           end,
         },
@@ -654,68 +658,16 @@ require('lazy').setup({
     },
   },
 
-  { -- Autocompletion
-    'saghen/blink.cmp',
-    dependencies = {
-      'rafamadriz/friendly-snippets',
-      -- { -- TODO: Doesn't seem to work?
-      --   'giuxtaposition/blink-cmp-copilot',
-      --   dependencies = {
-      --     'zbirenbaum/copilot.lua',
-      --     cmd = 'Copilot',
-      --     event = 'InsertEnter',
-      --     opts = {
-      --       suggestion = { enabled = false },
-      --       panel = { enabled = false },
-      --     },
-      --   },
-      -- },
-    },
-
-    -- Use a release tag to download pre-built binaries
-    version = '*',
-
-    opts = {
-      keymap = { preset = 'default' },
-      appearance = {
-        -- Set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
-        -- Adjusts spacing to ensure icons are aligned
-        nerd_font_variant = 'mono',
-      },
-
-      -- Default list of enabled providers defined so that you can extend it
-      -- elsewhere in your config, without redefining it, due to `opts_extend`
-      sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer' },
-      },
-
-      signature = { enabled = true },
-    },
-    opts_extend = { 'sources.default' },
-  },
-
-  { -- You can easily change to a different colorscheme.
-    -- Change the name of the colorscheme plugin below, and then
-    -- change the command in the config to whatever the name of that colorscheme is.
-    --
-    -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    'wincent/base16-nvim',
-    priority = 1000, -- Make sure to load this before all the other start plugins.
-    commit = 'e71ae2694402d5e9227228d66ac273e5a5a2af76',
-    init = function()
-      -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'base16-irblack'
-      -- vim.cmd.colorscheme 'base16-gruvbox-dark-pale'
-      -- vim.cmd.colorscheme 'base16-horizon-dark'
-      -- vim.cmd.colorscheme 'base16-classic-dark'
-
-      -- You can configure highlights by doing something like:
-      -- vim.cmd.hi 'Comment gui=none'
-      vim.cmd.hi 'link @type.builtin Special'
-    end,
-  },
+  -- { -- You can easily change to a different colorscheme.
+  --   -- Change the name of the colorscheme plugin below, and then
+  --   -- change the command in the config to whatever the name of that colorscheme is.
+  --   --
+  --   -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
+  --   'wincent/base16-nvim',
+  --   priority = 1000, -- Make sure to load this before all the other start plugins.
+  --   commit = 'e71ae2694402d5e9227228d66ac273e5a5a2af76',
+  --   dependencies = { 'echasnovski/mini.nvim' },
+  -- },
 
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },

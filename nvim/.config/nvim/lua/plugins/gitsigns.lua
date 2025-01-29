@@ -56,7 +56,7 @@ return {
         map('n', '<leader>gD', function()
           gitsigns.diffthis '@'
         end, { desc = '[G]it [D]iff against last commit' })
-        map('n', '<leader>gB', gitsigns.toggle_current_line_blame, { desc = '[G]it toggle show [b]lame line' })
+        map('n', '<leader>gB', gitsigns.toggle_current_line_blame, { desc = '[G]it toggle show [B]lame line' })
         map('n', '<leader>gx', gitsigns.toggle_deleted, { desc = '[G]it toggle show deleted' })
       end,
     },

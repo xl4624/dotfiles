@@ -1,0 +1,41 @@
+require('mini.base16').setup {
+  palette = {
+    base00 = '#1C1E26',
+    base01 = '#232530',
+    base02 = '#2E303E',
+    base03 = '#6F6F70',
+    base04 = '#9DA0A2',
+    base05 = '#CBCED0',
+    base06 = '#DCDFE4',
+    base07 = '#E3E6EE',
+    base08 = '#E93C58',
+    base09 = '#E58D7D',
+    base0A = '#EFB993',
+    base0B = '#EFAF8E',
+    base0C = '#24A8B4',
+    base0D = '#DF5273',
+    base0E = '#B072D1',
+    base0F = '#E4A382',
+  },
+
+  use_cterm = {
+    base00 = 0,
+    base03 = 8,
+    base05 = 7,
+    base07 = 15,
+    base08 = 1,
+    base0A = 3,
+    base0B = 2,
+    base0C = 6,
+    base0D = 4,
+    base0E = 5,
+    base01 = 10,
+    base02 = 11,
+    base04 = 12,
+    base06 = 13,
+    base09 = 9,
+    base0F = 14,
+  },
+}
+vim.api.nvim_set_hl(0, "MiniFilesNormal", { link = "Normal" })
+vim.g.colors_name = 'horizon-dark'

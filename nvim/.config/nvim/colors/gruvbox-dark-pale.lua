@@ -1,0 +1,41 @@
+require('mini.base16').setup {
+  palette = {
+    base00 = '#262626',
+    base01 = '#3a3a3a',
+    base02 = '#4e4e4e',
+    base03 = '#8a8a8a',
+    base04 = '#949494',
+    base05 = '#dab997',
+    base06 = '#d5c4a1',
+    base07 = '#ebdbb2',
+    base08 = '#d75f5f',
+    base09 = '#ff8700',
+    base0A = '#ffaf00',
+    base0B = '#afaf00',
+    base0C = '#85ad85',
+    base0D = '#83adad',
+    base0E = '#d485ad',
+    base0F = '#d65d0e',
+  },
+
+  use_cterm = {
+    base00 = 0,
+    base03 = 8,
+    base05 = 7,
+    base07 = 15,
+    base08 = 1,
+    base0A = 3,
+    base0B = 2,
+    base0C = 6,
+    base0D = 4,
+    base0E = 5,
+    base01 = 10,
+    base02 = 11,
+    base04 = 12,
+    base06 = 13,
+    base09 = 9,
+    base0F = 14,
+  },
+}
+vim.api.nvim_set_hl(0, "MiniFilesNormal", { link = "Normal" })
+vim.g.colors_name = 'gruvbox-dark-pale'
