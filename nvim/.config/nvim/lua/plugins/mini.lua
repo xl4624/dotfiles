@@ -2,7 +2,7 @@ return { -- Collection of various small independent plugins/modules
   'echasnovski/mini.nvim',
   lazy = false,
   init = function()
-    vim.cmd.colorscheme 'horizon-dark'
+    vim.cmd.colorscheme 'irblack'
   end,
   config = function()
     -- Better Around/Inside textobjects
@@ -92,6 +92,12 @@ return { -- Collection of various small independent plugins/modules
       use_as_default_explorer = true,
     }
 
+    -- Git integration
+    --
+    -- :Git
+    require('mini.git').setup()
+
+    -- Icon provider
     require('mini.icons').setup()
 
     -- Simple and easy statusline.
@@ -111,6 +117,12 @@ return { -- Collection of various small independent plugins/modules
 
     -- ... and there is more!
     --  Check out: https://github.com/echasnovski/mini.nvim
+    vim.api.nvim_create_autocmd('User', {
+      pattern = 'MiniFilesActionRename',
+      callback = function(event)
+        Snacks.rename.on_rename_file(event.data.from, event.data.to)
+      end,
+    })
   end,
   keys = {
     -- Mini.files

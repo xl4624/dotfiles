@@ -123,6 +123,7 @@ alias ls="eza --icons"
 alias ll="eza -al --icons"
 alias lt="eza -a --tree --level=1 --icons"
 alias neofetch=fastfetch
+alias jupyter="nocorrect jupyter"
 
 # Custom variables
 export AIRPODS="08:25:73:53:D8:97"

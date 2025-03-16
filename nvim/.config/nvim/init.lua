@@ -15,9 +15,8 @@ vim.g.have_nerd_font = true
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
--- Make (relative) line numbers default
+-- Make line numbers default
 vim.opt.number = true
-vim.opt.relativenumber = true
 
 -- Set the default tabwidth to 4
 vim.opt.expandtab = true
@@ -111,17 +110,17 @@ vim.api.nvim_create_user_command('Hr', function(opts)
 end, { nargs = '*' })
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
-vim.keymap.set('n', '<leader>cd', vim.diagnostic.open_float, { desc = '[C]ode Line [D]iagnostics' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous Diagnostic message' })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next Diagnostic message' })
+vim.keymap.set('n', '<leader>cd', vim.diagnostic.open_float, { desc = 'Code Line Diagnostics' })
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic Quickfix list' })
 
 -- Yank to system clipboard
 vim.keymap.set('n', '<C-c>', function()
   vim.cmd '%y+'
 end, { desc = 'Copy file to clipboard' })
-vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]], { desc = '[Y]ank' })
-vim.keymap.set('n', '<leader>Y', [["+Y]], { desc = '[Y]ank line' })
+vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]], { desc = 'yank' })
+vim.keymap.set('n', '<leader>Y', [["+Y]], { desc = 'Yank line' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -203,17 +202,15 @@ require('lazy').setup({
       local wk = require 'which-key'
       wk.add {
         -- Document existing key chains
-        { '<leader>c', group = '[C]ode' },
+        { '<leader>c', group = 'Code' },
         { '<leader>c_', hidden = true },
-        { '<leader>f', group = '[F]ind' },
+        { '<leader>f', group = 'Find' },
         { '<leader>f_', hidden = true },
-        { '<leader>b', group = '[B]uffers' },
+        { '<leader>b', group = 'Buffers' },
         { '<leader>b_', hidden = true },
-        { '<leader>w', group = '[W]indow' },
+        { '<leader>w', group = 'Window' },
         { '<leader>w_', hidden = true },
-        { '<leader>l', group = '[L]eetcode' },
-        { '<leader>l_', hidden = true },
-        { '<leader>g', group = '[G]it' },
+        { '<leader>g', group = 'Git' },
         { '<leader>g_', hidden = true },
       }
       wk.setup()
@@ -226,149 +223,6 @@ require('lazy').setup({
   -- you do for a plugin at the top level, you can do for a dependency.
   --
   -- Use the `dependencies` key to specify the dependencies of a particular plugin
-
-  { -- Fuzzy Finder (files, lsp, etc)
-    'nvim-telescope/telescope.nvim',
-    event = 'VimEnter',
-    branch = '0.1.x',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-
-      { -- If encountering errors, see telescope-fzf-native README for installation instructions
-        'nvim-telescope/telescope-fzf-native.nvim',
-
-        -- `build` is used to run some command when the plugin is installed/updated.
-        -- This is only run then, not every time Neovim starts up.
-        build = 'make',
-
-        -- `cond` is a condition used to determine whether this plugin should be
-        -- installed and loaded.
-        cond = function()
-          return vim.fn.executable 'make' == 1
-        end,
-      },
-      { 'nvim-telescope/telescope-ui-select.nvim' },
-
-      -- Useful for getting pretty icons, but requires a Nerd Font.
-      { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
-    },
-    config = function()
-      -- Telescope is a fuzzy finder that comes with a lot of different things that
-      -- it can fuzzy find! It's more than just a "file finder", it can search
-      -- many different aspects of Neovim, your workspace, LSP, and more!
-      --
-      -- The easiest way to use Telescope, is to start by doing something like:
-      --  :Telescope help_tags
-      --
-      -- After running this command, a window will open up and you're able to
-      -- type in the prompt window. You'll see a list of `help_tags` options and
-      -- a corresponding preview of the help.
-      --
-      -- Two important keymaps to use while in Telescope are:
-      --  - Insert mode: <c-/>
-      --  - Normal mode: ?
-      --
-      -- This opens a window that shows you all of the keymaps for the current
-      -- Telescope picker. This is really useful to discover what Telescope can
-      -- do as well as how to actually do it!
-
-      -- [[ Configure Telescope ]]
-      -- See `:help telescope` and `:help telescope.setup()`
-      local ignore_patterns = { 'node_modules', '.git', '.venv', 'target', 'dist', 'build' }
-      require('telescope').setup {
-        -- You can put your default mappings / updates / etc. in here
-        --  All the info you're looking for is in `:help telescope.setup()`
-        defaults = {
-          mappings = {
-            n = { ['<c-s>'] = 'select_horizontal', ['<c-x>'] = 'delete_buffer' },
-            i = { ['<c-s>'] = 'select_horizontal', ['<c-x>'] = 'delete_buffer' },
-            -- i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-          },
-        },
-        pickers = {
-          live_grep = {
-            file_ignore_patterns = ignore_patterns,
-            -- additional_args = function(_)
-            --   return { '--hidden', '--no-ignore' }
-            -- end,
-          },
-          find_files = {
-            file_ignore_patterns = ignore_patterns,
-          },
-          colorscheme = {
-            enable_preview = true,
-          },
-        },
-        extensions = {
-          ['ui-select'] = {
-            require('telescope.themes').get_dropdown(),
-          },
-        },
-      }
-
-      -- Enable Telescope extensions if they are installed
-      pcall(require('telescope').load_extension, 'fzf')
-      pcall(require('telescope').load_extension, 'ui-select')
-
-      _G.custom_find_files = function(opts, no_ignore)
-        opts = opts or {}
-        no_ignore = vim.F.if_nil(no_ignore, false)
-        opts.attach_mappings = function(_, map)
-          map({ 'n', 'i' }, '<C-h>', function(prompt_bufnr)
-            require('telescope.actions').close(prompt_bufnr)
-            no_ignore = not no_ignore
-            custom_find_files({}, no_ignore)
-          end)
-          return true
-        end
-
-        if no_ignore then
-          opts.no_ignore = true
-          opts.hidden = true
-          opts.prompt_title = 'Find Files (ALL)'
-          require('telescope.builtin').find_files(opts)
-        else
-          require('telescope.builtin').find_files(opts)
-        end
-      end
-
-      -- See `:help telescope.builtin`
-      local builtin = require 'telescope.builtin'
-      vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = '[F]ind [H]elp' })
-      vim.keymap.set('n', '<leader>fk', builtin.keymaps, { desc = '[F]ind [K]eymaps' })
-      vim.keymap.set('n', '<leader>ff', custom_find_files, { desc = '[F]ind [F]iles' })
-      vim.keymap.set('n', '<leader>fs', builtin.builtin, { desc = '[F]ind [S]elect Telescope' })
-      vim.keymap.set('n', '<leader>fw', builtin.grep_string, { desc = '[F]ind current [W]ord' })
-      vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = '[F]ind by [G]rep' })
-      vim.keymap.set('n', '<leader>fd', builtin.diagnostics, { desc = '[F]ind [D]iagnostics' })
-      vim.keymap.set('n', '<leader>fr', builtin.resume, { desc = '[F]ind [R]esume' })
-      vim.keymap.set('n', '<leader>f.', builtin.oldfiles, { desc = '[F]ind Recent Files ("." for repeat)' })
-      vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
-
-      -- Slightly advanced example of overriding default behavior and theme
-      vim.keymap.set('n', '<leader>/', function()
-        -- You can pass additional configuration to Telescope to change the theme, layout, etc.
-        builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-          winblend = 10,
-          previewer = false,
-        })
-      end, { desc = '[/] Fuzzily search in current buffer' })
-
-      -- It's also possible to pass additional configuration options.
-      --  See `:help telescope.builtin.live_grep()` for information about particular keys
-      vim.keymap.set('n', '<leader>f/', function()
-        builtin.live_grep {
-          grep_open_files = true,
-          prompt_title = 'Live Grep in Open Files',
-        }
-      end, { desc = '[F]ind [/] in Open Files' })
-
-      -- Shortcut for searching your Neovim configuration files
-      vim.keymap.set('n', '<leader>fn', function()
-        builtin.find_files { cwd = vim.fn.stdpath 'config' }
-      end, { desc = '[F]ind [N]eovim files' })
-    end,
-  },
 
   -- LSP Configuration & Plugins
   {
@@ -453,42 +307,42 @@ require('lazy').setup({
 
           -- Add clangd specific commands.
           if client.name == 'clangd' then
-            map('<leader>cs', '<cmd>ClangdShowSymbolInfo<cr>', '[C]langd Show Symbol [I]nfo')
-            map('<leader>cc', '<cmd>ClangdSwitchSourceHeader<cr>', '[C]langd [C]ycle Source/Header')
+            map('<leader>cs', '<cmd>ClangdShowSymbolInfo<cr>', 'Clangd Show Symbol Info')
+            map('<leader>cc', '<cmd>ClangdSwitchSourceHeader<cr>', 'Clangd Cycle Source/Header')
           end
 
           -- Jump to the definition of the word under your cursor.
           --  This is where a variable was first declared, or where a function is defined, etc.
           --  To jump back, press <C-t>.
-          map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [d]efinition')
+          map('gd', Snacks.picker.lsp_definitions, 'Goto definition')
 
           -- Find references for the word under your cursor.
-          map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+          map('gr', Snacks.picker.lsp_references, 'Goto References')
 
           -- Jump to the implementation of the word under your cursor.
           --  Useful when your language has ways of declaring types without an actual implementation.
-          map('gi', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
+          map('gi', Snacks.picker.lsp_implementations, 'Goto Implementation')
 
           -- Jump to the type of the word under your cursor.
           --  Useful when you're not sure what type a variable is and you want to see
           --  the definition of its *type*, not where it was *defined*.
-          map('<leader>cD', require('telescope.builtin').lsp_type_definitions, '[C]ode Type [D]efinition')
+          map('<leader>cD', Snacks.picker.lsp_type_definitions, 'Code Type Definition')
 
           -- Fuzzy find all the symbols in your current document.
           --  Symbols are things like variables, functions, types, etc.
-          map('<leader>cs', require('telescope.builtin').lsp_document_symbols, '[C]ode Document [s]ymbols')
+          map('<leader>cs', Snacks.picker.lsp_symbols, 'Code Document Symbols')
 
           -- Fuzzy find all the symbols in your current workspace.
           --  Similar to document symbols, except searches over your entire project.
-          map('<leader>cS', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[C]ode Workspace [S]ymbols')
+          map('<leader>cS', Snacks.picker.lsp_workspace_symbols, 'Code Workspace Symbols')
 
           -- Rename the variable under your cursor.
           --  Most Language Servers support renaming across files, etc.
-          map('<leader>cr', vim.lsp.buf.rename, '[C]ode [R]ename')
+          map('<leader>cr', vim.lsp.buf.rename, 'Code Rename')
 
           -- Execute a code action, usually your cursor needs to be on top of an error
           -- or a suggestion from your LSP for this to activate.
-          map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
+          map('<leader>ca', vim.lsp.buf.code_action, 'Code Action', { 'n', 'x' })
 
           -- Opens a popup that displays documentation about the word under your cursor
           --  See `:help K` for why this keymap.
@@ -496,7 +350,7 @@ require('lazy').setup({
 
           -- WARN: This is not Goto Definition, this is Goto Declaration.
           --  For example, in C this would take you to the header.
-          map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+          map('gD', vim.lsp.buf.declaration, 'Goto Declaration')
 
           -- The following two autocommands are used to highlight references of the
           -- word under your cursor when your cursor rests there for a little while.
@@ -534,7 +388,7 @@ require('lazy').setup({
           if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
             map('<leader>ch', function()
               vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled {})
-            end, 'Toggle [C]ode Inlay [H]ints')
+            end, 'Toggle Code Inlay Hints')
           end
         end,
       })
@@ -581,7 +435,6 @@ require('lazy').setup({
         -- But for many setups, the LSP (`tsserver`) will work just fine
         -- tsserver = {},
         --
-
         lua_ls = {
           -- cmd = {...},
           -- filetypes = { ...},
@@ -640,7 +493,7 @@ require('lazy').setup({
           require('conform').format { async = true, lsp_fallback = true }
         end,
         mode = '',
-        desc = '[C]ode [F]ormat',
+        desc = 'Code Format',
       },
     },
     opts = {
@@ -658,17 +511,10 @@ require('lazy').setup({
     },
   },
 
-  -- { -- You can easily change to a different colorscheme.
-  --   -- Change the name of the colorscheme plugin below, and then
-  --   -- change the command in the config to whatever the name of that colorscheme is.
-  --   --
-  --   -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-  --   'wincent/base16-nvim',
-  --   priority = 1000, -- Make sure to load this before all the other start plugins.
-  --   commit = 'e71ae2694402d5e9227228d66ac273e5a5a2af76',
-  --   dependencies = { 'echasnovski/mini.nvim' },
-  -- },
-
+  -- You can easily change to a different colorscheme.
+  -- Change the name of the colorscheme plugin below, and then
+  -- change the command in the config to whatever the name of that colorscheme is.
+  --
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 

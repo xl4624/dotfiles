@@ -1,21 +1,21 @@
 require('mini.base16').setup {
   palette = {
-    base00 = '#1C1E26',
-    base01 = '#232530',
-    base02 = '#2E303E',
-    base03 = '#6F6F70',
-    base04 = '#9DA0A2',
-    base05 = '#CBCED0',
-    base06 = '#DCDFE4',
-    base07 = '#E3E6EE',
-    base08 = '#E93C58',
-    base09 = '#E58D7D',
-    base0A = '#EFB993',
-    base0B = '#EFAF8E',
-    base0C = '#24A8B4',
-    base0D = '#DF5273',
-    base0E = '#B072D1',
-    base0F = '#E4A382',
+    base00 = '#151515',
+    base01 = '#202020',
+    base02 = '#303030',
+    base03 = '#505050',
+    base04 = '#B0B0B0',
+    base05 = '#D0D0D0',
+    base06 = '#E0E0E0',
+    base07 = '#F5F5F5',
+    base08 = '#AC4142',
+    base09 = '#D28445',
+    base0A = '#F4BF75',
+    base0B = '#90A959',
+    base0C = '#75B5AA',
+    base0D = '#6A9FB5',
+    base0E = '#AA759F',
+    base0F = '#8F5536',
   },
 
   use_cterm = {
@@ -37,5 +37,5 @@ require('mini.base16').setup {
     base0F = 14,
   },
 }
-vim.api.nvim_set_hl(0, "MiniFilesNormal", { link = "Normal" })
+vim.api.nvim_set_hl(0, 'MiniFilesNormal', { link = 'Normal' })
 vim.g.colors_name = 'classic-dark'
