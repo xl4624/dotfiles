@@ -13,3 +13,4 @@ node_modules/
 *.swp
 TODO.md
 ostep.pdf
+merge_compile_commands.py

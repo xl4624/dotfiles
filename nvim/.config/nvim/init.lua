@@ -1,5 +1,6 @@
 -- TODO: Temporary workaround for https://github.com/neovim/neovim/pull/31676
 vim.hl = vim.highlight
+vim.opt.termguicolors = true
 
 -- Set <space> as the leader key
 -- See `:help mapleader`
@@ -479,6 +480,7 @@ require('lazy').setup({
           end,
         },
       }
+      require('lspconfig').gleam.setup {}
     end,
   },
 

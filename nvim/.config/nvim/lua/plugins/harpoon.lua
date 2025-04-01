@@ -11,26 +11,18 @@ return {
   },
   keys = {
     {
-      '<leader>a',
-      function()
-        require('harpoon'):list():add()
-      end,
-      desc = 'Harpoon File',
-    },
-    {
-      '<leader>H',
-      function()
-        local harpoon = require 'harpoon'
-        harpoon.ui:toggle_quick_menu(harpoon:list())
-      end,
-      desc = 'Harpoon Quick Menu',
-    },
-    {
       '<leader>h',
       function()
         require('harpoon'):list():select(1)
       end,
       desc = 'Harpoon to File 1',
+    },
+    {
+      '<leader>H',
+      function()
+        require('harpoon'):list():replace_at(1)
+      end,
+      desc = 'Set Harpoon File 1',
     },
     {
       '<leader>j',
@@ -40,6 +32,13 @@ return {
       desc = 'Harpoon to File 2',
     },
     {
+      '<leader>J',
+      function()
+        require('harpoon'):list():replace_at(2)
+      end,
+      desc = 'Set Harpoon File 2',
+    },
+    {
       '<leader>k',
       function()
         require('harpoon'):list():select(3)
@@ -47,11 +46,33 @@ return {
       desc = 'Harpoon to File 3',
     },
     {
+      '<leader>K',
+      function()
+        require('harpoon'):list():replace_at(3)
+      end,
+      desc = 'Set Harpoon File 3',
+    },
+    {
       '<leader>l',
       function()
         require('harpoon'):list():select(4)
       end,
       desc = 'Harpoon to File 4',
+    },
+    {
+      '<leader>L',
+      function()
+        require('harpoon'):list():replace_at(4)
+      end,
+      desc = 'Set Harpoon File 4',
+    },
+    {
+      '<leader>m',
+      function()
+        local harpoon = require 'harpoon'
+        harpoon.ui:toggle_quick_menu(harpoon:list())
+      end,
+      desc = 'Harpoon Quick Menu',
     },
   },
 }

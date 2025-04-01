@@ -250,3 +250,11 @@ unset __conda_setup
 
 # Created by 'ghcup'
 [ -f "/home/xiaomin/.ghcup/env" ] && . "/home/xiaomin/.ghcup/env" # ghcup-env
+
+# pnpm
+export PNPM_HOME="/home/xiaomin/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
