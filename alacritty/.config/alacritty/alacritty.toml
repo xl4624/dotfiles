@@ -82,7 +82,7 @@ multiplier = 5 # Default: 3
 # - Hack Nerd Font Mono
 # - JetBrainsMonoNL Nerd Font Mono
 # - ComicShannsMono Nerd Font Mono
-normal = { family = "Ubuntu Mono Nerd Font", style = "Regular" }
+normal = { family = "Hack Nerd Font Mono", style = "Regular" }
 
 # Bold font style
 bold = { style = "Bold" } # Inherits family from normal, Default style: Bold
@@ -94,7 +94,7 @@ italic = { style = "Italic" } # Inherits family from normal, Default style: Ital
 bold_italic = { style = "Bold Italic" } # Inherits family from normal, Default style: Bold Italic
 
 # Font size in points
-size = 12
+size = 10
 
 # Offset is extra space around each character
 offset = { x = 0, y = 0 } # Default: x = 0, y = 0

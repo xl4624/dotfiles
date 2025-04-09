@@ -4,6 +4,11 @@ return {
     'rafamadriz/friendly-snippets',
     'zbirenbaum/copilot.lua',
     'giuxtaposition/blink-cmp-copilot',
+    {
+      'L3MON4D3/LuaSnip',
+      version = 'v2.*',
+      dependencies = { 'rafamadriz/friendly-snippets' },
+    },
   },
 
   -- Use a release tag to download pre-built binaries
@@ -16,6 +21,7 @@ return {
       -- Adjusts spacing to ensure icons are aligned
       nerd_font_variant = 'mono',
     },
+    snippets = { preset = 'luasnip' },
 
     completion = {
       menu = {
