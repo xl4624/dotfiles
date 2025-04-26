@@ -2,8 +2,7 @@ return {
   'saghen/blink.cmp',
   dependencies = {
     'rafamadriz/friendly-snippets',
-    'zbirenbaum/copilot.lua',
-    'giuxtaposition/blink-cmp-copilot',
+    'fang2hou/blink-copilot',
     {
       'L3MON4D3/LuaSnip',
       version = 'v2.*',
@@ -51,26 +50,12 @@ return {
     -- Default list of enabled providers defined so that you can extend it
     -- elsewhere in your config, without redefining it, due to `opts_extend`
     sources = {
-      default = { 'lsp', 'path', 'snippets', 'buffer', 'copilot' },
+      default = { 'snippets', 'lsp', 'path', 'buffer', 'copilot' },
       providers = {
-        snippets = {
-          score_offset = 5,
-        },
-        lsp = {
-          score_offset = 4,
-        },
         copilot = {
           name = 'copilot',
-          module = 'blink-cmp-copilot',
-          score_offset = 3,
+          module = 'blink-copilot',
           async = true,
-        },
-        path = {
-          score_offset = 2,
-        },
-        buffer = {
-          min_keyword_length = 5,
-          score_offset = 1,
         },
       },
     },

@@ -1,6 +1,7 @@
 [alias]
 	df = diff
 	dt = difftool
+	pushf = push --force-with-lease
 [color]
 	ui = auto
 [commit]

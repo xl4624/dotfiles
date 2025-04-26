@@ -518,7 +518,8 @@ require('lazy').setup({
   -- You can easily change to a different colorscheme.
   -- Change the name of the colorscheme plugin below, and then
   -- change the command in the config to whatever the name of that colorscheme is.
-  --
+  -- { 'wincent/base16-nvim', },
+
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
@@ -554,6 +555,13 @@ require('lazy').setup({
       --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
       --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
       require('treesitter-context').setup()
+
+      vim.filetype.add {
+        filename = {
+          ['.tmux.conf'] = 'bash',
+          ['tmux.conf'] = 'bash',
+        },
+      }
     end,
   },
 

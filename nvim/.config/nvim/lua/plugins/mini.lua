@@ -2,7 +2,12 @@ return { -- Collection of various small independent plugins/modules
   'echasnovski/mini.nvim',
   lazy = false,
   init = function()
-    vim.cmd.colorscheme 'irblack'
+    vim.api.nvim_set_hl(0, 'MiniFilesNormal', { link = 'Normal' })
+    vim.api.nvim_set_hl(0, 'NormalFloat', { link = 'Normal' })
+    -- vim.cmd.colorscheme 'horizon-dark'
+    -- vim.cmd.colorscheme 'irblack'
+    -- vim.cmd.colorscheme 'classic-dark'
+    vim.cmd.colorscheme 'hardcore'
   end,
   config = function()
     -- Better Around/Inside textobjects

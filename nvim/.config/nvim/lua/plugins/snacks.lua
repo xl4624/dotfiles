@@ -43,11 +43,31 @@ return {
           return vim.o.columns >= 120 and 'fullscreen' or 'vertical'
         end,
       },
+      actions = {
+        -- Allow searching within a picker result list window
+        search = function(picker)
+          picker.list.win:focus()
+          vim.api.nvim_feedkeys("/", "n", false)
+        end,
+      },
       sources = {
         files = {
           hidden = true,
         },
       },
+      win = {
+        input = {
+          keys = {
+            ['/'] = 'search',
+          },
+        },
+      },
+      list = {
+        keys = {
+          ['/'] = 'search',
+        },
+      },
+
       layouts = {
         fullscreen = {
           layout = {
@@ -84,15 +104,21 @@ return {
     { '<leader>gb', function() Snacks.git.blame_line() end, desc = 'Git blame line' },
 
     -- Picker
+    { "<leader>fb", function() Snacks.picker.git_branches() end, desc = "Git Branches" },
     { '<leader>fd', function() Snacks.picker.diagnostics() end, desc = 'Find Diagnostics' },
+    { "<leader>fD", function() Snacks.picker.git_diff() end, desc = "Git Diff (Hunks)" },
     { '<leader>ff', function() Snacks.picker.files() end, desc = 'Find Files' },
     { '<leader>fg', function() Snacks.picker.grep() end, desc = 'Find Grep' },
     { '<leader>fh', function() Snacks.picker.help() end, desc = 'Find Help' },
     { '<leader>fk', function() Snacks.picker.keymaps() end, desc = 'Find Keymaps' },
+    { "<leader>fl", function() Snacks.picker.git_log() end, desc = "Git Log" },
+    { "<leader>fL", function() Snacks.picker.git_log_line() end, desc = "Git Log Line" },
     { "<leader>fn", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Neovim Files" },
     { '<leader>fp', function() Snacks.picker() end, desc = 'Find Picker' },
     { '<leader>fq', function() Snacks.picker.qflist() end, desc = 'Find quickfix list' },
     { '<leader>fr', function() Snacks.picker.resume() end, desc = 'Find Resume' },
+    { "<leader>fs", function() Snacks.picker.git_status() end, desc = "Git Status" },
+    { "<leader>fS", function() Snacks.picker.git_stash() end, desc = "Git Stash" },
     { '<leader>fu', function() Snacks.picker.undo() end, desc = 'Find Undo History' },
     { '<leader>fw', function() Snacks.picker.grep_word() end, desc = 'Find current selection or word', mode = { 'n', 'x' } },
     { '<leader>f.', function() Snacks.picker.recent() end, desc = 'Find Recent Files ("." for repeat)' },
