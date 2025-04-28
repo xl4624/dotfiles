@@ -80,6 +80,42 @@ wezterm.on("update-status", function(window, pane)
 	}))
 end)
 
+local function conditionalActivatePane(window, pane, pane_direction, vim_direction)
+	local vim_pane_changed = false
+
+	if pane:get_title():find("n?vim") ~= nil then
+		local before = pane:get_cursor_position()
+		window:perform_action(
+			-- This should match the keybinds you set in Neovim.
+			wezterm.action.SendKey({ key = vim_direction, mods = "CTRL" }),
+			pane
+		)
+		wezterm.sleep_ms(50)
+		local after = pane:get_cursor_position()
+
+		if before.x ~= after.x and before.y ~= after.y then
+			vim_pane_changed = true
+		end
+	end
+
+	if not vim_pane_changed then
+		window:perform_action(wezterm.action.ActivatePaneDirection(pane_direction), pane)
+	end
+end
+
+wezterm.on("ActivatePaneDirection-right", function(window, pane)
+	conditionalActivatePane(window, pane, "Right", "l")
+end)
+wezterm.on("ActivatePaneDirection-left", function(window, pane)
+	conditionalActivatePane(window, pane, "Left", "h")
+end)
+wezterm.on("ActivatePaneDirection-up", function(window, pane)
+	conditionalActivatePane(window, pane, "Up", "k")
+end)
+wezterm.on("ActivatePaneDirection-down", function(window, pane)
+	conditionalActivatePane(window, pane, "Down", "j")
+end)
+
 -- +------------------------------------+
 -- | KEY BINDINGS                       |
 -- +------------------------------------+
@@ -175,10 +211,10 @@ config.keys = {
 	{ key = "f", mods = "LEADER", action = wezterm.action.ShowTabNavigator },
 
 	-- Pane navigation
-	{ key = "h", mods = "CTRL", action = wezterm.action.ActivatePaneDirection("Left") },
-	{ key = "j", mods = "CTRL", action = wezterm.action.ActivatePaneDirection("Down") },
-	{ key = "k", mods = "CTRL", action = wezterm.action.ActivatePaneDirection("Up") },
-	{ key = "l", mods = "CTRL", action = wezterm.action.ActivatePaneDirection("Right") },
+	{ key = "h", mods = "CTRL", action = wezterm.action.EmitEvent("ActivatePaneDirection-left") },
+	{ key = "j", mods = "CTRL", action = wezterm.action.EmitEvent("ActivatePaneDirection-down") },
+	{ key = "k", mods = "CTRL", action = wezterm.action.EmitEvent("ActivatePaneDirection-up") },
+	{ key = "l", mods = "CTRL", action = wezterm.action.EmitEvent("ActivatePaneDirection-right") },
 	make_repeatable("H", wezterm.action.AdjustPaneSize({ "Left", 1 })),
 	make_repeatable("J", wezterm.action.AdjustPaneSize({ "Down", 1 })),
 	make_repeatable("K", wezterm.action.AdjustPaneSize({ "Up", 1 })),
