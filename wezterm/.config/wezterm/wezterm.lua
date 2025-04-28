@@ -85,7 +85,7 @@ end)
 -- +------------------------------------+
 
 config.disable_default_key_bindings = true
-config.leader = { key = "a", mods = "CTRL" }
+config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = math.maxinteger }
 
 -- Helper for creating repeatble comamnds
 local function make_repeatable(key, action)
@@ -137,15 +137,10 @@ config.keys = {
 		mods = "CTRL|SHIFT",
 		action = wezterm.action_callback(function(window, pane)
 			window:perform_action(wezterm.action.Search("CurrentSelectionOrEmptyString"), pane)
-			window:perform_action(
-				wezterm.action.Multiple({
-					wezterm.action.CopyMode("ClearPattern"),
-					wezterm.action.ClearSelection,
-					wezterm.action.CopyMode("ClearSelectionMode"),
-					wezterm.action.CopyMode("MoveToScrollbackBottom"),
-				}),
-				pane
-			)
+			window:perform_action(wezterm.action.CopyMode("ClearPattern"), pane)
+			window:perform_action(wezterm.action.ClearSelection, pane)
+			window:perform_action(wezterm.action.CopyMode("ClearSelectionMode"), pane)
+			window:perform_action(wezterm.action.CopyMode("MoveToScrollbackBottom"), pane)
 		end),
 	},
 
@@ -191,7 +186,9 @@ config.keys = {
 
 	-- Tab navigation and management
 	{ key = "n", mods = "LEADER", action = wezterm.action.ActivateTabRelative(1) },
+	{ key = "n", mods = "LEADER|CTRL", action = wezterm.action.ActivateTabRelative(1) },
 	{ key = "p", mods = "LEADER", action = wezterm.action.ActivateTabRelative(-1) },
+	{ key = "p", mods = "LEADER|CTRL", action = wezterm.action.ActivateTabRelative(-1) },
 	{ key = "q", mods = "LEADER", action = wezterm.action.QuitApplication },
 	{ key = "s", mods = "LEADER", action = wezterm.action.ShowLauncherArgs({ flags = "TABS" }) },
 	{ key = "x", mods = "LEADER", action = wezterm.action.CloseCurrentPane({ confirm = false }) },
