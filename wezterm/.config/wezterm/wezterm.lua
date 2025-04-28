@@ -190,7 +190,7 @@ config.keys = {
 	{ key = "7", mods = "ALT", action = wezterm.action.ActivateTab(6) },
 	{ key = "8", mods = "ALT", action = wezterm.action.ActivateTab(7) },
 	{ key = "9", mods = "ALT", action = wezterm.action.ActivateTab(8) },
-	{ key = "0", mods = "ALT", action = wezterm.action.ActivateTab(-1) },
+	{ key = "0", mods = "ALT", action = wezterm.action.ActivateTab(9) },
 	{ key = "1", mods = "LEADER", action = wezterm.action.ActivateTab(0) },
 	{ key = "2", mods = "LEADER", action = wezterm.action.ActivateTab(1) },
 	{ key = "3", mods = "LEADER", action = wezterm.action.ActivateTab(2) },
@@ -200,7 +200,7 @@ config.keys = {
 	{ key = "7", mods = "LEADER", action = wezterm.action.ActivateTab(6) },
 	{ key = "8", mods = "LEADER", action = wezterm.action.ActivateTab(7) },
 	{ key = "9", mods = "LEADER", action = wezterm.action.ActivateTab(8) },
-	{ key = "0", mods = "LEADER", action = wezterm.action.ActivateTab(-1) },
+	{ key = "0", mods = "LEADER", action = wezterm.action.ActivateTab(9) },
 
 	-- [[ Tmux ]]
 	{ key = "-", mods = "LEADER", action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }) },
