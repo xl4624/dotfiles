@@ -308,9 +308,8 @@ require('lazy').setup({
             client.server_capabilities.hoverProvider = false
           end
 
-          -- Add clangd specific commands.
+          -- clangd specific commands
           if client.name == 'clangd' then
-            map('<leader>cs', '<cmd>ClangdShowSymbolInfo<cr>', 'Clangd Show Symbol Info')
             map('<leader>cc', '<cmd>ClangdSwitchSourceHeader<cr>', 'Clangd Cycle Source/Header')
           end
 
@@ -526,7 +525,7 @@ require('lazy').setup({
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
-    dependencies = { 'nvim-treesitter/nvim-treesitter-context' },
+    dependencies = { 'nvim-treesitter/nvim-treesitter-context', 'nvim-treesitter/nvim-treesitter-textobjects' },
     opts = {
       ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc' },
       -- Autoinstall languages that are not installed
@@ -539,6 +538,19 @@ require('lazy').setup({
         additional_vim_regex_highlighting = { 'ruby' },
       },
       indent = { enable = false, disable = { 'ruby' } },
+      textobjects = {
+        select = {
+          enable = true,
+          lookahead = true,
+          keymaps = {
+            ['af'] = { query = '@function.outer', desc = 'Select outer part of a function' },
+            ['if'] = { query = '@function.inner', desc = 'Select inner part of a function' },
+            ['ac'] = { query = '@class.outer', desc = 'Select outer part of a class region' },
+            ['ic'] = { query = '@class.inner', desc = 'Select inner part of a class region' },
+            ['as'] = { query = '@local.scope', query_group = 'locals', desc = 'Select language scope' },
+          },
+        },
+      },
     },
     config = function(_, opts)
       -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
