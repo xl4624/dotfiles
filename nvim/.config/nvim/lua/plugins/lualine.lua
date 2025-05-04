@@ -14,6 +14,9 @@ local function update_harpoon()
 end
 
 local function harpoon_files()
+    local width = vim.o.columns
+    if width < 100 then return "" end
+
     local cwd = vim.uv.cwd()
     if not cwd then return "" end
     if vim.g.marked_file_names[1] == "" then return "" end

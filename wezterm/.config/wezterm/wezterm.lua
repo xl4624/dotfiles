@@ -13,12 +13,11 @@ config.font = wezterm.font("HackNerdFontMono")
 config.font_size = 10.0
 config.line_height = 1.0
 
-config.color_scheme = "Isotope (dark) (terminal.sexy)"
-
 -- [[ TAB BAR ]]
 config.tab_bar_at_bottom = true
 config.use_fancy_tab_bar = false
 
+config.color_scheme = "Isotope (dark) (terminal.sexy)"
 config.colors = {
 	tab_bar = {
 		background = "black",
