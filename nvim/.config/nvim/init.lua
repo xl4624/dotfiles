@@ -1,6 +1,3 @@
--- TODO: Temporary workaround for https://github.com/neovim/neovim/pull/31676
-vim.hl = vim.highlight
-
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
