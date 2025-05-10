@@ -233,8 +233,26 @@ config.keys = {
 		action = wezterm.action.PromptInputLine({
 			description = "Rename Tab",
 			action = wezterm.action_callback(function(window, pane, line)
-				if line then
+				if line and line ~= "" then
 					window:active_tab():set_title(line)
+				end
+			end),
+		}),
+	},
+	{
+		key = ".",
+		mods = "LEADER",
+		action = wezterm.action.PromptInputLine({
+			description = "Move tab to index:",
+			action = wezterm.action_callback(function(window, pane, line)
+				if line and line ~= "" then
+					local index = tonumber(line)
+					if index then
+						-- using index - 1 to use 1-based indexing
+						window:perform_action(wezterm.action.MoveTab(index - 1), pane)
+					else
+						window:toast_notification("Invalid input", "Please enter a number index.", nil, 4000)
+					end
 				end
 			end),
 		}),
