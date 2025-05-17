@@ -9,7 +9,7 @@ local config = wezterm.config_builder()
 --[[ FONT ]]
 -- Favorites: Berkeley Mono, Ubuntu Mono Nerd Font, CozetteVector Nerd Font (like Fixedsys Excelsior), Hack Nerd Font Mono, JetBrainsMonoNL Nerd Font Mono
 -- ComicShannsMono Nerd Font Mono
-config.font = wezterm.font("HackNerdFontMono")
+config.font = wezterm.font("JetBrainsMonoNL")
 config.font_size = 10.0
 config.line_height = 1.0
 

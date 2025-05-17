@@ -124,6 +124,7 @@ alias ll="eza -al --icons"
 alias lt="eza -a --tree --level=1 --icons"
 alias neofetch=fastfetch
 alias jupyter="nocorrect jupyter"
+alias git="nocorrect git"
 alias deluser=userdel
 
 # Custom variables
@@ -198,7 +199,7 @@ function tmux() {
 
 # if the command ends with !, then replace it with '&>/dev/null & disown'
 function accept-line-background {
-    if [[ $BUFFER == *\! && $BUFFER != *\!\! ]]; then
+    if [[ $BUFFER == *\! ]]; then
       BUFFER="${BUFFER%\!} &>/dev/null & disown"
     fi
     zle accept-line
