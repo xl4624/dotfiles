@@ -513,6 +513,13 @@ require('lazy').setup({
   -- Change the name of the colorscheme plugin below, and then
   -- change the command in the config to whatever the name of that colorscheme is.
   -- { 'wincent/base16-nvim', },
+  -- {
+
+  --   'm4xshen/hardtime.nvim',
+  --   lazy = false,
+  --   dependencies = { 'MunifTanjim/nui.nvim' },
+  --   opts = {},
+  -- },
 
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
