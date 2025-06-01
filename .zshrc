@@ -232,6 +232,10 @@ export PATH="$PATH:/home/xiaomin/.local/bin"
 
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
+# nvm
+export NVM_DIR="$HOME/.nvm"
+source /usr/share/nvm/init-nvm.sh
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/home/xiaomin/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
