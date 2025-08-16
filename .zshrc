@@ -128,7 +128,7 @@ alias git="nocorrect git"
 alias deluser=userdel
 
 # Custom variables
-export AIRPODS="08:25:73:53:D8:97"
+export AIRPODS="F0:04:E1:E3:21:10"
 export GOPATH=$HOME/.go
 export OLLAMA_API_BASE=http://127.0.0.1:11434
 
