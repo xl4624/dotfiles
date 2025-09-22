@@ -225,6 +225,14 @@ edit-last-command-output() {
 zle -N edit-last-command-output
 bindkey '^x^o' edit-last-command-output
 
+function mdview() {
+  pandoc $1 > /tmp/$1.html
+  xdg-open /tmp/$1.html
+}
+
+# Use the default Ctrl-R binding for history search.
+bindkey '^R' history-incremental-search-backward
+
 # Created by 'pipx'
 autoload -U compinit && compinit
 eval "$(register-python-argcomplete pipx)"
@@ -264,3 +272,12 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+
+# BEGIN opam configuration
+# This is useful if you're using opam as it adds:
+#   - the correct directories to the PATH
+#   - auto-completion for the opam binary
+# This section can be safely removed at any time if needed.
+[[ ! -r '/home/xiaomin/.opam/opam-init/init.zsh' ]] || source '/home/xiaomin/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
+# END opam configuration
