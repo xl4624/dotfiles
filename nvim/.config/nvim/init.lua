@@ -409,6 +409,7 @@ require('lazy').setup({
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
+        -- C++
         clangd = {
           cmd = {
             'clangd',
@@ -416,7 +417,22 @@ require('lazy').setup({
           },
         },
         -- gopls = {},
-        -- pyright = {},
+
+        -- Python
+        basedpyright = {
+          settings = {
+            basedpyright = {
+              analysis = {
+                autoSearchPaths = true,
+                diagnosticMode = 'openFilesOnly',
+                useLibraryCodeForTypes = true,
+              },
+            },
+          },
+        },
+        ruff = {},
+
+        -- Rust
         rust_analyzer = {
           settings = {
             ['rust-analyzer'] = {
@@ -499,6 +515,9 @@ require('lazy').setup({
       format_on_save = false,
       formatters_by_ft = {
         lua = { 'stylua' },
+        html = { 'prettier' },
+        htmldjango = { 'prettier' },
+        css = { 'prettier' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
