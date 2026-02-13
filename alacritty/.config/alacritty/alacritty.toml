@@ -306,6 +306,7 @@ alphabet = "jfkdls;ahgurieowpq" # Default: "jfkdls;ahgurieowpq"
 bindings = [
     { key = "PageUp", action = "ScrollToTop" },
     { key = "PageDown", action = "ScrollToBottom" },
+    { key = "Return", mods = "Shift", chars = "\u001b\r" },
     # { key = "Key", mods = "Modifiers", action = "Action" },
     # { key = "Key", mods = "Modifiers", chars = "Characters to send" },
     # ...

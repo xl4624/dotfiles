@@ -5,7 +5,7 @@ return {
     'fang2hou/blink-copilot',
     {
       'L3MON4D3/LuaSnip',
-      run = "make install_jsregexp",
+      build = "make install_jsregexp",
       version = 'v2.*',
       dependencies = { 'rafamadriz/friendly-snippets' },
     },

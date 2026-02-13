@@ -130,7 +130,7 @@
 			"",
 			""
 		],
-		"tooltip": true,
+		"tooltip": true
     },
 	"memory": {
 		"interval": 5,
