@@ -101,6 +101,7 @@ alias lt="eza -a --tree --level=1 --icons"
 alias neofetch=fastfetch
 alias jupyter="nocorrect jupyter"
 alias git="nocorrect git"
+alias make="nocorrect make"
 alias deluser=userdel
 
 #
