@@ -307,7 +307,7 @@ require('lazy').setup({
 
           -- clangd specific commands
           if client.name == 'clangd' then
-            map('<leader>cc', '<cmd>ClangdSwitchSourceHeader<cr>', 'Clangd Cycle Source/Header')
+            map('<leader>cc', '<cmd>LspClangdSwitchSourceHeader<cr>', 'Clangd Cycle Source/Header')
           end
 
           -- Jump to the definition of the word under your cursor.
