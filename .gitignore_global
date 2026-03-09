@@ -18,6 +18,9 @@ merge_compile_commands.py
 .jj/
 merge.sh
 xiaomin/
+
+# AI prompts
 .cursor/
 .claude/
 CLAUDE.md
+AGENTS.md

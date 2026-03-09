@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "lldb": {
+      "command": "/bin/nc",
+      "args": ["localhost", "59999"]
+    }
+  }
+}

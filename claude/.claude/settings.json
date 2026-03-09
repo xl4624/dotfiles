@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(tree:*)",
+      "Bash(ls:*)",
+      "Bash(cd:*)",
+      "Bash(rg:*)",
+      "Bash(fd:*)",
+      "Bash(grep:*)",
+      "Bash(find:*)",
+      "Bash(git log*)",
+      "Bash(git status*)",
+      "Bash(git diff*)",
+      "Bash(git show*)",
+      "Bash(git branch*)",
+      "Bash(git blame*)",
+      "Bash(git stash list*)",
+      "Bash(git tag*)",
+      "Bash(git remote*)",
+      "Bash(git describe*)"
+    ],
+    "defaultMode": "default"
+  },
+  "model": "sonnet",
+  "statusLine": {
+    "type": "command",
+    "command": "echo \"[$(whoami)@$(basename \"$(pwd)\")]\""
+  },
+  "enabledPlugins": {
+    "clangd-lsp@claude-plugins-official": true
+  },
+  "skipDangerousModePermissionPrompt": true
+}

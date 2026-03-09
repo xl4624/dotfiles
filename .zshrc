@@ -93,7 +93,7 @@ setopt SHARE_HISTORY        # share history across shells
 # Aliases
 #
 
-alias cd=z
+alias cd="nocorrect z"
 alias vim=nvim
 alias ls="eza --icons"
 alias ll="eza -al --icons"
@@ -103,6 +103,7 @@ alias jupyter="nocorrect jupyter"
 alias git="nocorrect git"
 alias make="nocorrect make"
 alias deluser=userdel
+alias xargs="nocorrect xargs"
 
 #
 # Functions
@@ -169,9 +170,6 @@ function mdview() {
 # Tool Initializations
 #
 
-# zoxide
-eval "$(zoxide init zsh)"
-
 # fzf
 source <(fzf --zsh)
 
@@ -213,6 +211,9 @@ esac
 
 # opam
 [[ ! -r '/home/xiaomin/.opam/opam-init/init.zsh' ]] || source '/home/xiaomin/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
+
+# zoxide
+eval "$(zoxide init zsh)"
 
 #
 # Powerlevel10k Theme
