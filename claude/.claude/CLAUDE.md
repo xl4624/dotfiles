@@ -2,5 +2,5 @@
 
 ## Shell Tools
 
-- Prefer `rg` (ripgrep) over `grep` for searching file contents
-- Prefer `fd` over `find` for finding files
+- ALWAYS use `rg` (ripgrep) instead of `grep` for searching file contents. Never use `grep`.
+- ALWAYS use `fd` instead of `find` for finding files. Never use `find`.
