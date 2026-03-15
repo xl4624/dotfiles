@@ -24,7 +24,7 @@
   "model": "sonnet",
   "statusLine": {
     "type": "command",
-    "command": "echo \"[$(whoami)@$(basename \"$(pwd)\")]\""
+    "command": "input=$(cat); used=$(echo \"$input\" | jq -r '.context_window.used_percentage // empty'); model=$(echo \"$input\" | jq -r '.model.display_name // empty'); ctx=${used:+\" | ctx: ${used}%\"}; mdl=${model:+\" | ${model}\"}; echo \"[$(whoami)@$(basename \"$(pwd)\")]${ctx}${mdl}\""
   },
   "enabledPlugins": {
     "clangd-lsp@claude-plugins-official": true
