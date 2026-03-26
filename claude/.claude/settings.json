@@ -1,27 +1,33 @@
 {
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
   "permissions": {
     "allow": [
-      "Bash(tree:*)",
-      "Bash(ls:*)",
       "Bash(cd:*)",
-      "Bash(rg:*)",
+      "Bash(clang-format*)",
       "Bash(fd:*)",
-      "Bash(grep:*)",
       "Bash(find:*)",
-      "Bash(git log*)",
-      "Bash(git status*)",
-      "Bash(git diff*)",
-      "Bash(git show*)",
-      "Bash(git branch*)",
       "Bash(git blame*)",
-      "Bash(git stash list*)",
-      "Bash(git tag*)",
+      "Bash(git branch*)",
+      "Bash(git describe*)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
       "Bash(git remote*)",
-      "Bash(git describe*)"
+      "Bash(git show*)",
+      "Bash(git stash list*)",
+      "Bash(git status*)",
+      "Bash(git tag*)",
+      "Bash(grep:*)",
+      "Bash(ls:*)",
+      "Bash(rg:*)",
+      "Bash(run-clang-tidy*)",
+      "Bash(tree:*)"
     ],
     "defaultMode": "default"
   },
-  "model": "opus",
+  "model": "sonnet",
   "statusLine": {
     "type": "command",
     "command": "bash /home/xiaomin/.claude/statusline-command.sh"
