@@ -9,6 +9,7 @@
 [core]
 	editor = nvim
 	excludesfile = /home/xiaomin/.gitignore_global
+	pager = delta
 [diff]
 	tool = vimdiff
 [difftool]
@@ -21,9 +22,18 @@
 [push]
 	autoSetupRemote = true
 [pull]
-	rebase = false
+	rebase = true
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[rerere]
+	enabled = true
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true
+	dark = true
+[merge]
+	conflictStyle = zdiff3

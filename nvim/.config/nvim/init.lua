@@ -120,6 +120,17 @@ vim.api.nvim_create_user_command('Hr', function(opts)
   vim.cmd(':resize ' .. ((vim.opt.lines:get() - vim.opt.cmdheight:get()) * (opts.args / 100.0)))
 end, { nargs = '*' })
 
+-- Format visual selection or current line to specified width (default 80)
+vim.api.nvim_create_user_command('Wrap', function(opts)
+  local width = tonumber(opts.args) or 80
+  local old_tw = vim.bo.textwidth
+  vim.bo.textwidth = width
+  vim.cmd(string.format('normal! %dGgq%dG', opts.line1, opts.line2))
+  vim.bo.textwidth = old_tw
+end, { range = '%', nargs = '?', desc = 'Wrap text to specified width (default 80)' })
+
+vim.keymap.set('x', '<leader>cw', ':Wrap<CR>', { desc = 'Code Wrap (80 width)' })
+
 -- Diagnostic Config & Keymaps
 -- See :help vim.diagnostic.Opts
 vim.diagnostic.config {
@@ -500,8 +511,8 @@ require('lazy').setup({
         -- But for many setups, the LSP (`tsserver`) will work just fine
         -- tsserver = {},
         --
-        -- OCaml
-        ocamllsp = {},
+        -- OCaml: managed by opam, not Mason
+        -- ocamllsp = {},
 
         lua_ls = {
           -- cmd = {...},
@@ -547,6 +558,9 @@ require('lazy').setup({
         ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
         automatic_enable = true, -- automatically run vim.lsp.enable() for all servers that are installed via Mason
       }
+
+      -- Enable non-Mason LSPs (managed by opam)
+      vim.lsp.enable 'ocamllsp'
     end,
   },
 
@@ -581,18 +595,6 @@ require('lazy').setup({
       },
     },
   },
-
-  -- You can easily change to a different colorscheme.
-  -- Change the name of the colorscheme plugin below, and then
-  -- change the command in the config to whatever the name of that colorscheme is.
-  -- { 'wincent/base16-nvim', },
-  -- {
-
-  --   'm4xshen/hardtime.nvim',
-  --   lazy = false,
-  --   dependencies = { 'MunifTanjim/nui.nvim' },
-  --   opts = {},
-  -- },
 
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },

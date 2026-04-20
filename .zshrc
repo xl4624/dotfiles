@@ -1,3 +1,5 @@
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -93,16 +95,18 @@ setopt SHARE_HISTORY        # share history across shells
 # Aliases
 #
 
+alias claude="claude --dangerously-skip-permissions"
 alias cd="nocorrect z"
-alias vim=nvim
-alias ls="eza --icons"
-alias ll="eza -al --icons"
-alias lt="eza -a --tree --level=1 --icons"
-alias neofetch=fastfetch
-alias jupyter="nocorrect jupyter"
-alias git="nocorrect git"
-alias make="nocorrect make"
 alias deluser=userdel
+alias dune="nocorrect dune"
+alias git="nocorrect git"
+alias jupyter="nocorrect jupyter"
+alias ll="eza -al --icons"
+alias ls="eza --icons"
+alias lt="eza -a --tree --level=1 --icons"
+alias make="nocorrect make"
+alias neofetch=fastfetch
+alias vim=nvim
 alias xargs="nocorrect xargs"
 
 #
@@ -213,7 +217,13 @@ esac
 [[ ! -r '/home/xiaomin/.opam/opam-init/init.zsh' ]] || source '/home/xiaomin/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
 
 # zoxide
-eval "$(zoxide init zsh)"
+if [[ $- == *i* ]]; then
+  eval "$(zoxide init zsh)"
+fi
+
+# direnv
+eval "$(direnv hook zsh)"
+
 
 #
 # Powerlevel10k Theme

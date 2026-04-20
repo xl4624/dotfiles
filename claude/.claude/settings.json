@@ -1,4 +1,7 @@
 {
+  "env": {
+    "DISABLE_ZOXIDE": "1"
+  },
   "attribution": {
     "commit": "",
     "pr": ""
@@ -33,7 +36,10 @@
     "command": "bash /home/xiaomin/.claude/statusline-command.sh"
   },
   "enabledPlugins": {
-    "clangd-lsp@claude-plugins-official": true
+    "clangd-lsp@claude-plugins-official": true,
+    "rust-analyzer-lsp@claude-plugins-official": true,
+    "github@claude-plugins-official": true,
+    "context7@claude-plugins-official": true
   },
   "skipDangerousModePermissionPrompt": true
 }
