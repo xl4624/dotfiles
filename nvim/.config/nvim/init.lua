@@ -13,6 +13,9 @@ vim.g.have_nerd_font = true
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
+-- Ocaml dune exec --watch bug
+vim.opt.backupcopy = "yes"
+
 -- True terminal colors
 vim.opt.termguicolors = true
 

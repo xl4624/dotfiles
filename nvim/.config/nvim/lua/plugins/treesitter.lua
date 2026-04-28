@@ -1,48 +1,25 @@
-return { -- Highlight, edit, and navigate code
-  'nvim-treesitter/nvim-treesitter',
+return {
+  'neovim-treesitter/nvim-treesitter',
   build = ':TSUpdate',
-  dependencies = { 'nvim-treesitter/nvim-treesitter-context', 'nvim-treesitter/nvim-treesitter-textobjects' },
-  opts = {
-    ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc' },
-    -- Autoinstall languages that are not installed
-    auto_install = true,
-    highlight = {
-      enable = true,
-      -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
-      --  If you are experiencing weird indenting issues, add the language to
-      --  the list of additional_vim_regex_highlighting and disabled languages for indent.
-      additional_vim_regex_highlighting = { 'ruby' },
-    },
-    indent = { enable = false, disable = { 'ruby' } },
-    textobjects = {
-      select = {
-        enable = true,
-        lookahead = true,
-        keymaps = {
-          ['af'] = { query = '@function.outer', desc = 'Select outer part of a function' },
-          ['if'] = { query = '@function.inner', desc = 'Select inner part of a function' },
-          ['ac'] = { query = '@class.outer', desc = 'Select outer part of a class region' },
-          ['ic'] = { query = '@class.inner', desc = 'Select inner part of a class region' },
-          ['as'] = { query = '@local.scope', query_group = 'locals', desc = 'Select language scope' },
-        },
-      },
-    },
+  lazy = false,
+  dependencies = {
+    'neovim-treesitter/treesitter-parser-registry',
+    { 'nvim-treesitter/nvim-treesitter-textobjects', branch = 'main' },
+    'nvim-treesitter/nvim-treesitter-context',
   },
-  config = function(_, opts)
-    -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
-
-    -- Prefer git instead of curl in order to improve connectivity in some environments
-    require('nvim-treesitter.install').prefer_git = true
-    ---@diagnostic disable-next-line: missing-fields
-    require('nvim-treesitter.configs').setup(opts)
-
-    -- There are additional nvim-treesitter modules that you can use to interact
-    -- with nvim-treesitter. You should go explore a few and see what interests you:
-    --
-    --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
-    --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
-    --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
-    require('treesitter-context').setup()
+  config = function()
+    require('nvim-treesitter').install {
+      'bash',
+      'c',
+      'diff',
+      'html',
+      'lua',
+      'luadoc',
+      'markdown',
+      'markdown_inline',
+      'vim',
+      'vimdoc',
+    }
 
     vim.filetype.add {
       filename = {
@@ -50,5 +27,29 @@ return { -- Highlight, edit, and navigate code
         ['tmux.conf'] = 'bash',
       },
     }
+
+    vim.api.nvim_create_autocmd('FileType', {
+      callback = function(args)
+        pcall(vim.treesitter.start, args.buf)
+      end,
+    })
+
+    require('nvim-treesitter-textobjects').setup {
+      select = { lookahead = true },
+    }
+
+    local select = require('nvim-treesitter-textobjects.select')
+    local map = function(lhs, query, group, desc)
+      vim.keymap.set({ 'x', 'o' }, lhs, function()
+        select.select_textobject(query, group)
+      end, { desc = desc })
+    end
+    map('af', '@function.outer', 'textobjects', 'Select outer part of a function')
+    map('if', '@function.inner', 'textobjects', 'Select inner part of a function')
+    map('ac', '@class.outer', 'textobjects', 'Select outer part of a class region')
+    map('ic', '@class.inner', 'textobjects', 'Select inner part of a class region')
+    map('as', '@local.scope', 'locals', 'Select language scope')
+
+    require('treesitter-context').setup()
   end,
 }
