@@ -2696,7 +2696,7 @@ config-default-files = true
 # any confirmation. This can also be set to `always`, which will always
 # confirm closing a surface, even if shell integration says a process isn't
 # running.
-confirm-close-surface = true
+confirm-close-surface = false
 
 # Whether or not to quit after the last surface is closed.
 #
