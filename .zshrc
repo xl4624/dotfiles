@@ -174,6 +174,9 @@ function mdview() {
 # Tool Initializations
 #
 
+# Go
+export PATH="$HOME/.go/bin:$PATH"
+
 # fzf
 source <(fzf --zsh)
 

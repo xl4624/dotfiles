@@ -1,7 +1,7 @@
 {
   "env": {
     "DISABLE_ZOXIDE": "1",
-    "_ZO_DOCTOR": 0
+    "_ZO_DOCTOR": "0"
   },
   "attribution": {
     "commit": "",
@@ -41,7 +41,8 @@
     "rust-analyzer-lsp@claude-plugins-official": true,
     "github@claude-plugins-official": true,
     "context7@claude-plugins-official": true,
-    "ralph-loop@claude-plugins-official": true
+    "ralph-loop@claude-plugins-official": true,
+    "commit-commands@claude-plugins-official": true
   },
   "skipDangerousModePermissionPrompt": true
 }

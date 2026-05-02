@@ -33,6 +33,7 @@ return {
       },
     },
     dim = { enabled = false },
+    image = { enabled = true },
     indent = { enabled = true },
     picker = {
       enabled = true,
