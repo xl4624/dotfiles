@@ -218,6 +218,7 @@ esac
 
 # opam
 [[ ! -r '/home/xiaomin/.opam/opam-init/init.zsh' ]] || source '/home/xiaomin/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
+eval $(opam env --switch=default)
 
 # zoxide
 if [[ $- == *i* ]]; then

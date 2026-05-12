@@ -224,8 +224,7 @@ require('lazy').setup({
   --  This is equivalent to:
   --    require('Comment').setup({})
 
-  -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
+  -- "gc"/"gcc" to comment visual regions/lines (built into Neovim 0.10+)
 
   -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
   --
@@ -359,19 +358,7 @@ require('lazy').setup({
 
           -- ocamllsp specific commands
           if client.name == 'ocamllsp' then
-            map('<leader>cc', function()
-              client.request('ocamllsp/switchImplIntf', { vim.uri_from_bufnr(0) }, function(err, result)
-                if err then
-                  vim.notify('switchImplIntf error: ' .. vim.inspect(err), vim.log.levels.ERROR)
-                  return
-                end
-                if not result or #result == 0 then
-                  vim.notify('No counterpart found', vim.log.levels.WARN)
-                  return
-                end
-                vim.cmd('edit ' .. vim.fn.fnameescape(vim.uri_to_fname(result[1])))
-              end, 0)
-            end, 'Cycle OCaml .ml/.mli')
+            map('<leader>cc', '<cmd>LspOcamllspSwitchImplIntf<cr>', 'Cycle OCaml .ml/.mli')
           end
 
           -- Jump to the definition of the word under your cursor.
@@ -453,6 +440,13 @@ require('lazy').setup({
               vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
             end, 'Toggle Code Inlay Hints')
           end
+
+          -- Auto-refresh code lens (e.g., ocamllsp signatures) for buffers
+          -- whose server supports them. `codelens.enable` handles its own
+          -- refresh schedule, so no autocmd is needed.
+          if client and client:supports_method('textDocument/codeLens', event.buf) then
+            vim.lsp.codelens.enable(true, { bufnr = event.buf })
+          end
         end,
       })
 
@@ -513,9 +507,6 @@ require('lazy').setup({
         --
         -- But for many setups, the LSP (`tsserver`) will work just fine
         -- tsserver = {},
-        --
-        -- OCaml: managed by opam, not Mason
-        -- ocamllsp = {},
 
         lua_ls = {
           -- cmd = {...},
@@ -533,6 +524,20 @@ require('lazy').setup({
         },
       }
 
+      -- Servers installed outside of Mason (e.g., via opam, rustup, system pkg).
+      -- They share the config pipeline with `servers` but are not added to
+      -- `ensure_installed` and must be enabled explicitly below.
+      local extra_servers = {
+        ocamllsp = {
+          settings = {
+            codelens = { enable = true },
+            extendedHover = { enable = true },
+            inlayHints = { enable = true },
+            syntaxDocumentation = { enable = true },
+          },
+        },
+      }
+
       -- To check the current status of installed tools and/or manually install
       -- other tools, you can run
       --    :Mason
@@ -541,29 +546,29 @@ require('lazy').setup({
 
       -- You can add other tools here that you want Mason to install
       -- for you, so that they are available from within Neovim.
-      local ensure_installed = vim.tbl_keys(servers or {})
+      local ensure_installed = vim.tbl_keys(servers)
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
-      -- Either merge all additional server configs from the `servers.mason` and `servers.others` tables
-      -- to the default language server configs as provided by nvim-lspconfig or
-      -- define a custom server config that's unavailable on nvim-lspconfig.
-      for server, config in pairs(servers) do
+      -- Apply config to every server (Mason-managed and external).
+      for server, config in pairs(vim.tbl_extend('keep', servers, extra_servers)) do
         if not vim.tbl_isempty(config) then
           vim.lsp.config(server, config)
         end
       end
 
-      -- After configuring our language servers, we now enable them
+      -- Mason-managed servers are auto-enabled by mason-lspconfig.
       require('mason-lspconfig').setup {
         ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
-        automatic_enable = true, -- automatically run vim.lsp.enable() for all servers that are installed via Mason
+        automatic_enable = true,
       }
 
-      -- Enable non-Mason LSPs (managed by opam)
-      vim.lsp.enable 'ocamllsp'
+      -- Enable external servers explicitly.
+      for server in pairs(extra_servers) do
+        vim.lsp.enable(server)
+      end
     end,
   },
 

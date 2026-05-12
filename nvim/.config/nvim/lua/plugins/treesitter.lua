@@ -17,6 +17,8 @@ return {
       'luadoc',
       'markdown',
       'markdown_inline',
+      'ocaml',
+      'ocaml_interface',
       'vim',
       'vimdoc',
     }
