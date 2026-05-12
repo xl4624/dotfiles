@@ -24,7 +24,11 @@
       "Bash(git status*)",
       "Bash(git tag*)",
       "Bash(grep:*)",
+      "Bash(gh search *)",
       "Bash(ls:*)",
+      "Bash(ocamlfind list)",
+      "Bash(opam list *)",
+      "Bash(opam show *)",
       "Bash(rg:*)",
       "Bash(run-clang-tidy*)",
       "Bash(tree:*)"
