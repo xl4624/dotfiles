@@ -237,7 +237,7 @@ save_to_clipboard = false # Default: false
 [cursor]
 
 # Cursor style
-style = { shape = "Block", blinking = "On" } # Default: shape = "Block", blinking = "Off"
+style = { shape = "Beam", blinking = "On" } # Default: shape = "Block", blinking = "Off"
 
 # Vi mode cursor style (falls back to the active value of the normal cursor if "None")
 vi_mode_style = "None" # Default: "None"
