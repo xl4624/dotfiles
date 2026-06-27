@@ -35,7 +35,6 @@
     ],
     "defaultMode": "default"
   },
-  "model": "opus[1m]",
   "statusLine": {
     "type": "command",
     "command": "bash /home/xiaomin/.claude/statusline-command.sh"
