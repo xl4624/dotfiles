@@ -65,9 +65,6 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 -- Preview substitutions live, as you type.
 vim.opt.inccommand = 'split'
 
--- Set to block cursor always
-vim.opt.guicursor = ''
-
 -- Show which line your cursor is on
 vim.opt.cursorline = true
 
