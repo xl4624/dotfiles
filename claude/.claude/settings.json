@@ -33,7 +33,7 @@
       "Bash(run-clang-tidy*)",
       "Bash(tree:*)"
     ],
-    "defaultMode": "default"
+    "defaultMode": "auto"
   },
   "model": "opus",
   "statusLine": {
@@ -48,6 +48,8 @@
     "ralph-loop@claude-plugins-official": true,
     "commit-commands@claude-plugins-official": true
   },
+  "effortLevel": "medium",
   "skipDangerousModePermissionPrompt": true,
-  "autoCompactEnabled": false
+  "autoCompactEnabled": false,
+  "agentPushNotifEnabled": true
 }
