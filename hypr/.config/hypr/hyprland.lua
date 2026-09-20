@@ -201,11 +201,21 @@ hl.bind(mainMod .. " + O",     hl.dsp.exec_cmd("rofimoji"))
 hl.bind(mainMod .. " + D",     hl.dsp.exec_cmd("vesktop"))
 hl.bind(mainMod .. " + N",     hl.dsp.exec_cmd("networkmanager_dmenu"))
 hl.bind(mainMod .. " + X",     hl.dsp.window.close())
-hl.bind(mainMod .. " + M",     hl.dsp.exit())
+hl.bind(mainMod .. " + M",     hl.dsp.submap("power"))
 hl.bind(mainMod .. " + slash", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + F",     hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + P",     hl.dsp.window.pseudo()) -- dwindle
 hl.bind(mainMod .. " + Space", hl.dsp.layout("togglesplit"))
+hl.bind(mainMod .. " + V",     hl.dsp.exec_cmd("$HOME/.config/hypr/cliphist-pick.sh"))
+
+-- Fullscreen. SUPER + F is the launcher, so fullscreen takes the shifted key.
+hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.fullscreen())
+
+-- Window finder: lists every window across all workspaces by title and jumps
+-- to the one picked. Needs wlr-foreign-toplevel-management, which rofi 2.0
+-- speaks and Hyprland advertises; on an older X11-only rofi this mode would
+-- silently see nothing.
+hl.bind(mainMod .. " + Tab", hl.dsp.exec_cmd("rofi -show window"))
 
 -- Move focus with mainMod + hjkl
 hl.bind(mainMod .. " + H", hl.dsp.focus({ direction = "left" }))
@@ -246,6 +256,59 @@ hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 
+----------------------
+---- POWER SUBMAP ----
+----------------------
+
+-- SUPER + M used to exit Hyprland outright, one key away from SUPER + N.
+-- It now opens a modal menu instead, so a mistyped shortcut is harmless.
+--
+-- The "reset" second argument closes the submap after any bind in it fires,
+-- so a single keypress always lands you back in the normal keymap.
+--
+-- Suspend deliberately does not lock here: hypridle's before_sleep_cmd
+-- already runs loginctl lock-session on the way down.
+--
+-- If a submap ever does get stuck, from a terminal:
+--     hyprctl dispatch 'hl.dsp.submap("reset")'
+
+hl.define_submap("power", "reset", function()
+    hl.bind("L", hl.dsp.exec_cmd("pidof hyprlock || hyprlock"))
+    hl.bind("S", hl.dsp.exec_cmd("systemctl suspend"))
+    hl.bind("R", hl.dsp.exec_cmd("systemctl reboot"))
+    hl.bind("P", hl.dsp.exec_cmd("systemctl poweroff"))
+    hl.bind("E", hl.dsp.exit())
+
+    hl.bind("Escape", hl.dsp.submap("reset"))
+    hl.bind("Q",      hl.dsp.submap("reset"))
+end)
+
+-- On-screen hint for the power submap.
+--
+-- Submaps give no visual feedback on their own, so entering one is
+-- invisible unless something draws the options. keybinds.submap fires with
+-- the submap's name on entry and an empty string on exit.
+
+local POWER_HINT = "  [L] lock    [S] suspend    [R] reboot    [P] poweroff    [E] exit Hyprland    [Esc] cancel"
+
+local power_hint = nil
+
+hl.on("keybinds.submap", function(name)
+    if power_hint ~= nil then
+        power_hint:dismiss()
+        power_hint = nil
+    end
+
+    if name == "power" then
+        power_hint = hl.notification.create({
+            text      = POWER_HINT,
+            timeout   = 30000,
+            font_size = 18,
+        })
+    end
+end)
+
+
 -----------------
 ---- FN Keys ----
 -----------------
@@ -260,9 +323,9 @@ hl.bind("XF86AudioMicMute",     hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_S
 hl.bind("XF86MonBrightnessUp",   hl.dsp.exec_cmd("brightnessctl set +5%"))
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl set 5%-"))
 
--- Screenshot
-hl.bind(mainMod .. " + bracketright", hl.dsp.exec_cmd("hyprpicker -r -v"))
-hl.bind(mainMod .. " + backslash",    hl.dsp.exec_cmd("/home/xiaomin/.config/hypr/screenshot.sh"))
+-- Colour picker and screenshot
+hl.bind(mainMod .. " + C",         hl.dsp.exec_cmd("hyprpicker -r -v"))
+hl.bind(mainMod .. " + backslash", hl.dsp.exec_cmd("$HOME/.config/hypr/screenshot.sh"))
 
 
 --------------------------------

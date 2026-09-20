@@ -12,6 +12,12 @@
 /*base border color*/
 @define-color border_main rgba(255, 255, 255, 0.2);
 
+/*attention colour for urgent workspaces and critical temperature.
+  Without this, @warning_color falls through to the GTK theme (Adwaita
+  gives #f57900), which drifts with the theme and sits only 22deg from
+  the backlight gold. Solarized red is explicit and unambiguous. */
+@define-color warning_color #dc322f;
+
 /*text color for entries, views and content in general */
 @define-color content_main white;
 /*text color for entries that are unselected */
@@ -41,6 +47,7 @@ window#waybar {
 #battery,
 #clock,
 #cpu,
+#idle_inhibitor,
 #memory,
 #pulseaudio,
 #temperature,
@@ -83,6 +90,22 @@ window#waybar {
 #cpu {
 	color: #6c71c4;
 }
+#idle_inhibitor {
+	font-size: 22px;
+}
+/* OFF: the default state. Recessive, but the zzz glyph carries ~35% less
+   ink than the old coffee outline, so 0.25 alpha read as near-invisible. */
+#idle_inhibitor.deactivated {
+	color: rgba(255, 255, 255, 0.45);
+}
+/* ON: an override that defeats the auto-lock and costs battery, so it
+   should catch the eye. Solarized magenta because this bar colours modules
+   by identity rather than severity, and magenta is the only unused hue
+   family - 80deg from the backlight gold, vs 5deg for the amber this
+   replaces. Red is left free for @warning_color. */
+#idle_inhibitor.activated {
+	color: #d33682;
+}
 #memory {
 	color: #2aa198;
 }
@@ -100,6 +123,7 @@ window#waybar {
 #battery,
 #clock,
 #cpu,
+#idle_inhibitor,
 #memory,
 #pulseaudio,
 #temperature {
