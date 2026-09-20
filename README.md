@@ -72,12 +72,17 @@ Two lists, because AUR packages need `yay` rather than `pacman`:
 - `pkglist-repo.txt` — official repositories
 - `pkglist-aur.txt` — AUR
 
-Regenerate after installing or removing things:
+Both are generated files — regenerate them after installing or removing
+things rather than editing by hand:
 
 ```sh
-pacman -Qqen | sort > pkglist-repo.txt   # explicit, native
-pacman -Qqem | sort > pkglist-aur.txt    # explicit, foreign (AUR)
+./bootstrap.sh --sync-pkglists
 ```
+
+That rewrites both lists from what is installed, prints what it added and
+removed, and leaves committing to you. `./bootstrap.sh --check` reports the
+drift in both directions: packages listed but not installed, and packages
+installed but not listed.
 
 ## Adding a config
 
