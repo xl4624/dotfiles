@@ -114,6 +114,7 @@ neovim
 net-tools
 networkmanager
 network-manager-applet
+networkmanager-dmenu
 nlohmann-json
 noto-fonts-cjk
 noto-fonts-emoji

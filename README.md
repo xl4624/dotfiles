@@ -57,6 +57,7 @@ packages, and are skipped by `bootstrap.sh`.
 | `git` | `.gitconfig`, `.gitignore_global`, `.gitmessage` |
 | `hypr` | Hyprland (Lua config — 0.56+ dropped `hyprland.conf`) |
 | `waybar`, `dunst`, `rofimoji` | Bar, notifications, emoji picker |
+| `networkmanager-dmenu` | Wi-Fi picker (`Super + N`), rendered through rofi |
 | `nvim`, `tmux`, `btop`, `jj`, `zathura` | Editor and CLI tools |
 | `kitty`, `alacritty`, `ghostty`, `wezterm` | Terminals |
 | `gtk` | GTK 3 theme and font settings |
