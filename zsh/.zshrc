@@ -95,15 +95,14 @@ setopt SHARE_HISTORY        # share history across shells
 # Aliases
 #
 
-alias claude="claude --dangerously-skip-permissions"
 alias cd="nocorrect z"
 alias deluser=userdel
 alias dune="nocorrect dune"
 alias git="nocorrect git"
 alias jupyter="nocorrect jupyter"
-alias ll="eza -al --icons"
-alias ls="eza --icons"
-alias lt="eza -a --tree --level=1 --icons"
+alias ll="eza -al --icons=auto"
+alias ls="eza --icons=auto"
+alias lt="eza -a --tree --level=1 --icons=auto"
 alias make="nocorrect make"
 alias neofetch=fastfetch
 alias vim=nvim
