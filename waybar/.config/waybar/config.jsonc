@@ -144,11 +144,11 @@
 	"idle_inhibitor": {
 		"format": "{icon}",
 		"format-icons": {
-			"activated": "󰒳",
-			"deactivated": "󰒲"
+			"activated": "󰅶",
+			"deactivated": "󰛊"
 		},
-		"tooltip-format-activated": "Idle inhibited: screen stays awake",
-		"tooltip-format-deactivated": "Normal: screen will dim, lock and sleep"
+		"tooltip-format-activated": "Staying awake",
+		"tooltip-format-deactivated": "Screen will sleep"
 	},
 	"tray": {
 		"icon-size": 20
