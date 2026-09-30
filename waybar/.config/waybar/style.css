@@ -104,6 +104,9 @@ window#waybar {
 #temperature {
 	color: #18c340;
 }
+#temperature.warning {
+	color: #b58900;
+}
 #temperature.critical {
 	color: @warning_color;
 }
