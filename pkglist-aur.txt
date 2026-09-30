@@ -40,6 +40,5 @@ wlrobs-hg
 wlroots0.18
 xdg-desktop-portal-hyprland-git
 xremap-hypr-bin
-xwaylandvideobridge
 yay
 zsh-theme-powerlevel10k-git
