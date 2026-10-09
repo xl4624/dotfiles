@@ -1,0 +1,15 @@
+# Needs: /etc/geoclue/conf.d/90-automatic-timezoned.conf (pre-authorizes it with geoclue)
+# and /etc/polkit-1/rules.d/50-automatic-timezoned.rules (lets this user set the timezone).
+[Unit]
+Description=Automatically update system timezone based on location
+Documentation=https://github.com/maxbrunet/automatic-timezoned
+Wants=geoclue-agent.service
+After=geoclue-agent.service
+PartOf=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/automatic-timezoned
+Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target

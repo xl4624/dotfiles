@@ -1,0 +1,15 @@
+# geoclue only serves clients whose user has a registered agent. Hyprland has none
+# built in and ignores /etc/xdg/autostart/geoclue-demo-agent.desktop, so run geoclue's
+# own agent here. It asks for Allow/Deny via a notification for apps that are not
+# pre-authorized in /etc/geoclue.
+[Unit]
+Description=GeoClue location agent
+PartOf=graphical-session.target
+After=graphical-session.target
+
+[Service]
+ExecStart=/usr/lib/geoclue-2.0/demos/agent
+Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target
