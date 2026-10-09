@@ -66,6 +66,7 @@ fuse2
 fwupd
 fzf
 gamemode
+fprintd
 gdb
 geckodriver
 gemini-cli
