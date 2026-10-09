@@ -251,9 +251,14 @@ mapfile -t packages < <(
 )
 
 for pkg in "${packages[@]}"; do
+    # systemd ignores drop-in directories (foo.service.d/) that are symlinks, so the
+    # systemd package is linked file by file instead of folding directories.
+    stow_flags=(--target="$HOME" --dir="$DOTFILES")
+    [[ $pkg == systemd ]] && stow_flags+=(--no-folding)
+
     # --no --verbose simulates and prints what it *would* do; any conflict shows
     # up on stderr, so a clean simulation means the package is safe to stow.
-    if conflicts=$(stow --no --verbose --target="$HOME" --dir="$DOTFILES" "$pkg" 2>&1 >/dev/null \
+    if conflicts=$(stow --no --verbose "${stow_flags[@]}" "$pkg" 2>&1 >/dev/null \
                    | grep -E '^\s*\*|conflict' || true); [[ -n $conflicts ]]; then
         err "$pkg has conflicts:"
         printf '      %s\n' "$conflicts"
@@ -261,13 +266,13 @@ for pkg in "${packages[@]}"; do
     fi
 
     # A package with nothing left to do produces no output in simulation.
-    pending=$(stow --no --verbose --target="$HOME" --dir="$DOTFILES" "$pkg" 2>&1 >/dev/null \
+    pending=$(stow --no --verbose "${stow_flags[@]}" "$pkg" 2>&1 >/dev/null \
               | grep -E '^(LINK|MKDIR|UNLINK)' || true)
 
     if [[ -z $pending ]]; then
         ok "$pkg linked"
     else
-        act "stow $pkg" stow --target="$HOME" --dir="$DOTFILES" "$pkg"
+        act "stow $pkg" stow "${stow_flags[@]}" "$pkg"
     fi
 done
 
