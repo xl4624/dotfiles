@@ -23,6 +23,7 @@ mdbtools
 mongodb-bin
 nerd-fonts-cozette-ttf
 nghttp2
+pandoc-bin
 papirus-folders-catppuccin-git
 pwvucontrol
 python-jupyterlab-vim

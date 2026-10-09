@@ -9,6 +9,8 @@ alacritty
 alsa-utils
 amd-ucode
 archlinux-xdg-menu
+arch-wiki-docs
+arch-wiki-lite
 aspnet-runtime
 awww
 base
@@ -24,6 +26,7 @@ bluez-obex
 bluez-utils
 boost
 brightnessctl
+btrfs-progs
 cantarell-fonts
 ccache
 chrpath
@@ -52,6 +55,7 @@ dunst
 efibootmgr
 ell
 emacs
+esbuild
 expat
 ex-vi-compat
 eza
@@ -62,11 +66,11 @@ firefox
 flashrom
 flatpak
 fontforge
+fprintd
 fuse2
 fwupd
 fzf
 gamemode
-fprintd
 gdb
 geckodriver
 gemini-cli
@@ -86,6 +90,10 @@ gperf
 gptfdisk
 gradle
 grub
+gst-libav
+gst-plugins-bad
+gst-plugins-good
+gst-plugins-ugly
 gvim
 hivex
 htop
@@ -97,8 +105,8 @@ inkscape
 inotify-tools
 inxi
 iptables
+iwd
 jdk-openjdk
-julia
 keepass
 kio-admin
 kitty
@@ -137,9 +145,9 @@ noto-fonts-emoji
 nvm
 nwg-displays
 nwg-look
-obsidian
 obs-studio
 ollama
+ollama-vulkan
 opam
 openai-codex
 openbsd-netcat
@@ -148,13 +156,13 @@ openmpi
 os-prober
 ostree
 otf-comicshanns-nerd
-pandoc-cli
 pdftk
 perf
 pipewire-alsa
 pipewire-pulse
 plantuml
 pnpm
+polkit-kde-agent
 postgresql
 postgresql-libs
 powertop
@@ -184,7 +192,6 @@ qt5ct
 qt5-wayland
 qt6-multimedia-ffmpeg
 qt6-virtualkeyboard
-racket
 radeontop
 retroarch
 ripgrep
@@ -199,13 +206,11 @@ steam
 stow
 strace
 swappy
-tailscale
 task
 tcpdump
 texlive-basic
 thrift
 thunar
-thunderbird
 timeshift
 tk
 tldr
@@ -231,6 +236,7 @@ ueberzugpp
 ufw
 unrar
 unzip
+uv
 valgrind
 vlc
 vlc-plugins-all
@@ -239,6 +245,7 @@ webkit2gtk-4.1
 wget
 wine
 winetricks
+wireless-regdb
 wl-clipboard
 woff2-font-awesome
 wqy-bitmapfont
@@ -246,6 +253,7 @@ wqy-microhei
 wqy-microhei-lite
 wqy-zenhei
 wtype
+xclip
 xdelta3
 xdg-desktop-portal-gtk
 xdg-user-dirs
@@ -254,6 +262,7 @@ xdotool
 xf86-video-amdgpu
 xorg-xhost
 xorg-xrdb
+xsel
 yq
 yyjson
 zathura
