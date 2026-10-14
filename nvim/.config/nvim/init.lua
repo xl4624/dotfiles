@@ -77,9 +77,6 @@ vim.opt.scrolloff = 10
 -- See `:help confirm`
 vim.o.confirm = true
 
--- Python3 venv with neovim package installed.
-vim.g.python3_host_prog = os.getenv 'HOME' .. '/.local/share/virtualenvs/neovim/bin/python3'
-
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
@@ -144,11 +141,13 @@ vim.diagnostic.config {
   virtual_text = false,
   virtual_lines = false,
   -- Auto open the float when jumping with `[d` and `]d`
-  jump = { float = true },
+  jump = {
+    on_jump = function(_, bufnr)
+      vim.diagnostic.open_float { bufnr = bufnr, scope = 'cursor', focus = false }
+    end,
+  },
 }
 
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous Diagnostic message' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next Diagnostic message' })
 vim.keymap.set('n', '<leader>cd', vim.diagnostic.open_float, { desc = 'Code Line Diagnostics' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic Quickfix list' })
 
@@ -472,7 +471,9 @@ require('lazy').setup({
             '--offset-encoding=utf-16',
           },
         },
-        -- gopls = {},
+
+        -- Go
+        gopls = {},
 
         -- Python
         basedpyright = {

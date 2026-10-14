@@ -1,9 +1,9 @@
 return {
-  'neovim-treesitter/nvim-treesitter',
+  'nvim-treesitter/nvim-treesitter',
+  branch = 'main',
   build = ':TSUpdate',
   lazy = false,
   dependencies = {
-    'neovim-treesitter/treesitter-parser-registry',
     { 'nvim-treesitter/nvim-treesitter-textobjects', branch = 'main' },
     'nvim-treesitter/nvim-treesitter-context',
   },
@@ -11,14 +11,21 @@ return {
     require('nvim-treesitter').install {
       'bash',
       'c',
+      'css',
       'diff',
       'html',
+      'javascript',
+      'latex',
       'lua',
       'luadoc',
       'markdown',
       'markdown_inline',
       'ocaml',
       'ocaml_interface',
+      'regex',
+      'scss',
+      'tsx',
+      'typescript',
       'vim',
       'vimdoc',
     }
