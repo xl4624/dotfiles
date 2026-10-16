@@ -4,7 +4,7 @@
 Description=Automatically update system timezone based on location
 Documentation=https://github.com/maxbrunet/automatic-timezoned
 Wants=geoclue-agent.service
-After=geoclue-agent.service
+After=geoclue-agent.service graphical-session.target
 PartOf=graphical-session.target
 
 [Service]
