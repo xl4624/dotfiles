@@ -201,7 +201,7 @@ hl.bind(mainMod .. " + O",     hl.dsp.exec_cmd("rofimoji"))
 hl.bind(mainMod .. " + D",     hl.dsp.exec_cmd("vesktop"))
 hl.bind(mainMod .. " + N",     hl.dsp.exec_cmd("networkmanager_dmenu"))
 hl.bind(mainMod .. " + X",     hl.dsp.window.close())
-hl.bind(mainMod .. " + M",     hl.dsp.submap("power"))
+hl.bind(mainMod .. " + M",     hl.dsp.submap("power"), { locked = true })
 hl.bind(mainMod .. " + slash", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + F",     hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + P",     hl.dsp.window.pseudo()) -- dwindle
@@ -260,36 +260,19 @@ hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 ---- POWER SUBMAP ----
 ----------------------
 
--- SUPER + M used to exit Hyprland outright, one key away from SUPER + N.
--- It now opens a modal menu instead, so a mistyped shortcut is harmless.
---
--- The "reset" second argument closes the submap after any bind in it fires,
--- so a single keypress always lands you back in the normal keymap.
---
--- Suspend deliberately does not lock here: hypridle's before_sleep_cmd
--- already runs loginctl lock-session on the way down.
---
--- If a submap ever does get stuck, from a terminal:
---     hyprctl dispatch 'hl.dsp.submap("reset")'
-
 hl.define_submap("power", "reset", function()
     hl.bind("L", hl.dsp.exec_cmd("pidof hyprlock || hyprlock"))
-    hl.bind("S", hl.dsp.exec_cmd("systemctl suspend"))
-    hl.bind("R", hl.dsp.exec_cmd("systemctl reboot"))
-    hl.bind("P", hl.dsp.exec_cmd("systemctl poweroff"))
+    hl.bind("S", hl.dsp.exec_cmd("systemctl suspend"),  { locked = true })
+    hl.bind("R", hl.dsp.exec_cmd("systemctl reboot"),   { locked = true })
+    hl.bind("P", hl.dsp.exec_cmd("systemctl poweroff"), { locked = true })
     hl.bind("E", hl.dsp.exit())
 
-    hl.bind("Escape", hl.dsp.submap("reset"))
-    hl.bind("Q",      hl.dsp.submap("reset"))
+    hl.bind("catchall", hl.dsp.submap("reset"), { locked = true, ignore_mods = true })
 end)
 
 -- On-screen hint for the power submap.
---
--- Submaps give no visual feedback on their own, so entering one is
--- invisible unless something draws the options. keybinds.submap fires with
--- the submap's name on entry and an empty string on exit.
 
-local POWER_HINT = "  [L] lock    [S] suspend    [R] reboot    [P] poweroff    [E] exit Hyprland    [Esc] cancel"
+local POWER_HINT = "  [L] lock    [S] suspend    [R] reboot    [P] poweroff    [E] exit Hyprland    [any other key] cancel"
 
 local power_hint = nil
 
