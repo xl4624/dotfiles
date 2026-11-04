@@ -43,6 +43,7 @@ window#waybar {
 #battery,
 #clock,
 #cpu,
+#custom-dnd,
 #idle_inhibitor,
 #memory,
 #pulseaudio,
@@ -95,6 +96,18 @@ window#waybar {
 #idle_inhibitor.activated {
 	color: #cb4b16;
 }
+#custom-dnd {
+	font-size: 18px;
+}
+#custom-dnd.active {
+	color: rgba(255, 255, 255, 0.45);
+}
+#custom-dnd.paused {
+	color: #cb4b16;
+}
+#custom-dnd.unavailable {
+	color: @content_inactive;
+}
 #memory {
 	color: #2aa198;
 }
@@ -115,6 +128,7 @@ window#waybar {
 #battery,
 #clock,
 #cpu,
+#custom-dnd,
 #idle_inhibitor,
 #memory,
 #pulseaudio,

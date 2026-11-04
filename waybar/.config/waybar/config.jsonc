@@ -38,6 +38,9 @@
 		"idle_inhibitor",
 		"custom/left-arrow-light",
 		"custom/left-arrow-dark",
+		"custom/dnd",
+		"custom/left-arrow-light",
+		"custom/left-arrow-dark",
         "tray"
 	],
 
@@ -152,6 +155,13 @@
 		},
 		"tooltip-format-activated": "Staying awake",
 		"tooltip-format-deactivated": "Screen will sleep"
+	},
+	"custom/dnd": {
+		"exec": "~/.config/waybar/scripts/dunst-dnd.py",
+		"return-type": "json",
+		"restart-interval": 5,
+		"exec-on-event": false,
+		"on-click": "dunstctl set-paused toggle"
 	},
 	"tray": {
 		"icon-size": 20
