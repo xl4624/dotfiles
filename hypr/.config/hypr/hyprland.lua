@@ -272,7 +272,7 @@ end)
 
 -- On-screen hint for the power submap.
 
-local POWER_HINT = "  [L] lock    [S] suspend    [R] reboot    [P] poweroff    [E] exit Hyprland    [any other key] cancel"
+local POWER_HINT = "  [L] lock    [S] suspend    [R] reboot    [P] poweroff    [E] exit Hyprland"
 
 local power_hint = nil
 
