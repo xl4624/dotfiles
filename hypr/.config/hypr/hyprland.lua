@@ -14,7 +14,7 @@ hl.monitor({
 ---- MY PROGRAMS ----
 ---------------------
 
-local terminal    = "kitty"
+local terminal    = "alacritty"
 local fileManager = "thunar"
 local menu        = "rofi -show drun"
 

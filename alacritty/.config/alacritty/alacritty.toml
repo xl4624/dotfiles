@@ -118,16 +118,17 @@ transparent_background_colors = false # Default
 draw_bold_text_with_bright_colors = false # Default
 
 # Primary colors
+# Palette matches kitty's built-in defaults (black background)
 [colors.primary]
-#foreground = "#d8d8d8"  # Default
-#background = "#181818"  # Default
+foreground = "#dddddd"
+background = "#000000"
 #dim_foreground = "#828482"  # Default
 #bright_foreground = "None"  # Default
 
 # Cursor colors
 [colors.cursor]
-#text = "CellBackground"  # Default
-#cursor = "CellForeground"  # Default
+text = "#111111"
+cursor = "#cccccc"
 
 # Vi mode cursor colors
 [colors.vi_mode_cursor]
@@ -164,30 +165,30 @@ draw_bold_text_with_bright_colors = false # Default
 
 # Selection colors
 [colors.selection]
-#text = "CellBackground"  # Default
-#background = "CellForeground"  # Default
+text = "#000000"
+background = "#fffacd"
 
 # Normal colors
 [colors.normal]
-#black = "#181818"  # Default
-#red = "#ac4242"  # Default
-#green = "#90a959"  # Default
-#yellow = "#f4bf75"  # Default
-#blue = "#6a9fb5"  # Default
-#magenta = "#aa759f"  # Default
-#cyan = "#75b5aa"  # Default
-#white = "#d8d8d8"  # Default
+black = "#000000"
+red = "#cc0403"
+green = "#19cb00"
+yellow = "#cecb00"
+blue = "#0d73cc"
+magenta = "#cb1ed1"
+cyan = "#0dcdcd"
+white = "#dddddd"
 
 # Bright colors
 [colors.bright]
-#black = "#6b6b6b"  # Default
-#red = "#c55555"  # Default
-#green = "#aac474"  # Default
-#yellow = "#feca88"  # Default
-#blue = "#82b8c8"  # Default
-#magenta = "#c28cb8"  # Default
-#cyan = "#93d3c3"  # Default
-#white = "#f8f8f8"  # Default
+black = "#767676"
+red = "#f2201f"
+green = "#23fd00"
+yellow = "#fffd00"
+blue = "#1a8fff"
+magenta = "#fd28ff"
+cyan = "#14ffff"
+white = "#ffffff"
 
 # Dim colors
 [colors.dim]
@@ -237,7 +238,7 @@ save_to_clipboard = false # Default: false
 [cursor]
 
 # Cursor style
-style = { shape = "Beam", blinking = "On" } # Default: shape = "Block", blinking = "Off"
+style = { shape = "Block", blinking = "On" } # Default: shape = "Block", blinking = "Off"
 
 # Vi mode cursor style (falls back to the active value of the normal cursor if "None")
 vi_mode_style = "None" # Default: "None"
