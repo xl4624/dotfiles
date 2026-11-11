@@ -42,9 +42,6 @@ cython
 dhcpcd
 dialog
 direnv
-docker
-docker-buildx
-docker-compose
 doctest
 dosfstools
 dotnet-runtime
@@ -65,6 +62,7 @@ firecracker
 firefox
 flashrom
 flatpak
+fnm
 fontforge
 fprintd
 fuse2
@@ -73,6 +71,7 @@ fzf
 gamemode
 gdb
 geckodriver
+ggml-vulkan
 ghostty
 ghostty-shell-integration
 git
@@ -101,11 +100,13 @@ hyprpicker
 hyprsunset
 imagemagick
 inkscape
+innoextract
 inotify-tools
 inxi
 iptables
 iwd
 jdk-openjdk
+jujutsu
 keepass
 kio-admin
 kitty
@@ -121,6 +122,7 @@ libreoffice-fresh
 linux
 linux-firmware
 linux-headers
+llama-cpp
 lld20
 lldb
 love
@@ -139,19 +141,18 @@ networkmanager
 network-manager-applet
 networkmanager-dmenu
 nlohmann-json
+nmap
 noto-fonts-cjk
 noto-fonts-emoji
-fnm
 nwg-displays
 nwg-look
 obs-studio
-ollama
-ollama-vulkan
 opam
 openai-codex
 openbsd-netcat
 opencode
 openmpi
+openssl-3
 os-prober
 ostree
 otf-comicshanns-nerd
@@ -173,6 +174,7 @@ python-frozendict
 python-hatch-jupyter-builder
 python-hatchling
 python-hatch-vcs
+python-huggingface-hub
 python-jupyter-packaging
 python-matplotlib
 python-pandas
@@ -199,6 +201,7 @@ rofimoji
 ruby
 rustup
 scdoc
+smartmontools
 squashfs-tools
 sshfs
 steam
@@ -216,6 +219,7 @@ tldr
 tlp
 tlp-rdw
 tmux
+traceroute
 tree
 tree-sitter-cli
 ttf-arphic-ukai
@@ -242,6 +246,7 @@ vlc-plugins-all
 waybar
 webkit2gtk-4.1
 wget
+whois
 wine
 winetricks
 wireless-regdb

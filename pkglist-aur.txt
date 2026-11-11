@@ -16,11 +16,9 @@ hyprlock-git
 hyprpaper-git
 i686-elf-binutils
 i686-elf-gcc
-jujutsu-git
 libinput-gestures
 lsdesktopf
 mdbtools
-mongodb-bin
 nerd-fonts-cozette-ttf
 nghttp2
 pandoc-bin
@@ -37,7 +35,6 @@ ttf-fixedsys-excelsior-linux
 ttf-ms-fonts
 vesktop
 visual-studio-code-bin
-wezterm-git
 wlrobs-hg
 wlroots0.18
 xdg-desktop-portal-hyprland-git
