@@ -73,7 +73,6 @@ fzf
 gamemode
 gdb
 geckodriver
-gemini-cli
 ghostty
 ghostty-shell-integration
 git
@@ -142,7 +141,7 @@ networkmanager-dmenu
 nlohmann-json
 noto-fonts-cjk
 noto-fonts-emoji
-nvm
+fnm
 nwg-displays
 nwg-look
 obs-studio

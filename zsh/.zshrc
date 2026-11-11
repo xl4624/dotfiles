@@ -179,31 +179,14 @@ export PATH="$HOME/.go/bin:$PATH"
 # fzf
 source <(fzf --zsh)
 
-# pipx completion - only rebuild compinit once a day
-autoload -Uz compinit
-if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
-  compinit
-else
-  compinit -C
-fi
+# pipx completion
 eval "$(register-python-argcomplete pipx)"
 
-# nvm
-export NVM_DIR="$HOME/.nvm"
-source /usr/share/nvm/init-nvm.sh
+# fnm
+eval "$(fnm env --use-on-cd --shell zsh)"
 
 # conda
-__conda_setup="$('/home/xiaomin/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/xiaomin/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/xiaomin/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/xiaomin/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
+. "$HOME/anaconda3/etc/profile.d/conda.sh"
 
 # ghcup
 [ -f "/home/xiaomin/.ghcup/env" ] && . "/home/xiaomin/.ghcup/env"
