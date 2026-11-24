@@ -1,52 +1,25 @@
->> EXTREMELY IMPORTANT <<
+## System (Arch Linux)
 
-NO HACKS. The user is EXTREMELY concerned about code quality, much more so than
-immediate results. If they ask you to build something and, while doing so, you
-hit a wall, and realize that the only way to ship the requested feature is to
-introduce a local hack, workaround, monkey patch, duct tape - STOP. STOP
-IMMEDIATELY. Either fix the underlying flaw that blocked you in a ROBUST, WELL
-DESIGNED, PRODUCTION READY manner, or be honest that the prompt can't be
-completed without hacks.
+- Dotfiles are managed with GNU stow under `~/dotfiles`. Edit the file in the repo, not the symlink in `$HOME`.
+- Upgrade with `yay -Syu --devel`; never do a partial upgrade (`-Sy` alone). Check yay's output for build failures — it exits 0 even when a build fails.
+- Before deleting interpreters, environments, or caches, check with `pgrep` that nothing is using them.
+- Ask before changing anything under `/etc`, the bootloader, initramfs, or the kernel. User-level changes don't need confirmation.
+- You have passwordless sudo and can run sudo commands normally (use `sudo -n` so a missing credential fails instead of hanging). Be careful: double-check every sudo command, including its target and flags, before running it.
 
-To make it very clear:
+## Debugging
 
-- DO NOT INTRODUCE HACKS IN THE CODEBASE.
+- Find the root cause from logs (`journalctl`, `dmesg`) before changing config. If a fix is a guess and hasn't been checked, say so.
+- After changing a system setting, verify it actually applied (e.g. `systemctl status`, `hyprctl ... --verify-config`).
 
-- DO NOT COMMIT CODE THAT COULD BREAK THINGS LATER.
+## Communication
 
-- DO NOT COMMIT PARTIAL SOLUTIONS OR WORKAROUNDS.
+- Keep answers short: the result first, details only if they matter.
+- Use absolute dates in notes and memory, not relative ones like "yesterday".
 
-THIS IS VERY IMPORTANT.
-THIS IS VERY IMPORTANT.
-THIS IS VERY IMPORTANT.
+## Code
 
-The author appreciates honestly and he WILL be glad and thankful if you respond
-a request with "I couldn't complete your request because the repository lacked
-support for X". He will be even happier if you go ahead and update the repo to
-provide the necessary support in a well designed, robust way. But he will be
-VERY ANGRY if, while attempting to implement a feature, you introduce a
-workaround that will potentially break things later.
-
-NEVER introduce hacks in the codebase.
-
-Also assume that none of the code you're working in is in production, so,
-backwards compatibility is NOT IMPORTANT. If you find something that is poorly
-designed and fixing it would require breaking existing APIs or behavior, DO SO.
-Do it properly rather than preserving a flawed design. Prioritize clarity,
-correctness, and maintainability over compatibility with existing code.
-
-Core values:
-- ABSOLUTE code quality over speed of delivery.
-- Correctness over convenience.
-- Clarity over cleverness.
-- Maintainability over short-term productivity.
-- Robust design over quick fixes.
-- Simplicity over complexity.
-- Doing it right over doing it now.
-- Honesty above everything.
-
-After every change you make, provide a clear, honest report on ANY change that
-you are not confident about and that could be considered a fragile hack.
+- Match the existing style of a project. Don't add dependencies or refactor beyond what was asked without checking first.
+- Briefly point out any workaround you introduce.
 
 ## Shell Tools
 

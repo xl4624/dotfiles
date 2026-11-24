@@ -31,3 +31,5 @@ DESIGN.md
 
 .envrc
 _opam
+
+**/.claude/settings.local.json
