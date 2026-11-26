@@ -66,16 +66,26 @@
   },
   "enabledPlugins": {
     "clangd-lsp@claude-plugins-official": true,
-    "commit-commands@claude-plugins-official": true
+    "commit-commands@claude-plugins-official": true,
+    "frontend-design@anthropic-plugin-directory": true,
+    "superpowers@anthropic-plugin-directory": true,
+    "code-simplifier@anthropic-plugin-directory": true
   },
+  "feedbackDrafts": "notify",
   "effortLevel": "medium",
   "awaySummaryEnabled": false,
   "voice": {
     "enabled": true,
     "mode": "hold"
   },
+  "prefersReducedMotion": false,
+  "timeFormat": "auto",
   "skipDangerousModePermissionPrompt": true,
+  "theme": "dark",
+  "editorMode": "normal",
   "autoCompactEnabled": false,
+  "idleCompaction": true,
+  "switchModelsOnFlag": true,
   "agentPushNotifEnabled": true,
   "autoMode": {
     "environment": [
