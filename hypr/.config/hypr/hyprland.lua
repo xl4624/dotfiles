@@ -25,7 +25,7 @@ local menu = "rofi -show drun"
 hl.on("hyprland.start", function()
 	hl.exec_cmd("systemctl --user start plasma-polkit-agent")
 	hl.exec_cmd("brightnessctl set 50%")
-	hl.exec_cmd("xremap $HOME/.config/xremap/config.yml & libinput-gestures-setup start")
+	hl.exec_cmd("xremap $HOME/.config/xremap/config.yml >$HOME/.local/state/xremap.log 2>&1 & libinput-gestures-setup start")
 	hl.exec_cmd("pidof -x battery_check.sh || $HOME/.config/hypr/battery_check.sh")
 	hl.exec_cmd("wpctl set-default 51") -- set ThinkPad mic as default input
 	hl.exec_cmd("waybar & dunst")
