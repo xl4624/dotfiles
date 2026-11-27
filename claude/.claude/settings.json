@@ -59,7 +59,7 @@
     ],
     "defaultMode": "auto"
   },
-  "model": "opus",
+  "model": "sonnet",
   "statusLine": {
     "type": "command",
     "command": "bash /home/xiaomin/.claude/statusline-command.sh"
@@ -73,6 +73,7 @@
   },
   "feedbackDrafts": "notify",
   "effortLevel": "medium",
+  "advisorModel": "opus",
   "awaySummaryEnabled": false,
   "voice": {
     "enabled": true,
