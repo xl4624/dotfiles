@@ -1,3 +1,5 @@
 *.bak
 !claude/.claude/
 !claude/.claude/**
+!gemini/.gemini/
+!gemini/.gemini/**
