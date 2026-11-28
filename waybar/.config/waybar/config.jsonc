@@ -35,7 +35,7 @@
 		"clock",
 		"custom/left-arrow-light",
 		"custom/left-arrow-dark",
-		"idle_inhibitor",
+		"custom/caffeine",
 		"custom/left-arrow-light",
 		"custom/left-arrow-dark",
 		"custom/dnd",
@@ -147,14 +147,12 @@
         "tooltip": true,
         "tooltip-format": "RAM - {used:0.1f}GiB used"
 	},
-	"idle_inhibitor": {
-		"format": "{icon}",
-		"format-icons": {
-			"activated": "󰅶",
-			"deactivated": "󰛊"
-		},
-		"tooltip-format-activated": "Staying awake",
-		"tooltip-format-deactivated": "Screen will sleep"
+	"custom/caffeine": {
+		"exec": "~/.config/waybar/scripts/caffeine.sh status",
+		"return-type": "json",
+		"signal": 8,
+		"interval": "once",
+		"on-click": "~/.config/waybar/scripts/caffeine.sh toggle; pkill -RTMIN+8 waybar"
 	},
 	"custom/dnd": {
 		"exec": "~/.config/waybar/scripts/dunst-dnd.py",

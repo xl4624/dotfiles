@@ -44,7 +44,7 @@ window#waybar {
 #clock,
 #cpu,
 #custom-dnd,
-#idle_inhibitor,
+#custom-caffeine,
 #memory,
 #pulseaudio,
 #temperature,
@@ -87,13 +87,13 @@ window#waybar {
 #cpu {
 	color: #6c71c4;
 }
-#idle_inhibitor {
+#custom-caffeine {
 	font-size: 22px;
 }
-#idle_inhibitor.deactivated {
+#custom-caffeine.deactivated {
 	color: rgba(255, 255, 255, 0.45);
 }
-#idle_inhibitor.activated {
+#custom-caffeine.activated {
 	color: #cb4b16;
 }
 #custom-dnd {
@@ -129,7 +129,7 @@ window#waybar {
 #clock,
 #cpu,
 #custom-dnd,
-#idle_inhibitor,
+#custom-caffeine,
 #memory,
 #pulseaudio,
 #temperature {
